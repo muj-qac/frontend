@@ -1,5 +1,11 @@
+import LoginPage from "./pages/LoginPage";
+
 function App() {
-  return <div className=" bg-green-500">App</div>;
+  return (
+    <div>
+      <LoginPage />
+    </div>
+  );
 }
 
 export default App;
