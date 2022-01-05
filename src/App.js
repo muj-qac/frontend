@@ -1,5 +1,7 @@
+import SideBar from './components/SideBar';
+
 function App() {
-  return <div className=" bg-green-500">App</div>;
+  return <SideBar />;
 }
 
 export default App;
