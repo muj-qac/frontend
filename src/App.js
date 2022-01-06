@@ -1,7 +1,13 @@
-import SideBar from './components/SideBar';
+// import SideBar from './components/SideBar';
+import Kpi from './pages/kpi';
 
 function App() {
-  return <SideBar />;
+  return (
+    <div>
+      {/* <SideBar /> */}
+      <Kpi />
+    </div>
+  );
 }
 
 export default App;

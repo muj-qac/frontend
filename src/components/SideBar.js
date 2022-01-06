@@ -7,11 +7,11 @@ function SideBar() {
     <div
       className={`${
         enabled
-          ? 'bg-Dark-primary flex flex-no-wrap h-screen'
-          : 'bg-Light-primary flex flex-no-wrap h-screen'
+          ? 'bg-Dark-primary flex flex-no-wrap h-screen w-64'
+          : 'bg-Light-primary flex flex-no-wrap h-screen w-64'
       }`}
     >
-      <div className="w-64 absolute sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
+      <div className=" w-64 absolute sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
         <div className="px-0">
           <div
             className={`${
@@ -23,7 +23,7 @@ function SideBar() {
             KPI PORTAL
           </div>
           <ul className="mt-12">
-            <li
+            {/* <li
               className={`${
                 enabled
                   ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
@@ -59,7 +59,7 @@ function SideBar() {
                   KPI
                 </span>
               </div>
-            </li>
+            </li> */}
             <li
               className={`${
                 enabled
@@ -92,7 +92,7 @@ function SideBar() {
                       : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
-                  KPI Allocation
+                  KPI
                 </span>
               </div>
             </li>
