@@ -5,9 +5,6 @@ import TableKpi from '../components/TableKpi';
 
 function Kpi() {
   const [showModal, setShowModal] = useState(false);
-  const pull_data = (data) => {
-    console.log(data); // LOGS DATA FROM CHILD (My name is Dean Winchester... &)
-  };
   return (
     <>
       <div className=" grid grid-cols-12">

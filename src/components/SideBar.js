@@ -1,8 +1,10 @@
 import { Switch } from '@headlessui/react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function SideBar() {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(true);
+  let navigate = useNavigate();
   return (
     <div
       className={`${
@@ -23,12 +25,15 @@ function SideBar() {
             KPI PORTAL
           </div>
           <ul className="mt-12">
-            {/* <li
+            <li
               className={`${
                 enabled
                   ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
+              onClick={() => {
+                navigate('/kpi');
+              }}
             >
               <div className="flex items-center">
                 <svg
@@ -59,13 +64,16 @@ function SideBar() {
                   KPI
                 </span>
               </div>
-            </li> */}
+            </li>
             <li
               className={`${
                 enabled
                   ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
+              onClick={() => {
+                navigate('/createKpi');
+              }}
             >
               <div className="flex items-center">
                 <svg
@@ -92,7 +100,7 @@ function SideBar() {
                       : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
-                  KPI
+                  Create KPI
                 </span>
               </div>
             </li>
@@ -102,6 +110,9 @@ function SideBar() {
                   ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
+              onClick={() => {
+                navigate('/manage');
+              }}
             >
               <div className="flex items-center">
                 <svg
