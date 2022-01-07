@@ -1,4 +1,4 @@
-const people = [
+const kpis = [
   {
     title: 'KPI 1',
     status: 'Active',
@@ -121,23 +121,21 @@ function TableKpi() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {people.map((person) => (
-                  <tr key={person.email}>
+                {kpis.map((kpi) => (
+                  <tr key={kpi.email}>
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-sm text-gray-900">
-                        {person.title}
-                      </div>
+                      <div className="text-sm text-gray-900">{kpi.title}</div>
                       <div className="text-sm text-gray-500">
-                        {person.department}
+                        {kpi.department}
                       </div>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                        {person.status}
+                        {kpi.status}
                       </span>
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                      {person.role}
+                      {kpi.role}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                       <a
