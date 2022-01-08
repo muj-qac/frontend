@@ -1,8 +1,8 @@
 function TopBar() {
   return (
-    <div>
-      <div className="flex items-center w-96">
-        <div>
+    <>
+      <div className="flex items-center justify-between min-w-[60rem] ml-32 mt-5">
+        <div className=" w-64 flex items-center">
           <div className="flex-shrink-0 h-10 w-10">
             <img
               className="h-10 w-10 rounded-full"
@@ -22,7 +22,7 @@ function TopBar() {
           SignOut
         </button>
       </div>
-    </div>
+    </>
   );
 }
 
