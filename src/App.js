@@ -2,7 +2,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CreateKpi from './pages/CreateKpi';
 import Kpi from './pages/Kpi';
-import Login from './pages/Login';
+import LoginPage from './pages/LoginPage';
 import ManageAccounts from './pages/ManageAccounts';
 
 function App() {
