@@ -9,7 +9,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Login />} />
+        <Route index element={<LoginPage />} />
         <Route path="kpi" element={<Kpi />}></Route>
         <Route path="createKpi" element={<CreateKpi />}></Route>
         <Route path="manage" element={<ManageAccounts />}></Route>
