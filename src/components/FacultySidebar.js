@@ -33,7 +33,7 @@ function FacultySideBar() {
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate('/kpi');
+                navigate('/faculty');
               }}
             >
               <div className="flex items-center">
@@ -112,7 +112,7 @@ function FacultySideBar() {
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate('/manage');
+                navigate('/setting');
               }}
             >
               <div className="flex items-center">
@@ -139,7 +139,7 @@ function FacultySideBar() {
                       : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
-                  Manage Accounts
+                  Settings
                 </span>
               </div>
             </li>
