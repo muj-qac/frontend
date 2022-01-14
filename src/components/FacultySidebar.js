@@ -2,7 +2,7 @@ import { Switch } from '@headlessui/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-function SideBar() {
+function FacultySideBar() {
   const [enabled, setEnabled] = useState(true);
   const [specific, setSpecific] = useState('/kpi');
   let navigate = useNavigate();
@@ -14,7 +14,7 @@ function SideBar() {
           : 'bg-Light-primary flex flex-no-wrap h-screen w-64 sticky top-0'
       }`}
     >
-      <div className=" w-64 fixed sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
+      <div className=" w-64 sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
         <div className="px-0">
           <div
             className={`${
@@ -76,7 +76,7 @@ function SideBar() {
                 navigate('/createKpi');
               }}
             >
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-stack"
@@ -103,7 +103,7 @@ function SideBar() {
                 >
                   Create KPI
                 </span>
-              </div>
+              </div> */}
             </li>
             <li
               className={`${
@@ -199,4 +199,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default FacultySideBar;
