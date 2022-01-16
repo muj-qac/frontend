@@ -112,6 +112,47 @@ function SideBar() {
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
+                navigate('/manageKPI');
+              }}
+            >
+              <div className="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-settings"
+                  width={18}
+                  height={18}
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  />
+                </svg>
+                <span
+                  className={`${
+                    enabled
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
+                  }`}
+                >
+                  Manage KPI
+                </span>
+              </div>
+            </li>
+            <li
+              className={`${
+                enabled
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+              }`}
+              onClick={() => {
                 navigate('/manage');
               }}
             >
@@ -145,7 +186,7 @@ function SideBar() {
             </li>
           </ul>
         </div>
-        <div
+        {/* <div
           className={`${
             enabled
               ? 'flex items-center justify-evenly h-20 border-t-2 border-Dark-secondary'
@@ -193,7 +234,7 @@ function SideBar() {
               d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
             />
           </svg>
-        </div>
+        </div> */}
       </div>
     </div>
   );
