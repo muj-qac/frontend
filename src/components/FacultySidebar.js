@@ -1,26 +1,26 @@
-import { Switch } from "@headlessui/react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Switch } from '@headlessui/react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
-function SideBar() {
+function FacultySideBar() {
   const [enabled, setEnabled] = useState(true);
-  const [specific, setSpecific] = useState("/kpi");
+  const [specific, setSpecific] = useState('/kpi');
   let navigate = useNavigate();
   return (
     <div
       className={`${
         enabled
-          ? "bg-Dark-primary flex flex-no-wrap h-screen w-64"
-          : "bg-Light-primary flex flex-no-wrap h-screen w-64"
+          ? 'bg-Dark-primary flex flex-no-wrap h-screen w-64 sticky top-0'
+          : 'bg-Light-primary flex flex-no-wrap h-screen w-64 sticky top-0'
       }`}
     >
-      <div className=" w-64 absolute sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
+      <div className=" w-64 sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
         <div className="px-0">
           <div
             className={`${
               enabled
-                ? "h-16 w-full flex items-center justify-center text-Dark-text_primary"
-                : "h-16 w-full flex items-center justify-center text-Light-text_primary"
+                ? 'h-16 w-full flex items-center justify-center text-Dark-text_primary'
+                : 'h-16 w-full flex items-center justify-center text-Light-text_primary'
             }`}
           >
             KPI PORTAL
@@ -29,11 +29,11 @@ function SideBar() {
             <li
               className={`${
                 enabled
-                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
-                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate("/kpi");
+                navigate('/faculty');
               }}
             >
               <div className="flex items-center">
@@ -44,7 +44,7 @@ function SideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -58,8 +58,8 @@ function SideBar() {
                 <span
                   className={`${
                     enabled
-                      ? "text-lg  ml-2 text-Dark-text_primary"
-                      : "text-lg  ml-2 text-Light-text_primary"
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
                   KPI
@@ -69,14 +69,14 @@ function SideBar() {
             <li
               className={`${
                 enabled
-                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
-                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate("/createKpi");
+                navigate('/createKpi');
               }}
             >
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon icon-tabler icon-tabler-stack"
@@ -84,7 +84,7 @@ function SideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -97,22 +97,22 @@ function SideBar() {
                 <span
                   className={`${
                     enabled
-                      ? "text-lg  ml-2 text-Dark-text_primary"
-                      : "text-lg  ml-2 text-Light-text_primary"
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
                   Create KPI
                 </span>
-              </div>
+              </div> */}
             </li>
             <li
               className={`${
                 enabled
-                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
-                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate("/manage");
+                navigate('/setting');
               }}
             >
               <div className="flex items-center">
@@ -123,7 +123,7 @@ function SideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -135,11 +135,11 @@ function SideBar() {
                 <span
                   className={`${
                     enabled
-                      ? "text-lg  ml-2 text-Dark-text_primary"
-                      : "text-lg  ml-2 text-Light-text_primary"
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
-                  Manage Accounts
+                  Settings
                 </span>
               </div>
             </li>
@@ -148,8 +148,8 @@ function SideBar() {
         <div
           className={`${
             enabled
-              ? "flex items-center justify-evenly h-20 border-t-2 border-Dark-secondary"
-              : "flex items-center justify-evenly h-20 border-t-2 border-Light-secondary"
+              ? 'flex items-center justify-evenly h-20 border-t-2 border-Dark-secondary'
+              : 'flex items-center justify-evenly h-20 border-t-2 border-Light-secondary'
           }`}
         >
           <svg
@@ -169,13 +169,13 @@ function SideBar() {
           <Switch
             checked={enabled}
             onChange={setEnabled}
-            className={`${enabled ? "bg-teal-900" : "bg-teal-700"}
+            className={`${enabled ? 'bg-teal-900' : 'bg-teal-700'}
           relative inline-flex flex-shrink-0 h-[38px] w-[74px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
           >
             <span className="sr-only">Use setting</span>
             <span
               aria-hidden="true"
-              className={`${enabled ? "translate-x-9" : "translate-x-0"}
+              className={`${enabled ? 'translate-x-9' : 'translate-x-0'}
             pointer-events-none inline-block h-[34px] w-[34px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
             />
           </Switch>
@@ -199,4 +199,4 @@ function SideBar() {
   );
 }
 
-export default SideBar;
+export default FacultySideBar;

@@ -29,12 +29,20 @@ module.exports = {
       //   primary: 'var(--color-text-primary)',
       //   secondary: 'var(--color-text-secondary)',
       // },
+<<<<<<< HEAD
       transparent: "transparent",
       current: "currentColor",
       black: colors.black,
       white: colors.white,
       gray: colors.gray,
       red: colors.red,
+=======
+      transparent: 'transparent',
+      current: 'currentColor',
+      black: colors.black,
+      white: colors.white,
+      gray: colors.gray,
+>>>>>>> 70a3136ab00ffa73327b35aae493c9b0784b15ec
       emerald: colors.emerald,
       indigo: colors.indigo,
       yellow: colors.yellow,
