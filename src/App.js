@@ -7,6 +7,7 @@ import Settings from './pages/faculty/Settings';
 import Kpi from './pages/Kpi';
 import LoginPage from './pages/LoginPage';
 import ManageAccounts from './pages/ManageAccounts';
+import User from './pages/User';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="manage" element={<ManageAccounts />}></Route>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="dashboard/setting" element={<Settings />}></Route>
+        <Route path="manage" element={<User />}></Route>
       </Routes>
       {/* </AuthProvider> */}
     </BrowserRouter>

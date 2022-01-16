@@ -1,19 +1,19 @@
-import SideBar from '../components/SideBar';
-import * as Yup from 'yup';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import SideBar from "../components/SideBar";
+import * as Yup from "yup";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 function CreateKpi() {
   const validationSchema = Yup.object({
-    kpi: Yup.string().required('Please select a Column Name'),
-    name: Yup.string().required('Please select a Column Name'),
+    kpi: Yup.string().required("Please select a Column Name"),
+    name: Yup.string().required("Please select a Column Name"),
   });
 
   const initialValues = {
-    name: '',
-    dataType: '',
-    invalidAction: '',
-    rule: '',
-    invalidHelpText: '',
+    name: "",
+    dataType: "",
+    invalidAction: "",
+    rule: "",
+    invalidHelpText: "",
   };
 
   const onSubmit = (values) => {};
