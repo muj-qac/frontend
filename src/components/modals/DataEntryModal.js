@@ -1,4 +1,4 @@
-import KpiCol from '../InnerComponents/KpiCol';
+import KpiCol from "../InnerComponents/KpiCol";
 
 function DataEntryModal(setShowModal) {
   return (
