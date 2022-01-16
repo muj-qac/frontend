@@ -15,11 +15,7 @@ function App() {
         <Route index element={<LoginPage />} />
         <Route path="kpi" element={<Kpi />}></Route>
         <Route path="createKpi" element={<CreateKpi />}></Route>
-<<<<<<< HEAD
         <Route path="manage" element={<User />}></Route>
-=======
-        <Route path="manage" element={<ManageAccounts />}></Route>
->>>>>>> 70a3136ab00ffa73327b35aae493c9b0784b15ec
       </Routes>
     </BrowserRouter>
   );
