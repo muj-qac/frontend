@@ -1,17 +1,17 @@
-import { Switch } from "@headlessui/react";
-import { useParams, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { Switch } from '@headlessui/react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 function SideBar() {
   const [enabled, setEnabled] = useState(true);
-  const [specific, setSpecific] = useState("/kpi");
+  const [specific, setSpecific] = useState('/kpi');
   let navigate = useNavigate();
   return (
     <div
       className={`${
         enabled
-          ? "bg-Dark-primary flex flex-no-wrap h-screen w-64"
-          : "bg-Light-primary flex flex-no-wrap h-screen w-64"
+          ? 'bg-Dark-primary flex flex-no-wrap h-screen w-64'
+          : 'bg-Light-primary flex flex-no-wrap h-screen w-64'
       }`}
     >
       <div className=" w-64 absolute sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
@@ -19,8 +19,8 @@ function SideBar() {
           <div
             className={`${
               enabled
-                ? "h-16 w-full flex items-center justify-center text-Dark-text_primary"
-                : "h-16 w-full flex items-center justify-center text-Light-text_primary"
+                ? 'h-16 w-full flex items-center justify-center text-Dark-text_primary'
+                : 'h-16 w-full flex items-center justify-center text-Light-text_primary'
             }`}
           >
             KPI PORTAL
@@ -29,11 +29,11 @@ function SideBar() {
             <li
               className={`${
                 enabled
-                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
-                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate("/kpi");
+                navigate('/kpi');
               }}
             >
               <div className="flex items-center">
@@ -44,7 +44,7 @@ function SideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -58,8 +58,8 @@ function SideBar() {
                 <span
                   className={`${
                     enabled
-                      ? "text-lg  ml-2 text-Dark-text_primary"
-                      : "text-lg  ml-2 text-Light-text_primary"
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
                   KPI
@@ -69,11 +69,11 @@ function SideBar() {
             <li
               className={`${
                 enabled
-                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
-                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate("/createKpi");
+                navigate('/createKpi');
               }}
             >
               <div className="flex items-center">
@@ -84,7 +84,7 @@ function SideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -97,8 +97,8 @@ function SideBar() {
                 <span
                   className={`${
                     enabled
-                      ? "text-lg  ml-2 text-Dark-text_primary"
-                      : "text-lg  ml-2 text-Light-text_primary"
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
                   Create KPI
@@ -108,11 +108,11 @@ function SideBar() {
             <li
               className={`${
                 enabled
-                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
-                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate("/manage");
+                navigate('/manageKPI');
               }}
             >
               <div className="flex items-center">
@@ -123,7 +123,48 @@ function SideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
+                  />
+                </svg>
+                <span
+                  className={`${
+                    enabled
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
+                  }`}
+                >
+                  Manage KPI
+                </span>
+              </div>
+            </li>
+            <li
+              className={`${
+                enabled
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+              }`}
+              onClick={() => {
+                navigate('/manage');
+              }}
+            >
+              <div className="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-settings"
+                  width={18}
+                  height={18}
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -135,8 +176,8 @@ function SideBar() {
                 <span
                   className={`${
                     enabled
-                      ? "text-lg  ml-2 text-Dark-text_primary"
-                      : "text-lg  ml-2 text-Light-text_primary"
+                      ? 'text-lg  ml-2 text-Dark-text_primary'
+                      : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
                   Manage Accounts
@@ -145,7 +186,7 @@ function SideBar() {
             </li>
           </ul>
         </div>
-        <div
+        {/* <div
           className={`${
             enabled
               ? "flex items-center justify-evenly h-20 border-t-2 border-Dark-secondary"
@@ -193,7 +234,7 @@ function SideBar() {
               d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
             />
           </svg>
-        </div>
+        </div> */}
       </div>
     </div>
   );
