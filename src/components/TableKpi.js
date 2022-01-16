@@ -1,7 +1,6 @@
 //import statements
 // import RoleAllocModal from "./modals/RoleAllocModal";
 // { CloseRoleAllocModal }
-import Chip from "./Chip";
 import { TextInput } from "evergreen-ui";
 import { useState } from "react";
 import { Switch } from "evergreen-ui";

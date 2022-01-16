@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 // import Table from './Table';
 
 function KpiCol() {
   const [inputList, setInputList] = useState([
-    { name: "", dataType: "string", nullable: "false" },
+    { name: '', dataType: 'string', nullable: 'false' },
   ]);
-  const [object, setObject] = useState([{ tableName: "" }]);
+  const [object, setObject] = useState([{ tableName: '' }]);
   const [final, setFinal] = useState();
   //   const tableName = useRef(null);
   //   const [final, setFinal] = useState([{ tableName: '', columns: '' }]);
@@ -52,7 +52,7 @@ function KpiCol() {
   const handleAddClick = () => {
     setInputList([
       ...inputList,
-      { name: "", dataType: "string", nullable: "false" },
+      { name: '', dataType: 'string', nullable: 'false' },
     ]);
   };
   return (
