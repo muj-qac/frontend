@@ -6,6 +6,7 @@ import Dashboard from './pages/faculty/Dashboard';
 import Settings from './pages/faculty/Settings';
 import Kpi from './pages/Kpi';
 import LoginPage from './pages/LoginPage';
+import ManageKpi from './pages/ManageKpi';
 import User from './pages/User';
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
       <Routes>
         <Route index element={<LoginPage />} />
         <Route path="kpi" element={<Kpi />}></Route>
-        <Route path="createKpi" element={<CreateKpi />}></Route>
+        <Route path="kpi/createKpi" element={<CreateKpi />}></Route>
+        <Route path="kpi/manageKpi" element={<ManageKpi />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="dashboard/setting" element={<Settings />}></Route>
         <Route path="manage" element={<User />}></Route>
