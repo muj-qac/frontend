@@ -4,8 +4,9 @@ import { useState } from "react";
 import { SelectMenu, Button } from "evergreen-ui";
 import { Pane, Pill, Text } from "evergreen-ui";
 function KPIRow({ kpi }) {
+  const profile = ["Apple", "Apricot", "Banana", "Cherry", "Cucumber"];
   const [options] = React.useState(
-    ["Apple", "Apricot", "Banana", "Cherry", "Cucumber"].map((label) => ({
+    profile.map((label) => ({
       label,
       value: label,
     }))
@@ -26,7 +27,7 @@ function KPIRow({ kpi }) {
   //function for displaying chips in roles header
   const displayArray = selectedItemsState.map((chip) => {
     return (
-      <Pill color="black" marginRight={8} marginBottom={5}>
+      <Pill color="green" marginRight={8} marginBottom={5}>
         {chip}
       </Pill>
     );
