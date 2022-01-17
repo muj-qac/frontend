@@ -34,7 +34,9 @@ function KPIRow2({ user }) {
           </span>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          {user.role}
+          <Pill color="green" marginRight={8} marginBottom={5}>
+            {user.role}
+          </Pill>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <Tooltip content="Edit details">
