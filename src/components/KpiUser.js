@@ -1,9 +1,10 @@
-import { Button, TextInput } from "evergreen-ui";
+import { Button, TextInput, IconButton, RefreshIcon } from "evergreen-ui";
 import { useState } from "react";
 import { Switch } from "evergreen-ui";
 import KPIRow2 from "./KPIRow2";
 import SideBar from "./SideBar";
 import UserModal from "./modals/UserModal";
+import AddRoles from "./modals/AddRoles";
 const users = [
   {
     index: 0,
@@ -11,6 +12,8 @@ const users = [
     lastname: "Gupta",
     email: "abc@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -23,6 +26,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -35,6 +40,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -47,6 +54,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -59,6 +68,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -71,6 +82,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -83,6 +96,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -95,6 +110,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -107,6 +124,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -119,6 +138,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -131,6 +152,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -143,6 +166,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -155,6 +180,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -167,6 +194,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -179,6 +208,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "",
@@ -191,6 +222,8 @@ const users = [
     lastname: "Gupta",
     email: "fac1@gmail.com",
     role: "Admin",
+    pass: "",
+    cnfrmpass: "",
     phone: 9935128975,
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
@@ -204,6 +237,8 @@ const users = [
     email: "fac1@gmail.com",
     role: "Admin",
     phone: 9935128975,
+    pass: "",
+    cnfrmpass: "",
     faculty: "Professor",
     department: "Department of Computer Science and Engineering",
     program: "MTech - Information Security",
@@ -217,6 +252,7 @@ function KpiUser() {
   // const [status, setStatus] = useState(false);
   //Adding new user
   const [modalOpen, setModalOpen] = useState(false);
+  const [modalOpen2, setModalOpen2] = useState(false);
   //UseState
   return (
     <div className="flex flex-col">
@@ -230,8 +266,15 @@ function KpiUser() {
           >
             Add User
           </Button>
-          <Button iconAfter="refresh" marginBottom={10} marginLeft={4}>
-            Refresh to Update data if not done
+          <IconButton icon={RefreshIcon} marginBottom={10} marginLeft={4} />
+          <Button
+            marginBottom={10}
+            marginLeft={4}
+            onClick={() => {
+              setModalOpen2(true);
+            }}
+          >
+            Add/Delete Roles
           </Button>
           <div className=" h-96 shadow overflow-auto border-b border-gray-200 sm:rounded-lg ">
             <table className="min-w-full divide-y divide-gray-200">
@@ -278,6 +321,7 @@ function KpiUser() {
               title="New User Information"
               user={users}
             />
+            <AddRoles setModalOpen2={setModalOpen2} modalOpen2={modalOpen2} />
           </div>
         </div>
       </div>
