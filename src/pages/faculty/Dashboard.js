@@ -1,6 +1,6 @@
+// import SideBar from '../../components/SideBar';
 import FacultyTable from '../../components/common/FacultyTable';
 import FacultySideBar from '../../components/FacultySidebar';
-// import SideBar from '../../components/SideBar';
 import TopBar from '../../components/TopBar';
 
 function Dashboard() {
