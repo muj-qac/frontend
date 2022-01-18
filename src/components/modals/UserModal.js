@@ -6,7 +6,15 @@ import { EditIcon } from "evergreen-ui";
 import KPIRow2 from "../KPIRow2";
 import axios from "axios";
 import { Pill, Text } from "evergreen-ui";
+
 function UserModal({ setModalOpen, modalOpen, title, user }) {
+  const profile = ["Apple", "Apricot", "Banana", "Cherry", "Cucumber"];
+  const [options] = React.useState(
+    profile.map((label) => ({
+      label,
+      value: label,
+    }))
+  );
   const url = "";
   const [loading, setLoading] = useState(false);
   //Taking initial values for the input fields
@@ -29,6 +37,8 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   const [modalValues, setModalValues] = useState(initialValues);
   //errors for validating the form values
   const [modalErrors, setModalErrors] = useState({});
+  const [selectedItemsState, setSelectedItems] = React.useState([]);
+  const [selectedItemNamesState, setSelectedItemNames] = React.useState(null);
   // //for roles to be displayed in modals
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
@@ -139,13 +149,61 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
           </div>
           <div className="grid grid-cols-1">
             <h3>Role</h3>
-            <TextInput
+            {/* <TextInput
               name="role"
               value={modalValues.role}
               placeholder="Enter role"
               marginBottom={8}
               onChange={handleChange}
-            />
+            /> */}
+            <SelectMenu
+              isMultiSelect
+              title="Select multiple names"
+              options={options}
+              value={modalValues.role}
+              selected={selectedItemsState}
+              onSelect={(item) => {
+                const selected = [...selectedItemsState, item.value];
+                const selectedItems = selected;
+                const selectedItemsLength = selectedItems.length;
+                let selectedNames = "";
+                if (selectedItemsLength === 0) {
+                  selectedNames = "";
+                } else if (selectedItemsLength === 1) {
+                  selectedNames = selectedItems.toString();
+                } else if (selectedItemsLength > 1) {
+                  selectedNames =
+                    selectedItemsLength.toString() + " selected...";
+                }
+                setSelectedItems(selectedItems);
+                setSelectedItemNames(selectedNames);
+                onchange = { handleChange };
+              }}
+              onDeselect={(item) => {
+                const deselectedItemIndex = selectedItemsState.indexOf(
+                  item.value
+                );
+                const selectedItems = selectedItemsState.filter(
+                  (_item, i) => i !== deselectedItemIndex
+                );
+                const selectedItemsLength = selectedItems.length;
+                let selectedNames = "";
+                if (selectedItemsLength === 0) {
+                  selectedNames = "";
+                } else if (selectedItemsLength === 1) {
+                  selectedNames = selectedItems.toString();
+                } else if (selectedItemsLength > 1) {
+                  selectedNames =
+                    selectedItemsLength.toString() + " selected...";
+                }
+
+                setSelectedItems(selectedItems);
+                setSelectedItemNames(selectedNames);
+                onchange = { handleChange };
+              }}
+            >
+              <Button>{selectedItemNamesState || "Select roles..."}</Button>
+            </SelectMenu>
           </div>
         </div>
         <div className="grid grid-cols-1">

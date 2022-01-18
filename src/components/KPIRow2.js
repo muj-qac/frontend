@@ -34,10 +34,15 @@ function KPIRow2({ user }) {
           </span>
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-          <Pill color="green" marginRight={8} marginBottom={5}>
-            {user.role}
-          </Pill>
+          <div className="grid grid-cols-3">
+            {user.role.map((val) => (
+              <Pill marginLeft={8} marginBottom={10}>
+                {val}
+              </Pill>
+            ))}
+          </div>
         </td>
+
         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
           <Tooltip content="Edit details">
             <IconButton
