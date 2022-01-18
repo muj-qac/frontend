@@ -354,8 +354,6 @@ function KpiUser() {
             <AddUserModal
               setModalOpen3={setModalOpen3}
               modalOpen={modalOpen3}
-              title="New User Information"
-              user={users}
             />
             <AddRoles setModalOpen2={setModalOpen2} modalOpen2={modalOpen2} />
           </div>

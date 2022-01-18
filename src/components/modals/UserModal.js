@@ -2,10 +2,6 @@ import { Button, Dialog, FilePicker, Pane, TextInput } from "evergreen-ui";
 import { useState, useEffect } from "react";
 import React from "react";
 import { SelectMenu } from "evergreen-ui";
-import { EditIcon } from "evergreen-ui";
-import KPIRow2 from "../KPIRow2";
-import axios from "axios";
-import { Pill, Text } from "evergreen-ui";
 
 function UserModal({ setModalOpen, modalOpen, title, user }) {
   const profile = ["Apple", "Apricot", "Banana", "Cherry", "Cucumber"];
@@ -15,16 +11,13 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
       value: label,
     }))
   );
-  const url = "";
-  const [loading, setLoading] = useState(false);
-  //Taking initial values for the input fields
   const initialValues = {
     index: user.index,
     firstName: user.firstName,
     lastName: user.lastName,
     phoneNumber: user.phoneNumber,
     email: user.email,
-    role: user.role,
+    // role: user.role,
   };
   const initialDetailsValues = {
     details: {
@@ -34,6 +27,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
       school: user.details.school,
     },
   };
+  const RoleIntialValue = { role: user.role };
   //UseState for the form values
   const [modalValues, setModalValues] = useState({
     ...initialValues,
@@ -41,9 +35,9 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   });
   //errors for validating the form values
   const [modalErrors, setModalErrors] = useState({});
+  // //for roles to be displayed in modals
   const [selectedItemsState, setSelectedItems] = React.useState([]);
   const [selectedItemNamesState, setSelectedItemNames] = React.useState(null);
-  // //for roles to be displayed in modals
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
   //UseEffect to enable to submit the form when it all validation is cleared
@@ -86,6 +80,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
     const { name, value } = e.target;
     setModalValues({ ...modalValues, details: { [name]: value } });
   };
+
   //Submitting the form
 
   const handleSubmit = (e) => {
@@ -160,6 +155,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
               onChange={handleChange}
             /> */}
             <SelectMenu
+              onClose={handleChange}
               isMultiSelect
               name="role"
               title="Select multiple names"
@@ -180,6 +176,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
                     selectedItemsLength.toString() + " selected...";
                 }
                 setSelectedItems(selectedItems);
+                console.log(selectedItems);
                 setSelectedItemNames(selectedNames);
               }}
               onDeselect={(item) => {
@@ -202,9 +199,19 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
 
                 setSelectedItems(selectedItems);
                 setSelectedItemNames(selectedNames);
+                console.log(selectedItems);
               }}
             >
-              <Button>{selectedItemNamesState || "Select roles..."}</Button>
+              <Button
+                onClick={() => {
+                  setModalValues({
+                    ...modalValues,
+                    roles: { [selectedItemsState]: value },
+                  });
+                }}
+              >
+                {selectedItemNamesState || "Select roles..."}
+              </Button>
             </SelectMenu>
           </div>
         </div>
