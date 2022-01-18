@@ -206,7 +206,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
                 onClick={() => {
                   setModalValues({
                     ...modalValues,
-                    roles: { [selectedItemsState]: value },
+                    roles: {},
                   });
                 }}
               >
