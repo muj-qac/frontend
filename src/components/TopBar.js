@@ -16,7 +16,7 @@ function TopBar() {
           </div>
         </div>
         <button
-          className=" self-center h-10 rounded-full bg-transparent border-2 border-Light-text_secondary text-Light-text_secondary  hover:border-Light-text_primary hover:text-Light-text_primary font-semibold hover:scale-105 ease-in-out duration-300"
+          className=" bg-red-200 hover:bg-red-100 hover:border hover:border-red-800 text-red-800 font-semibold py-2 px-4 rounded shadow "
           type="button p-4"
         >
           SignOut

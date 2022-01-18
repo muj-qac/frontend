@@ -1,5 +1,4 @@
 import {
-  Badge,
   Button,
   CircleArrowDownIcon,
   Pane,
@@ -10,10 +9,12 @@ import {
 import { useEffect, useState } from 'react';
 import KpiReceiveModal from './modals/KpiReceiveModal';
 import { users } from '../data/UserData';
+import KpiVerifiedModal from './modals/KpiVerifiedModal';
 
 function VerificationTableRow({ kpi }) {
   const [title, setTitle] = useState('');
   const [isShown, setIsShown] = useState(false);
+  const [isShown2, setIsShown2] = useState(false);
   const [counter1, setCounter1] = useState('');
   const [counter2, setCounter2] = useState('');
   const counterPill1 = () => {
@@ -59,7 +60,7 @@ function VerificationTableRow({ kpi }) {
               marginRight={12}
               iconBefore={CircleArrowDownIcon}
               onClick={() => {
-                setIsShown(true);
+                setIsShown2(true);
               }}
             >
               Verified Data
@@ -73,6 +74,11 @@ function VerificationTableRow({ kpi }) {
       <KpiReceiveModal
         setIsShown={setIsShown}
         isShown={isShown}
+        title={kpi.title}
+      />
+      <KpiVerifiedModal
+        setIsShown={setIsShown2}
+        isShown={isShown2}
         title={kpi.title}
       />
     </Pane>

@@ -1,8 +1,10 @@
+
 import React from "react";
 import { Switch } from "evergreen-ui";
 import { useState } from "react";
 import { SelectMenu, Button } from "evergreen-ui";
 import { Pane, Pill } from "evergreen-ui";
+
 import {
   Tooltip,
   IconButton,
@@ -61,7 +63,7 @@ function KPIRow2({ user }) {
                 setModalOpen1(true);
               }}
               marginRight={8}
-              icon={ManualIcon}
+              icon={InfoSignIcon}
             />
           </Tooltip>
           <Tooltip content="Delete User">

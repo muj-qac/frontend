@@ -1,8 +1,8 @@
 import { Dialog, Pane } from 'evergreen-ui';
 import { useState } from 'react';
-import KpiReceiveTable from '../KpiReceiveTable';
+import KpiVerifiedTable from '../KpiVerifiedTable';
 
-function KpiReceiveModal({ setIsShown, isShown, title }) {
+function KpiVerifiedModal({ setIsShown, isShown, title }) {
   const [loading, setLoading] = useState(false);
   // const [file, setFile] = useState('');
   return (
@@ -22,11 +22,12 @@ function KpiReceiveModal({ setIsShown, isShown, title }) {
         minHeightContent={400}
         width={1000}
       >
-        <KpiReceiveTable />
+        {/* <KpiReceiveTable /> */}
+        <KpiVerifiedTable />
         <br />
       </Dialog>
     </Pane>
   );
 }
 
-export default KpiReceiveModal;
+export default KpiVerifiedModal;
