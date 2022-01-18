@@ -1,10 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Pane,
   Dialog,
   TextInput,
   Table,
-  Button,
   TableBody,
   TableRow,
   Badge,
@@ -12,27 +11,29 @@ import {
   TrashIcon,
   majorScale,
   AddIcon,
-  Alert,
-  InlineAlert,
   toaster,
+  Button,
+  Popover,
+  Position,
 } from 'evergreen-ui';
+import { role } from '../../data/role';
 import { useState } from 'react';
 function AddRoles({ setModalOpen2, modalOpen2 }) {
   const elementRef = useRef();
   const [list, setList] = useState([]);
+
+  useEffect(() => {
+    setList([...list, ...role]);
+  }, [role]);
   const handleAddChange = () => {
-    let role = elementRef.current.value;
-    console.log(elementRef.current.value);
+    let roles = { role_name: elementRef.current.value };
     console.log(list);
-    if (role && list.includes(role) === false) {
-      setList([...list, elementRef.current.value]);
-    }
-    // else {
-    //   return toaster.danger(
-    //     'Something went wrong trying to create your audience'
-    //   );
-    // }
-    else if (list.includes(role) === true) {
+    if (
+      roles.role_name &&
+      list.some((e) => e.role_name === roles.role_name) === false
+    ) {
+      setList([...list, roles]);
+    } else if (list.some((e) => e.role_name === roles.role_name) === true) {
       return toaster.danger('Role Already Exist', {
         id: 'forbidden-action',
         duration: 3,
@@ -68,14 +69,12 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
             id="roleInput"
             name="role"
             placeholder="Enter role"
+            autoComplete="off"
             marginTop={4}
             marginLeft={4}
             ref={elementRef}
             // onChange={(e) => setRoles(e.target.value)}
           />
-          {/* <Button marginBottom={3} onClick={handleAddChange}>
-            Add Roles
-          </Button> */}
           <IconButton
             icon={AddIcon}
             iconSize={20}
@@ -93,18 +92,52 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
           </Table.Head>
           <TableBody>
             {list.map((r, i) => {
+              // console.log(r.role_name);
               return (
-                <Table.Row key={r} isSelectable>
-                  <Table.TextCell>{r}</Table.TextCell>
+                <Table.Row key={r.id} isSelectable>
+                  <Table.TextCell>{r.role_name}</Table.TextCell>
                   <Table.TextCell>
-                    <IconButton
-                      icon={TrashIcon}
-                      intent="danger"
-                      marginRight={majorScale(2)}
-                      onClick={() => {
-                        handleDeleteChange(i);
-                      }}
-                    />
+                    <Popover
+                      content={({ close }) => (
+                        <Pane
+                          width={250}
+                          height={200}
+                          paddingX={40}
+                          display="flex"
+                          alignItems="center"
+                          justifyContent="center"
+                          flexDirection="column"
+                        >
+                          <span className=" text-red-600 font-semibold text-sm">
+                            PLEASE CARE THAT ROLE IS NOT APPLIED TO SOME KPI
+                          </span>
+                          <Button onClick={close} marginTop={20}>
+                            Close
+                          </Button>
+                          <Button
+                            onClick={() => {
+                              handleDeleteChange();
+                              close();
+                            }}
+                            intent="danger"
+                            marginTop={20}
+                          >
+                            Confirm
+                          </Button>
+                        </Pane>
+                      )}
+                      shouldCloseOnExternalClick={false}
+                      position={Position.RIGHT}
+                    >
+                      <IconButton
+                        icon={TrashIcon}
+                        intent="danger"
+                        marginRight={majorScale(2)}
+                        onClick={() => {
+                          handleDeleteChange(i);
+                        }}
+                      />
+                    </Popover>
                   </Table.TextCell>
                 </Table.Row>
               );

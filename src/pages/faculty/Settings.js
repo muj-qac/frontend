@@ -36,6 +36,7 @@ function Settings() {
               hasHeader={false}
             >
               <TextInputField
+                paddingTop={24}
                 label="Old Password"
                 placeholder="Enter Old Password"
               />
