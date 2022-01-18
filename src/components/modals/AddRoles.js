@@ -61,7 +61,13 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
           <Table.Head>
             <Table.TextHeaderCell>Roles</Table.TextHeaderCell>
           </Table.Head>
-          <TableBody></TableBody>
+          <TableBody>
+            {roles.map((value) => {
+              <Table.Row>
+                <Table.TextCell>{value.role}</Table.TextCell>
+              </Table.Row>;
+            })}
+          </TableBody>
         </Table>
       </Dialog>
     </Pane>
