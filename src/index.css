@@ -18,8 +18,13 @@
   @apply .light;
 } */
 body {
-  background-color: #f3f4f2;
+	background-color: #f3f4f2;
 }
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.datePicker {
+	width: auto;
+	color: blue;
+}
