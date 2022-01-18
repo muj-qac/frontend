@@ -2,12 +2,10 @@ import { Button, Dialog, FilePicker, Pane, TextInput } from "evergreen-ui";
 import { useState, useEffect } from "react";
 import React from "react";
 import { SelectMenu } from "evergreen-ui";
-import { EditIcon } from "evergreen-ui";
-import KPIRow2 from "../KPIRow2";
 import axios from "axios";
 import { Pill, Text } from "evergreen-ui";
 
-function UserModal({ setModalOpen, modalOpen, title, user }) {
+function AddUserModal({ setModalOpen3, modalOpen, user, title }) {
   const profile = ["Apple", "Apricot", "Banana", "Cherry", "Cucumber"];
   const [options] = React.useState(
     profile.map((label) => ({
@@ -19,23 +17,25 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   const [loading, setLoading] = useState(false);
   //Taking initial values for the input fields
   const initialValues = {
-    index: user.index,
     firstName: user.firstName,
     lastName: user.lastName,
     phoneNumber: user.phoneNumber,
     email: user.email,
     role: user.role,
+    pass: user.pass,
+    cnfrmpass: user.cnfrmpass,
   };
   const initialDetailsValues = {
     details: {
-      department: user.details.department,
       faculty: user.details.faculty,
+      department: user.details.department,
       program: user.details.program,
       school: user.details.school,
     },
   };
+
   //UseState for the form values
-  const [modalValues, setModalValues] = useState({
+  const [modalValues3, setModalValues3] = useState({
     ...initialValues,
     ...initialDetailsValues,
   });
@@ -43,13 +43,13 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   const [modalErrors, setModalErrors] = useState({});
   const [selectedItemsState, setSelectedItems] = React.useState([]);
   const [selectedItemNamesState, setSelectedItemNames] = React.useState(null);
-  // //for roles to be displayed in modals
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
   //UseEffect to enable to submit the form when it all validation is cleared
   useEffect(() => {
+    console.log(modalErrors);
     if (Object.keys(modalErrors).length === 0 && isSubmit) {
-      console.log(modalValues);
+      console.log(modalValues3);
     }
   }, [modalErrors]);
   //handleChange for looking for the changes when someone types something in the input fields
@@ -62,16 +62,22 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
     if (!values.email) {
       errors.email = "*Required";
     }
-    // if (!values.details.department) {
-    //   errors.department = "*Required";
-    // }
-    // if (!values.details.faculty) {
+    if (values.cnfrmpass !== values.pass) {
+      errors.cnfrmpass = "*Password doesn't match..";
+    }
+    if (!values.pass || !values.cnfrmpass) {
+      errors.pass = "*Password can't be empty";
+    }
+    if (!values.department) {
+      errors.department = "*Required";
+    }
+    // if (!values.faculty) {
     //   errors.faculty = "*Required";
     // }
-    // if (!values.details.school) {
+    // if (!values.school) {
     //   errors.school = "*Required";
     // }
-    // if (!values.details.program) {
+    // if (!values.program) {
     //   errors.program = "*Required";
     // }
     return errors;
@@ -79,17 +85,16 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   const handleChange = (e) => {
     //Destructuring the form values
     const { name, value } = e.target;
-    setModalValues({ ...modalValues, [name]: value });
+    setModalValues3({ ...modalValues3, [name]: value });
   };
   const handleDetailChange = (e) => {
     //Destructuring the form values
     const { name, value } = e.target;
-    setModalValues({ ...modalValues, details: { [name]: value } });
+    setModalValues3({ ...modalValues3, details: { [name]: value } });
   };
   //Submitting the form
-
   const handleSubmit = (e) => {
-    setModalErrors(validate(modalValues));
+    setModalErrors(validate(modalValues3));
     setIsSubmit(true);
     // console.log(JSON.stringify(modalValues));
   };
@@ -97,7 +102,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
     <Pane>
       <Dialog
         isShown={modalOpen}
-        onCloseComplete={() => setModalOpen(false)}
+        onCloseComplete={() => setModalOpen3(false)}
         preventBodyScrolling
         hasCancel={false}
         confirmLabel="Save"
@@ -105,14 +110,14 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
         onConfirm={handleSubmit}
       >
         <h1 className="text-xl font-semibold pb-8">{title}</h1>
-        <h3 className="mb-6 font-semibold">Unique ID: {modalValues.index}</h3>
+        <h3 className="mb-6 font-semibold">Unique ID:{modalValues3.index}</h3>
         <div className="grid grid-cols-2">
           <div className="grid grid-cols-1">
             <h3>First Name</h3>
             <TextInput
               name="firstName"
               placeholder="Enter the name"
-              value={modalValues.firstName}
+              value={modalValues3.firstName}
               marginBottom={8}
               marginRight={10}
               onChange={handleChange}
@@ -124,7 +129,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
             <TextInput
               name="lastName"
               placeholder="Enter the name"
-              value={modalValues.lastName}
+              value={modalValues3.lastName}
               marginBottom={8}
               marginRight={10}
               onChange={handleChange}
@@ -134,7 +139,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
             <h3 className="">Email</h3>
             <TextInput
               name="email"
-              value={modalValues.email}
+              value={modalValues3.email}
               placeholder="Enter email"
               marginBottom={8}
               onChange={handleChange}
@@ -145,7 +150,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
             <h3 className="">Phone</h3>
             <TextInput
               name="phoneNumber"
-              value={modalValues.phoneNumber}
+              value={modalValues3.phoneNumber}
               placeholder="Enter phone"
               onChange={handleChange}
             />
@@ -164,7 +169,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
               name="role"
               title="Select multiple names"
               options={options}
-              value={modalValues.role}
+              value={modalValues3.role}
               selected={selectedItemsState}
               onSelect={(item) => {
                 const selected = [...selectedItemsState, item.value];
@@ -181,6 +186,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
                 }
                 setSelectedItems(selectedItems);
                 setSelectedItemNames(selectedNames);
+                onchange = { handleChange };
               }}
               onDeselect={(item) => {
                 const deselectedItemIndex = selectedItemsState.indexOf(
@@ -202,11 +208,39 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
 
                 setSelectedItems(selectedItems);
                 setSelectedItemNames(selectedNames);
+                onchange = { handleChange };
+                console.log(handleChange);
               }}
             >
               <Button>{selectedItemNamesState || "Select roles..."}</Button>
             </SelectMenu>
           </div>
+        </div>
+        <div className="grid grid-cols-1">
+          <h3>Password</h3>
+          <TextInput
+            name="pass"
+            type="password"
+            placeholder="Enter the password"
+            value={modalValues3.pass}
+            marginBottom={8}
+            marginRight={10}
+            onChange={handleChange}
+          />
+          <span className="text-red-500">{modalErrors.pass}</span>
+        </div>
+        <div className="grid grid-cols-1">
+          <h3>Confirm Password</h3>
+          <TextInput
+            name="cnfrmpass"
+            type="password"
+            placeholder="ReEnter password"
+            value={modalValues3.cnfrmpass}
+            marginBottom={8}
+            marginRight={10}
+            onChange={handleChange}
+          />
+          <span className="text-red-500">{modalErrors.cnfrmpass}</span>
         </div>
         <br />
         <hr />
@@ -216,7 +250,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
             <h3>Department</h3>
             <TextInput
               name="department"
-              value={modalValues.details.department}
+              value={modalValues3.details.department}
               placeholder="i.e. Department of Computer Science and Engineering"
               marginBottom={11}
               onChange={handleDetailChange}
@@ -227,7 +261,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
             <h3>Faculty</h3>
             <TextInput
               name="faculty"
-              value={modalValues.details.faculty}
+              value={modalValues3.details.faculty}
               placeholder="i.e. Professor"
               marginBottom={11}
               onChange={handleDetailChange}
@@ -238,7 +272,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
             <h3>School</h3>
             <TextInput
               name="school"
-              value={modalValues.details.school}
+              value={modalValues3.details.school}
               placeholder="i.e. School of Computing and Information Technology
               "
               marginBottom={11}
@@ -250,7 +284,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
             <h3>Program</h3>
             <TextInput
               name="program"
-              value={modalValues.details.program}
+              value={modalValues3.details.program}
               placeholder="i.e. MTech - Information Security "
               marginBottom={11}
               onChange={handleDetailChange}
@@ -264,4 +298,4 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   );
 }
 
-export default UserModal;
+export default AddUserModal;

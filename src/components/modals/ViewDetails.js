@@ -6,6 +6,7 @@ import {
   Pane,
   TextInput,
   Avatar,
+  Pill,
 } from "evergreen-ui";
 import { useState, useEffect } from "react";
 function ViewDetails({ setModalOpen1, modalOpen1, user }) {
@@ -20,19 +21,19 @@ function ViewDetails({ setModalOpen1, modalOpen1, user }) {
         width={800}
       >
         <div className="grid grid-cols-1 justify-items-center mb-10">
-          <Avatar name={user.firstname} size={150} marginRight={16} />
+          <Avatar name={user.firstName} size={150} marginRight={16} />
           <h1 className="text-xl font-semibold pb-8">
-            {user.firstname} Information
+            {user.firstName} Information
           </h1>
         </div>
         <div className="grid grid-cols-2">
           <div className="mb-5">
             <h3 className="font-semibold">First Name</h3>
-            <span>{user.firstname}</span>
+            <span>{user.firstName}</span>
           </div>
           <div className="mb-5">
             <h3 className="font-semibold">Last Name</h3>
-            <span>{user.lastname}</span>
+            <span>{user.lastName}</span>
           </div>
           <div>
             <h3 className="font-semibold">Email</h3>
@@ -40,12 +41,18 @@ function ViewDetails({ setModalOpen1, modalOpen1, user }) {
           </div>
           <div>
             <h3 className="font-semibold">Phone</h3>
-            <span>{user.phone}</span>
+            <span>{user.phoneNumber}</span>
           </div>
           <div className="mt-4">
-            <h3 className="font-semibold">Role</h3>
+            <h3 className="font-semibold">Roles</h3>
 
-            <span>{user.role}</span>
+            <span className="ml-0">
+              {user.role.map((val) => (
+                <Pill color="green" marginLeft={6} marginBottom={10} width={50}>
+                  {val}
+                </Pill>
+              ))}
+            </span>
           </div>
         </div>
 
@@ -56,19 +63,19 @@ function ViewDetails({ setModalOpen1, modalOpen1, user }) {
           <div className="mr-10 mb-8">
             <h3 className="font-semibold">Department</h3>
 
-            <span>{user.department}</span>
+            <span>{user.details.department}</span>
           </div>
           <div>
             <h3 className="font-semibold">Faculty</h3>
-            <span>{user.faculty}</span>
+            <span>{user.details.faculty}</span>
           </div>
           <div className="mr-10">
             <h3 className="font-semibold">School</h3>
-            <span>{user.school}</span>
+            <span>{user.details.school}</span>
           </div>
           <div>
             <h3 className="font-semibold">Program</h3>
-            <span>{user.program}</span>
+            <span>{user.details.program}</span>
           </div>
         </div>
         {/* <Button onSubmit={handleSubmit}>Save</Button> */}
