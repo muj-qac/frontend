@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
   console.log(children);
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {loading && children}
     </AuthContext.Provider>
   );
 }
