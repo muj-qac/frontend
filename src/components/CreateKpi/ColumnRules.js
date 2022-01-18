@@ -161,7 +161,7 @@ const NumberRules = ({ rule, handleUpdateRule }) => {
 					width={125}
 					placeholder='Enter a number *'
 					onChange={(e) => {
-						setConstraint({ ...constraint, number: parseFloat(e.target.value) });
+						setConstraint({ ...constraint, number: isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value) });
 					}}
 					value={constraint.number}
 				/>
@@ -177,7 +177,7 @@ const NumberRules = ({ rule, handleUpdateRule }) => {
 									placeholder='Enter a number *'
 									marginRight={10}
 									onChange={(e) => {
-										setConstraint({ ...constraint, [child]: parseFloat(e.target.value) });
+										setConstraint({ ...constraint, [child]: isNaN(parseFloat(e.target.value)) ? 0 : parseFloat(e.target.value) });
 									}}
 									value={constraint[child]}
 								/>

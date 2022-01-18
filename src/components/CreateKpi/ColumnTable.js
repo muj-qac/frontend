@@ -47,6 +47,7 @@ const ColumnTable = () => {
 				body: JSON.stringify({ columns, title: sheetHeading }),
 			});
 			console.log(res);
+			if (!res.ok) throw 'Request Failed';
 			toaster.success('KPI created successfully!');
 		} catch (error) {
 			toaster.danger('Something went wrong!');
