@@ -73,7 +73,7 @@ function SideBar() {
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate('/createKpi');
+                navigate('/kpi/createKpi');
               }}
             >
               <div className="flex items-center">
@@ -112,7 +112,7 @@ function SideBar() {
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate('/manageKPI');
+                navigate('/kpi/manageKpi');
               }}
             >
               <div className="flex items-center">
@@ -153,7 +153,7 @@ function SideBar() {
                   : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
               }`}
               onClick={() => {
-                navigate('/manage');
+                navigate('/kpi/manageUser');
               }}
             >
               <div className="flex items-center">
@@ -180,7 +180,7 @@ function SideBar() {
                       : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
-                  Manage Accounts
+                  Manage Users
                 </span>
               </div>
             </li>

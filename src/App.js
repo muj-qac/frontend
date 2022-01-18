@@ -18,9 +18,9 @@ function App() {
         <Route path="kpi" element={<Kpi />}></Route>
         <Route path="kpi/createKpi" element={<CreateKpi />}></Route>
         <Route path="kpi/manageKpi" element={<ManageKpi />} />
+        <Route path="kpi/manageUser" element={<User />}></Route>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="dashboard/setting" element={<Settings />}></Route>
-        <Route path="manage" element={<User />}></Route>
       </Routes>
       {/* </AuthProvider> */}
     </BrowserRouter>

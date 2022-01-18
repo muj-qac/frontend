@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from 'react';
 import {
   Pane,
   Dialog,
@@ -7,31 +7,47 @@ import {
   Button,
   TableBody,
   TableRow,
-} from "evergreen-ui";
-import { useState } from "react";
+  Badge,
+  IconButton,
+  TrashIcon,
+  majorScale,
+  AddIcon,
+  Alert,
+  InlineAlert,
+  toaster,
+} from 'evergreen-ui';
+import { useState } from 'react';
 function AddRoles({ setModalOpen2, modalOpen2 }) {
-  //useState for roles
-  const [roles, setRoles] = useState([]);
-  //USeState for addition of roles
-  const [addData, setAddData] = useState({ role: "" });
-  //function to setroles
-  const handleAddChange = (e) => {
-    e.preventDefault();
-    const roleName = e.target.getAttribute("name");
-    const roleValue = e.target.value;
-    const newRoleData = { ...addData };
-    newRoleData[roleName] = roleValue;
-    setAddData(newRoleData);
+  const elementRef = useRef();
+  const [list, setList] = useState([]);
+  const handleAddChange = () => {
+    let role = elementRef.current.value;
+    console.log(elementRef.current.value);
+    console.log(list);
+    if (role && list.includes(role) === false) {
+      setList([...list, elementRef.current.value]);
+    }
+    // else {
+    //   return toaster.danger(
+    //     'Something went wrong trying to create your audience'
+    //   );
+    // }
+    else if (list.includes(role) === true) {
+      return toaster.danger('Role Already Exist', {
+        id: 'forbidden-action',
+        duration: 3,
+      });
+    } else {
+      return toaster.danger('Invalid Input', {
+        id: 'forbidden-action',
+        duration: 3,
+      });
+    }
   };
-  //To submit
-  const AddButton = (e) => {
-    e.preventDefault();
-    const newRole = {
-      role: addData.role,
-    };
-    const newRoles = [...roles, newRole];
-    console.log(newRoles);
-    setRoles(newRoles);
+  const handleDeleteChange = (index) => {
+    const lis = [...list];
+    lis.splice(index, 1);
+    setList(lis);
   };
   return (
     <Pane>
@@ -39,29 +55,61 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
         isShown={modalOpen2}
         onCloseComplete={() => setModalOpen2(false)}
         preventBodyScrolling
+        hasFooter={false}
         hasCancel={false}
         confirmLabel="Save"
         width={500}
+        minHeightContent={300}
         // onConfirm={handleSubmit}
       >
         {/* <Button onSubmit={handleSubmit}>Save</Button> */}
         <div className="mb-5">
           <TextInput
+            id="roleInput"
             name="role"
             placeholder="Enter role"
             marginTop={4}
             marginLeft={4}
-            onChange={handleAddChange}
+            ref={elementRef}
+            // onChange={(e) => setRoles(e.target.value)}
           />
-          <Button marginBottom={3} onClick={AddButton}>
+          {/* <Button marginBottom={3} onClick={handleAddChange}>
             Add Roles
-          </Button>
+          </Button> */}
+          <IconButton
+            icon={AddIcon}
+            iconSize={20}
+            appearance="primary"
+            intent="success"
+            marginRight={majorScale(2)}
+            marginLeft={20}
+            onClick={handleAddChange}
+          />
         </div>
         <Table>
           <Table.Head>
             <Table.TextHeaderCell>Roles</Table.TextHeaderCell>
+            <Table.TextHeaderCell>Delete</Table.TextHeaderCell>
           </Table.Head>
-          <TableBody></TableBody>
+          <TableBody>
+            {list.map((r, i) => {
+              return (
+                <Table.Row key={r} isSelectable>
+                  <Table.TextCell>{r}</Table.TextCell>
+                  <Table.TextCell>
+                    <IconButton
+                      icon={TrashIcon}
+                      intent="danger"
+                      marginRight={majorScale(2)}
+                      onClick={() => {
+                        handleDeleteChange(i);
+                      }}
+                    />
+                  </Table.TextCell>
+                </Table.Row>
+              );
+            })}
+          </TableBody>
         </Table>
       </Dialog>
     </Pane>
