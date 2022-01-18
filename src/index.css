@@ -21,6 +21,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.datePicker {
+  width: auto;
+  color: blue;
+}
+
 body {
   background-color: #f3f4f2;
 }
