@@ -101,7 +101,6 @@ function KPIRow({ kpi }) {
               } else if (selectedItemsLength > 1) {
                 selectedNames = selectedItemsLength.toString() + " selected...";
               }
-
               setSelectedItems(selectedItems);
               setSelectedItemNames(selectedNames);
             }}
