@@ -266,7 +266,6 @@ function KpiUser() {
           >
             Add User
           </Button>
-          <IconButton icon={RefreshIcon} marginBottom={10} marginLeft={4} />
           <Button
             marginBottom={10}
             marginLeft={4}
@@ -276,6 +275,12 @@ function KpiUser() {
           >
             Add/Delete Roles
           </Button>
+          <IconButton
+            icon={RefreshIcon}
+            marginBottom={10}
+            marginLeft={4}
+            className=" float-right"
+          />
           <div className=" h-96 shadow overflow-auto border-b border-gray-200 sm:rounded-lg ">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">

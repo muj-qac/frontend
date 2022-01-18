@@ -1,11 +1,11 @@
-import React from "react";
-import bgimage from "../img/LoginBg.jpg";
-import icon from "../img/cllglogo.jpg";
-import { useState, useEffect } from "react";
-import { Avatar } from "evergreen-ui";
+import React from 'react';
+import bgimage from '../img/LoginBg.jpg';
+import icon from '../img/cllglogo.jpg';
+import { useState, useEffect } from 'react';
+import { Avatar } from 'evergreen-ui';
 function LoginPage() {
   //Taking initial values for the input fields
-  const initialValues = { username: "", password: "" };
+  const initialValues = { username: '', password: '' };
   //UseState for the form values
   const [formValues, setFormValues] = useState(initialValues);
   //errors for validating the form values
@@ -35,12 +35,12 @@ function LoginPage() {
   const validate = (values) => {
     const errors = {};
     if (!values.username) {
-      errors.username = "*Username is required";
+      errors.username = '*Username is required';
     }
     if (!values.password) {
-      errors.password = "*Password is required";
+      errors.password = '*Password is required';
     } else if (values.password.length < 4) {
-      errors.password = "*Minimum 4 characters required";
+      errors.password = '*Minimum 4 characters required';
     }
     return errors;
   };
@@ -49,21 +49,23 @@ function LoginPage() {
       className="container"
       style={{
         backgroundImage: `url(${bgimage})`,
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
       }}
     >
       <div className="pt-60 h-screen">
         <form
-          className="grid justify-items-center  w-1/3 mx-auto h-3/4 shadow-2xl  bg-white"
+          className=" grid justify-items-center w-1/3 mx-auto min-h-[25rem] shadow-2xl border-2 rounded-lg bg-background-glass"
           onSubmit={handleSubmit}
         >
           <div className="grid justify-items-center content-start pt-10">
             <Avatar src={icon} size={70} />
-            <h3 className="font-sans font-semibold text-xl">Welcome Back</h3>
-            <span className="text-sm text-gray-700">
+            <h3 className="font-sans font-semibold text-xl mb-4 ">
+              Welcome Back
+            </h3>
+            {/* <span className="text-sm text-gray-700 py-2">
               Enter your credentials to access your account
-            </span>
+            </span> */}
           </div>
           <div className="grid content-start -mt-4">
             <div className="grid grid-rows-1">
@@ -95,7 +97,7 @@ function LoginPage() {
                 <span className="text-red-500">{formErrors.password}</span>
               </div>
             </div>
-            <button className="bg-black hover:shadow-2xl text-white font-medium py-2 px-4 rounded mt-8 transition ease-in-out delay-150">
+            <button className="bg-black hover:shadow-2xl text-white font-medium py-2 px-4 rounded mt-8 transition ease-in-out delay-150 mb-6">
               Login
             </button>
           </div>
