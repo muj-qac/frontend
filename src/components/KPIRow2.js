@@ -1,8 +1,8 @@
-import React from "react";
-import { Switch } from "evergreen-ui";
-import { useState } from "react";
-import { SelectMenu, Button } from "evergreen-ui";
-import { Pane, Pill } from "evergreen-ui";
+import React from 'react';
+import { Switch } from 'evergreen-ui';
+import { useState } from 'react';
+import { SelectMenu, Button } from 'evergreen-ui';
+import { Pane, Pill } from 'evergreen-ui';
 import {
   Tooltip,
   IconButton,
@@ -10,9 +10,9 @@ import {
   EditIcon,
   TrashIcon,
   majorScale,
-} from "evergreen-ui";
-import UserModal from "./modals/UserModal";
-import ViewDetails from "./modals/ViewDetails";
+} from 'evergreen-ui';
+import UserModal from './modals/UserModal';
+import ViewDetails from './modals/ViewDetails';
 
 function KPIRow2({ user }) {
   const [modalOpen, setModalOpen] = useState(false);
@@ -66,7 +66,7 @@ function KPIRow2({ user }) {
             <IconButton
               icon={TrashIcon}
               onClick={() => {
-                console.log("User  is Deleted");
+                console.log('User  is Deleted');
               }}
               intent="danger"
               marginLeft={2}

@@ -1,7 +1,7 @@
 export const kpis = [
   {
     title: 'KPI 1',
-    status: 'loda',
+    status: 'NotActive',
     role: 'Admin',
   },
   {
