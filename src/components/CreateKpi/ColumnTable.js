@@ -38,7 +38,7 @@ const ColumnTable = () => {
 		setIsSubmitLoading(true);
 		try {
 			console.log(columns);
-			const res = await fetch('http://localhost:5000/api/v1/sheet/new/', {
+			const res = await fetch('http://localhost:5000/api/v1/admin/sheet/new/', {
 				method: 'post',
 				headers: {
 					Accept: 'application/json, text/plain, */*',
@@ -76,7 +76,7 @@ const ColumnTable = () => {
 								}}
 								color='gray700'
 								fontWeight='600'
-								placeholder='Untitled Sheet'
+								placeholder='Untitled KPI'
 							/>
 							<IconButton
 								icon={TickIcon}

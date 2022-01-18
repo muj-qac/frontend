@@ -19,7 +19,7 @@ const ColumnTableRow = ({ column, handleSetColumnData, handleDeleteColumn, isDel
 				</Table.TextCell>
 				<Table.TextCell>
 					<Text color='gray700' fontWeight='600'>
-						{column.type}
+						{`${column.type}`.toUpperCase()}
 					</Text>
 				</Table.TextCell>
 				<Table.TextCell>

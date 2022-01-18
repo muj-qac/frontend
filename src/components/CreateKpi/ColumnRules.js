@@ -336,7 +336,12 @@ const DropdownRules = ({ rule, handleUpdateRule }) => {
 	}, []);
 
 	useEffect(() => {
-		handleUpdateRule({ list: constraint });
+		handleUpdateRule({
+			list: `${constraint}`
+				.split(',')
+				.map((v) => v.trim())
+				.filter((v) => v),
+		});
 	}, [constraint]);
 
 	return (
@@ -393,7 +398,7 @@ const ColumnRules = ({ type, rule, handleUpdateRule }) => {
 			return <NumberRules rule={rule} handleUpdateRule={handleUpdateRule} />;
 		case 'date':
 			return <DateRules rule={rule} handleUpdateRule={handleUpdateRule} />;
-		case 'list':
+		case 'dropdown':
 			return <DropdownRules rule={rule} handleUpdateRule={handleUpdateRule} />;
 		case 'checkbox':
 			return <CheckboxRules rule={rule} handleUpdateRule={handleUpdateRule} />;

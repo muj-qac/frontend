@@ -51,7 +51,7 @@ const NewColumnModal = ({ data, handleSetColumnData, isShown, setIsShown }) => {
 		text: { label: 'Text', ruleOptional: true },
 		number: { label: 'Number', ruleOptional: true },
 		date: { label: 'Date', ruleOptional: true },
-		list: { label: 'List', ruleOptional: false },
+		dropdown: { label: 'Dropdown', ruleOptional: false },
 		checkbox: { label: 'Checkbox', ruleOptional: true },
 	};
 
