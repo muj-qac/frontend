@@ -17,14 +17,23 @@
 /* :root {
   @apply .light;
 } */
-body {
-	background-color: #f3f4f2;
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .datePicker {
-	width: auto;
-	color: blue;
+  width: auto;
+  color: blue;
+}
+
+body {
+  background-color: #f3f4f2;
+}
+
+.glass {
+  background-color: linear-gradient(
+    151.47deg,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0.05) 78.61%
+  );
 }

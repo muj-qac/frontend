@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import DataEntryModal from '../components/modals/DataEntryModal';
-import SideBar from '../components/SideBar';
-import TableKpi from '../components/TableKpi';
+import { useState } from "react";
+import DataEntryModal from "../components/modals/DataEntryModal";
+import SideBar from "../components/SideBar";
+import TableKpi from "../components/TableKpi";
+import TopBar from "../components/TopBar";
 
 function Kpi() {
   const [showModal, setShowModal] = useState(false);
@@ -16,14 +17,17 @@ function Kpi() {
         Button
         </button>
       </div> */}
+        <div className="col-start-3">
+          <TopBar />
+        </div>
         <div className=" w-10/12 self-center col-start-4 col-span-9 grid grid-cols-12 ">
-          <button
+          {/* <button
             className=" mb-4 self-center col-end-13 h-10 rounded-full bg-transparent border-2 border-Light-text_secondary text-Light-text_secondary  hover:border-Light-text_primary hover:text-Light-text_primary font-semibold hover:scale-105 ease-in-out duration-300"
             type="button"
             onClick={() => setShowModal(true)}
           >
-            Create KPI
-          </button>
+            SignOut
+          </button> */}
           <div className="col-span-12">
             <TableKpi />
           </div>
