@@ -1,4 +1,7 @@
+import { useNavigate } from 'react-router-dom';
+
 function TopBar() {
+  let navigate = useNavigate();
   return (
     <>
       <div className="flex items-center justify-between min-w-[60rem] ml-32 mt-5">
@@ -18,6 +21,11 @@ function TopBar() {
         <button
           className=" bg-red-200 hover:bg-red-100 hover:border hover:border-red-800 text-red-800 font-semibold py-2 px-4 rounded shadow "
           type="button p-4"
+          onClick={() => {
+            localStorage.removeItem('token');
+            localStorage.removeItem('isAdmin');
+            navigate('/');
+          }}
         >
           SignOut
         </button>

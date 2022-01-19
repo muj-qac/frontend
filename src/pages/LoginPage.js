@@ -1,10 +1,16 @@
 import React from 'react';
 import bgimage from '../img/domefinal.png';
 import icon from '../img/cllglogo.jpg';
-import axios from '../axios';
 import { useState, useEffect } from 'react';
-import { Avatar } from 'evergreen-ui';
+import { Avatar, Pane, toaster } from 'evergreen-ui';
+import { useContext } from 'react';
+import { CurrentUserContext } from '../components/context/CurrentUserContext';
+import api from '../api';
+import { useNavigate } from 'react-router-dom';
+
 function LoginPage() {
+  let navigate = useNavigate();
+  const { setCurrentUser, setLoading } = useContext(CurrentUserContext);
   //Taking initial values for the input fields
   const initialValues = { email: '', password: '' };
   //UseState for the form values
@@ -14,7 +20,9 @@ function LoginPage() {
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
   //UseEffect to enable to submit the form when it all validation is cleared
-
+  useEffect(() => {
+    console.log();
+  }, []);
   useEffect(() => {
     console.log(formErrors);
     if (Object.keys(formErrors).length === 0 && isSubmit) {
@@ -28,14 +36,43 @@ function LoginPage() {
     setFormValues({ ...formValues, [name]: value });
   };
   //Submitting the form
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   setFormErrors(validate(formValues));
+  //   setIsSubmit(true);
+  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFormErrors(validate(formValues));
     setIsSubmit(true);
     try {
-      const res = await axios.post('/auth/login', formValues);
+      const res = await api.post('/auth/login', formValues);
       console.log(res.data);
-    } catch (error) {}
+      const { id, firstName, isAdmin } = res.data;
+      // if (firstName) {
+      //   localStorage.setItem('token', id);
+      //   localStorage.setItem('firstName', firstName);
+      //   setCurrentUser(firstName);
+      //   setLoading(true);
+      // }
+      if (isAdmin === true) {
+        // console.log('chal raha hun');
+        localStorage.setItem('token', id);
+        localStorage.setItem('isAdmin', isAdmin);
+        navigate('/kpi');
+        // setLoading(true);
+        // localStorage.setItem('firstName', firstName);
+      } else if (isAdmin === false) {
+        localStorage.setItem('token', id);
+        navigate('/dashboard');
+        // setLoading(true);
+        // localStorage.setItem('firstName', firstName);
+      }
+    } catch (error) {
+      toaster.warning('Login Failed', {
+        id: 'forbidden-action',
+      });
+    }
   };
   //Validation for the form
   const validate = (values) => {
@@ -50,6 +87,7 @@ function LoginPage() {
     }
     return errors;
   };
+
   return (
     <div
       className="container"
@@ -77,7 +115,7 @@ function LoginPage() {
             <div className="grid grid-rows-1">
               <div className="mb-4 grid grid-rows-1">
                 <label type="email" className="font-thin mb-2">
-                  email
+                  Email
                 </label>
                 <input
                   name="email"

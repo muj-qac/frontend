@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import ColumnTable from '../components/CreateKpi/ColumnTable';
 import { Pane, Heading } from 'evergreen-ui';
+import TopBar from '../components/TopBar';
 
 function CreateKpi() {
   const validationSchema = Yup.object({
@@ -25,7 +26,10 @@ function CreateKpi() {
       <div className=" col-start-1 col-span-2 justify-self-stretch">
         <SideBar />
       </div>
-      <div className=" col-start-4 col-span-8">
+      <div className="col-start-3">
+        <TopBar />
+      </div>
+      <div className=" col-span-8 self-center ">
         <Heading size={600} margin={50} marginLeft={0}>
           Create KPI
         </Heading>

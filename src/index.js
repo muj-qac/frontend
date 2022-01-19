@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 import './index.css';
 import App from './App';
+import { CurrentUserProvider } from './components/context/CurrentUserContext';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById('root')
+  <React.StrictMode>
+    <CurrentUserProvider>
+      <App />
+    </CurrentUserProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
