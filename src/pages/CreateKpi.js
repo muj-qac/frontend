@@ -5,36 +5,36 @@ import ColumnTable from '../components/CreateKpi/ColumnTable';
 import { Pane, Heading } from 'evergreen-ui';
 
 function CreateKpi() {
-	const validationSchema = Yup.object({
-		kpi: Yup.string().required('Please select a Column Name'),
-		name: Yup.string().required('Please select a Column Name'),
-	});
+  const validationSchema = Yup.object({
+    kpi: Yup.string().required('Please select a Column Name'),
+    name: Yup.string().required('Please select a Column Name'),
+  });
 
-	const initialValues = {
-		name: '',
-		dataType: '',
-		invalidAction: '',
-		rule: '',
-		invalidHelpText: '',
-	};
+  const initialValues = {
+    name: '',
+    dataType: '',
+    invalidAction: '',
+    rule: '',
+    invalidHelpText: '',
+  };
 
-	const onSubmit = (values) => {};
+  const onSubmit = (values) => {};
 
-	return (
-		<div className=' grid grid-cols-12'>
-			<div className=' col-start-1 col-span-2 justify-self-stretch'>
-				<SideBar />
-			</div>
-			<div className=' col-start-4 col-span-8'>
-				<Heading size={600} margin={50} marginLeft={0}>
-					Create KPI
-				</Heading>
-				<Pane backgroundColor='white'>
-					<ColumnTable />
-				</Pane>
-			</div>
-		</div>
-	);
+  return (
+    <div className=" grid grid-cols-12">
+      <div className=" col-start-1 col-span-2 justify-self-stretch">
+        <SideBar />
+      </div>
+      <div className=" col-start-4 col-span-8">
+        <Heading size={600} margin={50} marginLeft={0}>
+          Create KPI
+        </Heading>
+        <Pane backgroundColor="white">
+          <ColumnTable />
+        </Pane>
+      </div>
+    </div>
+  );
 }
 
 export default CreateKpi;

@@ -9,6 +9,7 @@ module.exports = {
       body: ['Helvetica', 'Arial', 'sans-serif'],
     },
     colors: {
+      blue: '#2563eb',
       Light: {
         primary: '#f3f4f2',
         secondary: '#e2e8f0',
@@ -23,6 +24,9 @@ module.exports = {
         text_secondary: '#e2e8f0',
         text_accent: '#81e6d9',
       },
+      background: {
+        glass: '#ffffff33',
+      },
       // textColor: {
       //   accent: 'var(--color-text-accent)',
       //   primary: 'var(--color-text-primary)',
@@ -33,6 +37,7 @@ module.exports = {
       black: colors.black,
       white: colors.white,
       gray: colors.gray,
+      red: colors.red,
       emerald: colors.emerald,
       indigo: colors.indigo,
       yellow: colors.yellow,
