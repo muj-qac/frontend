@@ -31,9 +31,6 @@ body {
 }
 
 .glass {
-  background-color: linear-gradient(
-    151.47deg,
-    rgba(255, 255, 255, 0.15) 0%,
-    rgba(255, 255, 255, 0.05) 78.61%
-  );
+  background: linear-gradient(180deg, #eaf3ff11 0%, #fbe3ff34 100%);
+  backdrop-filter: blur(2px);
 }

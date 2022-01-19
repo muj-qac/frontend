@@ -1,6 +1,8 @@
 import {
   Button,
   CircleArrowDownIcon,
+  EyeOnIcon,
+  EyeOpenIcon,
   Pane,
   Pill,
   Table,
@@ -40,7 +42,7 @@ function VerificationTableRow({ kpi }) {
             <Button
               marginY={8}
               marginRight={12}
-              iconBefore={CircleArrowDownIcon}
+              iconBefore={EyeOpenIcon}
               onClick={() => {
                 setIsShown(true);
                 counterPill1();
@@ -58,7 +60,7 @@ function VerificationTableRow({ kpi }) {
             <Button
               marginY={8}
               marginRight={12}
-              iconBefore={CircleArrowDownIcon}
+              iconBefore={EyeOnIcon}
               onClick={() => {
                 setIsShown2(true);
               }}
