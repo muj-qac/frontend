@@ -1,6 +1,6 @@
 import React from 'react';
 import bgimage from '../img/domefinal.png';
-import icon from '../img/cllglogo.jpg';
+import icon from '../img/logoMuj.png';
 import { useState, useEffect } from 'react';
 import { Avatar, Pane, toaster } from 'evergreen-ui';
 import { useContext } from 'react';
