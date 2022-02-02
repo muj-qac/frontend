@@ -17,6 +17,8 @@
 /* :root {
   @apply .light;
 } */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,4 +35,43 @@ body {
 .glass {
   background: linear-gradient(180deg, #eaf3ff11 0%, #fbe3ff34 100%);
   backdrop-filter: blur(2px);
+}
+
+.login_button {
+  transition: all 0.5s;
+  position: relative;
+}
+.login_button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(90deg, #df6721 0%, #ee7f00 114.16%);
+  border-radius: 0.375rem;
+  transition: all 0.2s ease-in-out;
+}
+.login_button:hover::before {
+  opacity: 0;
+  transform: scale(0.5, 0.5);
+}
+.login_button::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  border: 2px solid #df6721;
+  border-radius: 0.375rem;
+  transform: scale(1, 1);
+}
+.login_button:hover::after {
+  opacity: 1;
+  transform: scale(1, 1);
 }
