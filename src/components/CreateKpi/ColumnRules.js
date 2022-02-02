@@ -14,7 +14,7 @@ const TextRules = ({ rule, handleUpdateRule }) => {
 		contains: { label: 'Contains', type: 'string' },
 		notContains: { label: 'Not Contains', type: 'string' },
 		isValidEmail: { label: 'Is a valid Email', type: 'boolean' },
-		isValidLink: { label: 'Is a valid Link', type: 'boolean' },
+		isValidURL: { label: 'Is a valid URL', type: 'boolean' },
 	};
 
 	const [ruleType, setRuleType] = useState('equals');

@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import DataEntryModal from '../components/modals/DataEntryModal';
-import SideBar from '../components/SideBar';
-import TableKpi from '../components/TableKpi';
-import TopBar from '../components/TopBar';
-import VerificationTable from '../components/VerificationTable';
+import { useState } from "react";
+import DataEntryModal from "../components/modals/DataEntryModal";
+import SideBar from "../components/SideBar";
+import TableKpi from "../components/TableKpi";
+import TopBar from "../components/TopBar";
+import VerificationTable from "../components/VerificationTable";
 
 function ManageKpi() {
   // const [showModal, setShowModal] = useState(false);
