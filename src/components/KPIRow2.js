@@ -15,24 +15,28 @@ import {
 import UserModal from './modals/UserModal';
 import ViewDetails from './modals/ViewDetails';
 import DeleteModal from './modals/DeleteModal';
+import api from '../api';
 
-function KPIRow2({ user }) {
+function KPIRow2({ user, i }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen1, setModalOpen1] = useState(false);
   const [modalOpen4, setModalOpen4] = useState(false);
+  // const [put, setPut] = useState(false);
   return (
     <>
-      <tr key={user.index}>
+      <tr key={user.id}>
         <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-500">{user.index}</div>
+          <div className="text-sm text-gray-500">{i + 1}</div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-gray-900">
-            {user.firstName}
+          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-gray-900">
+            {user.last_name === null
+              ? `${user.first_name}`
+              : `${user.first_name} ${user.last_name}`}
           </span>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <span className="px-2 inline-flex  leading-5 font-semibold rounded-full bg-green-100 text-sm text-gray-500">
+          <span className="px-2 inline-flex  leading-5 font-semibold rounded-full text-sm text-gray-500">
             {user.email}
           </span>
         </td>
@@ -80,7 +84,7 @@ function KPIRow2({ user }) {
       <UserModal
         setModalOpen={setModalOpen}
         modalOpen={modalOpen}
-        title="User Update Information"
+        title="Update User Information"
         user={user}
       />
       <ViewDetails
