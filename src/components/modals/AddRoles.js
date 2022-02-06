@@ -18,13 +18,22 @@ import {
 } from 'evergreen-ui';
 import { role } from '../../data/role';
 import { useState } from 'react';
+import api from '../../api';
 function AddRoles({ setModalOpen2, modalOpen2 }) {
   const elementRef = useRef();
   const [list, setList] = useState([]);
 
+  //!Roles do not render Get roles working do not erase this code
+  const fetchRole = async () => {
+    const res = await api.get(`/admin/role/get-roles`);
+    setList(res.data);
+    console.log(res.data);
+  };
   useEffect(() => {
-    setList([...list, ...role]);
-  }, [role]);
+    fetchRole();
+    console.log(list);
+  }, []);
+
   const handleAddChange = () => {
     let roles = { role_name: elementRef.current.value };
     console.log(list);
@@ -32,7 +41,12 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
       roles.role_name &&
       list.some((e) => e.role_name === roles.role_name) === false
     ) {
-      setList([...list, roles]);
+      try {
+        api.post('/admin/role/add-roles', roles);
+        fetchRole();
+      } catch (error) {
+        console.log(error);
+      }
     } else if (list.some((e) => e.role_name === roles.role_name) === true) {
       return toaster.danger('Role Already Exist', {
         id: 'forbidden-action',
@@ -45,10 +59,10 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
       });
     }
   };
+
   const handleDeleteChange = (index) => {
-    const lis = [...list];
-    lis.splice(index, 1);
-    setList(lis);
+    api.delete(`/admin/role/delete-role/${list[index].role_name}`);
+    fetchRole();
   };
   return (
     <Pane>
@@ -116,7 +130,7 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
                           </Button>
                           <Button
                             onClick={() => {
-                              handleDeleteChange();
+                              handleDeleteChange(i);
                               close();
                             }}
                             intent="danger"
@@ -134,7 +148,7 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
                         intent="danger"
                         marginRight={majorScale(2)}
                         onClick={() => {
-                          handleDeleteChange(i);
+                          // handleDeleteChange(i);
                         }}
                       />
                     </Popover>

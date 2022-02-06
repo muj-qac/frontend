@@ -1,10 +1,10 @@
-import React from "react";
-import { Switch } from "evergreen-ui";
-import { useState } from "react";
-import { SelectMenu, Button } from "evergreen-ui";
-import { Pane, Pill, Text } from "evergreen-ui";
+import React from 'react';
+import { Switch } from 'evergreen-ui';
+import { useState } from 'react';
+import { SelectMenu, Button } from 'evergreen-ui';
+import { Pane, Pill, Text } from 'evergreen-ui';
 function KPIRow({ kpi }) {
-  const profile = ["Apple", "Apricot", "Banana", "Cherry", "Cucumber"];
+  const profile = ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'];
   const [options] = React.useState(
     profile.map((label) => ({
       label,
@@ -34,16 +34,16 @@ function KPIRow({ kpi }) {
   });
   //function for displayArray
   const handleClick = (e) => {
-    if (e.target.innerHTML == "Save") {
+    if (e.target.innerHTML == 'Save') {
       setUsed(true);
       setChip(true);
       setVal(true);
-      e.target.innerHTML = "Edit";
+      e.target.innerHTML = 'Edit';
     } else {
       setUsed(false);
       setChip(false);
       setVal(false);
-      e.target.innerHTML = "Save";
+      e.target.innerHTML = 'Save';
     }
   };
   return (
@@ -53,7 +53,7 @@ function KPIRow({ kpi }) {
           <div className="text-sm text-gray-900">{kpi.title}</div>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
-          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ">
             <Switch
               checked={checked}
               onChange={(e) => setChecked(e.target.checked)}
@@ -74,13 +74,13 @@ function KPIRow({ kpi }) {
               const selected = [...selectedItemsState, item.value];
               const selectedItems = selected;
               const selectedItemsLength = selectedItems.length;
-              let selectedNames = "";
+              let selectedNames = '';
               if (selectedItemsLength === 0) {
-                selectedNames = "";
+                selectedNames = '';
               } else if (selectedItemsLength === 1) {
                 selectedNames = selectedItems.toString();
               } else if (selectedItemsLength > 1) {
-                selectedNames = selectedItemsLength.toString() + " selected...";
+                selectedNames = selectedItemsLength.toString() + ' selected...';
               }
               setSelectedItems(selectedItems);
               setSelectedItemNames(selectedNames);
@@ -93,20 +93,20 @@ function KPIRow({ kpi }) {
                 (_item, i) => i !== deselectedItemIndex
               );
               const selectedItemsLength = selectedItems.length;
-              let selectedNames = "";
+              let selectedNames = '';
               if (selectedItemsLength === 0) {
-                selectedNames = "";
+                selectedNames = '';
               } else if (selectedItemsLength === 1) {
                 selectedNames = selectedItems.toString();
               } else if (selectedItemsLength > 1) {
-                selectedNames = selectedItemsLength.toString() + " selected...";
+                selectedNames = selectedItemsLength.toString() + ' selected...';
               }
               setSelectedItems(selectedItems);
               setSelectedItemNames(selectedNames);
             }}
           >
             <Button disabled={val}>
-              {selectedItemNamesState || "Select roles..."}
+              {selectedItemNamesState || 'Select roles...'}
             </Button>
           </SelectMenu>
           <button

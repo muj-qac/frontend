@@ -1,21 +1,29 @@
-import { Button, Dialog, FilePicker, Pane, TextInput } from "evergreen-ui";
-import { useState, useEffect } from "react";
-import React from "react";
-import { SelectMenu } from "evergreen-ui";
+import { Button, Dialog, FilePicker, Pane, TextInput } from 'evergreen-ui';
+import { useState, useEffect } from 'react';
+import React from 'react';
+import { SelectMenu } from 'evergreen-ui';
+import api from '../../api';
 
-function UserModal({ setModalOpen, modalOpen, title, user }) {
-  const profile = ["Apple", "Apricot", "Banana", "Cherry", "Cucumber"];
-  const [options] = React.useState(
-    profile.map((label) => ({
-      label,
-      value: label,
-    }))
-  );
+function UserModal({ setModalOpen, modalOpen, title, user, put }) {
+  // const profile = ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'];
+
+  const [roles, setRoles] = useState([]);
+
+  //!Roles do not render Get roles working do not erase this code
+  useEffect(() => {
+    const fetchRole = async () => {
+      const res = await api.get(`/admin/role/get-roles`);
+      setRoles(res.data);
+      // console.log(res.data);
+    };
+    fetchRole();
+  }, []);
+
   const initialValues = {
     index: user.index,
-    firstName: user.firstName,
-    lastName: user.lastName,
-    phoneNumber: user.phoneNumber,
+    first_name: user.first_name,
+    last_name: user.last_name,
+    phone_number: user.phone_number,
     email: user.email,
     // role: user.role,
   };
@@ -36,25 +44,37 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   //errors for validating the form values
   const [modalErrors, setModalErrors] = useState({});
   // //for roles to be displayed in modals
-  const [selectedItemsState, setSelectedItems] = React.useState([]);
-  const [selectedItemNamesState, setSelectedItemNames] = React.useState(null);
+  const [selectedItemsState, setSelectedItems] = useState(user.role);
+  const [selectedItemNamesState, setSelectedItemNames] = useState(user.role);
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
+
+  useEffect(() => {
+    // console.log(selectedItemsState);
+    setModalValues({ ...modalValues, role: selectedItemsState });
+  }, [selectedItemsState]);
+
   //UseEffect to enable to submit the form when it all validation is cleared
   useEffect(() => {
     if (Object.keys(modalErrors).length === 0 && isSubmit) {
-      console.log(modalValues);
+      // console.log(modalValues);
+      try {
+        api.put(`/admin/user/profile/${user.email}`, modalValues);
+        setModalOpen(false);
+      } catch (error) {
+        console.log(error);
+      }
     }
   }, [modalErrors]);
   //handleChange for looking for the changes when someone types something in the input fields
   // Validation for the modal
   const validate = (values) => {
     const errors = {};
-    if (!values.firstName) {
-      errors.firstName = "*First Name is required";
+    if (!values.first_name) {
+      errors.first_name = '*First Name is required';
     }
     if (!values.email) {
-      errors.email = "*Required";
+      errors.email = '*Required';
     }
     // if (!values.details.department) {
     //   errors.department = "*Required";
@@ -86,6 +106,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
   const handleSubmit = (e) => {
     setModalErrors(validate(modalValues));
     setIsSubmit(true);
+
     // console.log(JSON.stringify(modalValues));
   };
   return (
@@ -105,21 +126,21 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
           <div className="grid grid-cols-1">
             <h3>First Name</h3>
             <TextInput
-              name="firstName"
+              name="first_name"
               placeholder="Enter the name"
-              value={modalValues.firstName}
+              value={modalValues.first_name}
               marginBottom={8}
               marginRight={10}
               onChange={handleChange}
             />
-            <span className="text-red-500">{modalErrors.firstName}</span>
+            <span className="text-red-500">{modalErrors.first_name}</span>
           </div>
           <div>
             <h3>Last Name</h3>
             <TextInput
-              name="lastName"
+              name="last_name"
               placeholder="Enter the name"
-              value={modalValues.lastName}
+              value={modalValues.last_name}
               marginBottom={8}
               marginRight={10}
               onChange={handleChange}
@@ -139,8 +160,8 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
           <div className="grid grid-cols-1 mt-2">
             <h3 className="">Phone</h3>
             <TextInput
-              name="phoneNumber"
-              value={modalValues.phoneNumber}
+              name="phone_number"
+              value={modalValues.phone_number}
               placeholder="Enter phone"
               onChange={handleChange}
             />
@@ -159,21 +180,24 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
               isMultiSelect
               name="role"
               title="Select multiple names"
-              options={options}
+              options={roles.map((role) => ({
+                value: role.role_name,
+                label: role.role_name,
+              }))}
               value={modalValues.role}
               selected={selectedItemsState}
               onSelect={(item) => {
                 const selected = [...selectedItemsState, item.value];
                 const selectedItems = selected;
                 const selectedItemsLength = selectedItems.length;
-                let selectedNames = "";
+                let selectedNames = '';
                 if (selectedItemsLength === 0) {
-                  selectedNames = "";
+                  selectedNames = '';
                 } else if (selectedItemsLength === 1) {
                   selectedNames = selectedItems.toString();
                 } else if (selectedItemsLength > 1) {
                   selectedNames =
-                    selectedItemsLength.toString() + " selected...";
+                    selectedItemsLength.toString() + ' selected...';
                 }
                 setSelectedItems(selectedItems);
                 console.log(selectedItems);
@@ -187,14 +211,14 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
                   (_item, i) => i !== deselectedItemIndex
                 );
                 const selectedItemsLength = selectedItems.length;
-                let selectedNames = "";
+                let selectedNames = '';
                 if (selectedItemsLength === 0) {
-                  selectedNames = "";
+                  selectedNames = '';
                 } else if (selectedItemsLength === 1) {
                   selectedNames = selectedItems.toString();
                 } else if (selectedItemsLength > 1) {
                   selectedNames =
-                    selectedItemsLength.toString() + " selected...";
+                    selectedItemsLength.toString() + ' selected...';
                 }
 
                 setSelectedItems(selectedItems);
@@ -210,7 +234,7 @@ function UserModal({ setModalOpen, modalOpen, title, user }) {
                   });
                 }}
               >
-                {selectedItemNamesState || "Select roles..."}
+                {selectedItemNamesState || 'Select roles...'}
               </Button>
             </SelectMenu>
           </div>

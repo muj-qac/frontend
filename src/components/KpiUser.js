@@ -1,287 +1,13 @@
-import { Button, TextInput, IconButton, RefreshIcon } from "evergreen-ui";
-import { useState } from "react";
-import { Switch } from "evergreen-ui";
-import KPIRow2 from "./KPIRow2";
-import SideBar from "./SideBar";
-import UserModal from "./modals/UserModal";
-import AddRoles from "./modals/AddRoles";
-import AddUserModal from "./modals/AddUserModal";
-const users = [
-  {
-    index: 0,
-    firstName: "abc",
-    lastName: "Gupta",
-    email: "abc@gmail.com",
-    role: ["IT", "CSE", "ECE"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 1,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 3,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 4,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 5,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 6,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 7,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 8,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 9,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 10,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 11,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 12,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 13,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 14,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 15,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 16,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["IT", "CSE"],
-    pass: "",
-    cnfrmpass: "",
-    phoneNumber: 9935128975,
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
-  {
-    index: 17,
-    firstName: "KPI 1",
-    lastName: "Gupta",
-    email: "fac1@gmail.com",
-    role: ["Admin"],
-    phoneNumber: 9935128975,
-    pass: "",
-    cnfrmpass: "",
-    details: {
-      faculty: "Professor",
-      department: "Department of Computer Science and Engineering",
-      program: " MTech - Information Security",
-      school: "School of Computing and Information Technology",
-    },
-  },
+import { Button, TextInput, IconButton, RefreshIcon } from 'evergreen-ui';
+import { useEffect, useState } from 'react';
+import { Switch } from 'evergreen-ui';
+import KPIRow2 from './KPIRow2';
+import SideBar from './SideBar';
+import UserModal from './modals/UserModal';
+import AddRoles from './modals/AddRoles';
+import AddUserModal from './modals/AddUserModal';
+import api from '../api';
 
-  // More people...
-];
 function KpiUser() {
   // //useState for disabling roles
   // const [status, setStatus] = useState(false);
@@ -290,6 +16,15 @@ function KpiUser() {
   const [modalOpen2, setModalOpen2] = useState(false);
   const [modalOpen3, setModalOpen3] = useState(false);
   //UseState
+  const [users, setUsers] = useState([]);
+  const [value, setValue] = useState(0);
+  const fetchUser = async () => {
+    const res = await api.get(`/admin/user/all-user`);
+    setUsers(res.data);
+  };
+  useEffect(() => {
+    fetchUser();
+  }, []);
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
@@ -316,6 +51,7 @@ function KpiUser() {
             marginBottom={10}
             marginLeft={4}
             className=" float-right"
+            onClick={() => fetchUser()}
           />
           <div className=" h-96 shadow overflow-auto border-b border-gray-200 sm:rounded-lg ">
             <table className="min-w-full divide-y divide-gray-200">
@@ -351,8 +87,8 @@ function KpiUser() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {users.map((user) => (
-                  <KPIRow2 user={user} />
+                {users.map((user, _i) => (
+                  <KPIRow2 user={user} i={_i} />
                 ))}
               </tbody>
             </table>

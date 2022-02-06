@@ -1,7 +1,8 @@
-import { Button, Dialog, FilePicker, Pane, TextInput } from "evergreen-ui";
-import { useState, useEffect } from "react";
-import React from "react";
-import axios from "axios";
+import { Button, Dialog, FilePicker, Pane, TextInput } from 'evergreen-ui';
+import { useState, useEffect } from 'react';
+import React from 'react';
+import axios from 'axios';
+import api from '../../api';
 
 function DeleteModal({ setModalOpen4, modalOpen, user }) {
   const initialValues = {
@@ -14,7 +15,12 @@ function DeleteModal({ setModalOpen4, modalOpen, user }) {
     // setModalValues4(email);
     setIsSubmit(true);
     console.log(initialValues);
-    setModalOpen4(false);
+    try {
+      api.delete(`/admin/user/profile/${user.email}`);
+      setModalOpen4(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
