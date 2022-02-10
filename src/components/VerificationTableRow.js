@@ -7,18 +7,18 @@ import {
   Pill,
   Table,
   Tooltip,
-} from 'evergreen-ui';
-import { useEffect, useState } from 'react';
-import KpiReceiveModal from './modals/KpiReceiveModal';
-import { users } from '../data/UserData';
-import KpiVerifiedModal from './modals/KpiVerifiedModal';
+} from "evergreen-ui";
+import { useEffect, useState } from "react";
+import KpiReceiveModal from "./modals/KpiReceiveModal";
+import { users } from "../data/UserData";
+import KpiVerifiedModal from "./modals/KpiVerifiedModal";
 
 function VerificationTableRow({ kpi }) {
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [isShown, setIsShown] = useState(false);
   const [isShown2, setIsShown2] = useState(false);
-  const [counter1, setCounter1] = useState('');
-  const [counter2, setCounter2] = useState('');
+  const [counter1, setCounter1] = useState("");
+  const [counter2, setCounter2] = useState("");
   const counterPill1 = () => {
     var count = Object.keys(users).length;
     setCounter1(`${count}`);
@@ -36,13 +36,16 @@ function VerificationTableRow({ kpi }) {
   return (
     <Pane>
       <Table.Row key={kpi.kpi_data_id} isSelectable>
-        <Table.TextCell>{kpi.kpi_data_name}</Table.TextCell>
+        <Table.TextCell appearance="default">
+          {kpi.kpi_data_name}
+        </Table.TextCell>
         <Table.TextCell>
           <Tooltip content="Verify Incoming Data">
             <Button
               marginY={8}
               marginRight={12}
               iconBefore={EyeOpenIcon}
+              color="orange"
               onClick={() => {
                 setIsShown(true);
                 counterPill1();
@@ -51,9 +54,7 @@ function VerificationTableRow({ kpi }) {
               Verify Data
             </Button>
           </Tooltip>
-          <Pill display="inline-flex" margin={8} color="yellow">
-            {counter1}
-          </Pill>
+          {}
         </Table.TextCell>
         <Table.TextCell>
           <Tooltip content="Verified Data">
@@ -61,6 +62,7 @@ function VerificationTableRow({ kpi }) {
               marginY={8}
               marginRight={12}
               iconBefore={EyeOnIcon}
+              color="green"
               onClick={() => {
                 setIsShown2(true);
               }}
@@ -68,9 +70,6 @@ function VerificationTableRow({ kpi }) {
               Verified Data
             </Button>
           </Tooltip>
-          <Pill display="inline-flex" margin={8} color="green">
-            {counter2}
-          </Pill>
         </Table.TextCell>
       </Table.Row>
       <KpiReceiveModal

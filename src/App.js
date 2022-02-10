@@ -1,17 +1,17 @@
 // import SideBar from './components/SideBar';
-import { useContext } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useContext } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   CurrentUserContext,
   CurrentUserProvider,
-} from './components/context/CurrentUserContext';
-import CreateKpi from './pages/CreateKpi';
-import Dashboard from './pages/faculty/Dashboard';
-import Settings from './pages/faculty/Settings';
-import Kpi from './pages/Kpi';
-import LoginPage from './pages/LoginPage';
-import ManageKpi from './pages/ManageKpi';
-import User from './pages/User';
+} from "./components/context/CurrentUserContext";
+import CreateKpi from "./pages/CreateKpi";
+import Dashboard from "./pages/faculty/Dashboard";
+import Settings from "./pages/faculty/Settings";
+import Kpi from "./pages/Kpi";
+import LoginPage from "./pages/LoginPage";
+import ManageKpi from "./pages/ManageKpi";
+import User from "./pages/User";
 
 function App() {
   //context
@@ -28,7 +28,7 @@ function App() {
             <Route index element={<LoginPage />} />
             <Route></Route>
             <Route
-              path="kpi"
+              path="/manage-kpi"
               element={
                 <Protect>
                   <Kpi />
@@ -36,7 +36,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="kpi/createKpi"
+              path="/create-kpi"
               element={
                 <Protect>
                   <CreateKpi />
@@ -44,7 +44,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="kpi/manageKpi"
+              path="/verify-kpi"
               element={
                 <Protect>
                   <ManageKpi />
@@ -52,7 +52,7 @@ function App() {
               }
             />
             <Route
-              path="kpi/manageUser"
+              path="/manage-users"
               element={
                 <Protect>
                   <User />

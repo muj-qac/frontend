@@ -1,18 +1,18 @@
-import React from 'react';
-import bgimage from '../img/domefinal.png';
-import icon from '../img/logoMuj.png';
-import { useState, useEffect } from 'react';
-import { Avatar, Pane, toaster } from 'evergreen-ui';
-import { useContext } from 'react';
-import { CurrentUserContext } from '../components/context/CurrentUserContext';
-import api from '../api';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import bgimage from "../img/domefinal.png";
+import icon from "../img/logoMuj.png";
+import { useState, useEffect } from "react";
+import { Avatar, Pane, toaster } from "evergreen-ui";
+import { useContext } from "react";
+import { CurrentUserContext } from "../components/context/CurrentUserContext";
+import api from "../api";
+import { useNavigate } from "react-router-dom";
 
 function LoginPage() {
   let navigate = useNavigate();
   const { setCurrentUser, setLoading } = useContext(CurrentUserContext);
   //Taking initial values for the input fields
-  const initialValues = { email: '', password: '' };
+  const initialValues = { email: "", password: "" };
   //UseState for the form values
   const [formValues, setFormValues] = useState(initialValues);
   //errors for validating the form values
@@ -46,7 +46,7 @@ function LoginPage() {
     setFormErrors(validate(formValues));
     setIsSubmit(true);
     try {
-      const res = await api.post('/auth/login', formValues);
+      const res = await api.post("/auth/login", formValues);
       console.log(res.data);
       const { id, firstName, lastName, isAdmin } = res.data;
       // if (firstName) {
@@ -57,22 +57,22 @@ function LoginPage() {
       // }
       if (isAdmin === true) {
         // console.log('chal raha hun');
-        localStorage.setItem('token', id);
-        localStorage.setItem('isAdmin', isAdmin);
-        localStorage.setItem('currentUser', firstName);
-        navigate('/kpi');
+        localStorage.setItem("token", id);
+        localStorage.setItem("isAdmin", isAdmin);
+        localStorage.setItem("currentUser", firstName);
+        navigate("/verify-kpi");
         // setLoading(true);
         // localStorage.setItem('firstName', firstName);
       } else if (isAdmin === false) {
-        localStorage.setItem('token', id);
-        localStorage.setItem('currentUser', firstName + ' ' + lastName);
-        navigate('/dashboard');
+        localStorage.setItem("token", id);
+        localStorage.setItem("currentUser", firstName + " " + lastName);
+        navigate("/dashboard");
         // setLoading(true);
         // localStorage.setItem('firstName', firstName);
       }
     } catch (error) {
-      toaster.warning('Login Failed', {
-        id: 'forbidden-action',
+      toaster.warning("Login Failed", {
+        id: "forbidden-action",
       });
     }
   };
@@ -80,12 +80,12 @@ function LoginPage() {
   const validate = (values) => {
     const errors = {};
     if (!values.email) {
-      errors.email = '*email is required';
+      errors.email = "*email is required";
     }
     if (!values.password) {
-      errors.password = '*Password is required';
+      errors.password = "*Password is required";
     } else if (values.password.length < 4) {
-      errors.password = '*Minimum 4 characters required';
+      errors.password = "*Minimum 4 characters required";
     }
     return errors;
   };
@@ -95,8 +95,8 @@ function LoginPage() {
       className="container font-monts"
       style={{
         backgroundImage: `url(${bgimage})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
       }}
     >
       <div className=" pt-48 h-screen">
