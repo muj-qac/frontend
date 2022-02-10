@@ -1,10 +1,44 @@
-import { Switch } from '@headlessui/react';
+// import { Switch } from '@headlessui/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 function SideBar() {
   const [enabled, setEnabled] = useState(true);
-  const [specific, setSpecific] = useState('/kpi');
+
+  const [activeManageKpi, setActiveManageKpi] = useState(true);
+  const [activeCreateKpi, setActiveCreateKpi] = useState(false);
+  const [activeVerifyKpi, setActiveVerifyKpi] = useState(false);
+  const [activeManageUser, setActiveManageUser] = useState(false);
+
+  const navigationManageKpi = () => {
+    setActiveManageKpi(true);
+    setActiveCreateKpi(false);
+    setActiveVerifyKpi(false);
+    setActiveManageUser(false);
+    navigate('/kpi');
+  };
+  const navigationCreateKpi = () => {
+    setActiveCreateKpi(true);
+    setActiveManageKpi(false);
+    setActiveVerifyKpi(false);
+    setActiveManageUser(false);
+    navigate('/kpi/createKpi');
+  };
+  const navigationVerifyKpi = () => {
+    setActiveVerifyKpi(true);
+    setActiveManageKpi(false);
+    setActiveCreateKpi(false);
+    setActiveManageUser(false);
+    navigate('/kpi/manageKpi');
+  };
+  const navigationManageUser = () => {
+    setActiveManageUser(true);
+    setActiveManageKpi(false);
+    setActiveCreateKpi(false);
+    setActiveVerifyKpi(false);
+    navigate('/kpi/manageUser');
+  };
+
   let navigate = useNavigate();
   return (
     <div
@@ -28,13 +62,11 @@ function SideBar() {
           <ul className="mt-12">
             <li
               className={`${
-                enabled
-                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
-                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+                activeManageKpi
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
               }`}
-              onClick={() => {
-                navigate('/kpi');
-              }}
+              onClick={navigationManageKpi}
             >
               <div className="flex items-center">
                 <svg
@@ -62,19 +94,17 @@ function SideBar() {
                       : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
-                  KPI
+                  Manage KPI
                 </span>
               </div>
             </li>
             <li
               className={`${
-                enabled
-                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
-                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+                activeCreateKpi
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
               }`}
-              onClick={() => {
-                navigate('/kpi/createKpi');
-              }}
+              onClick={navigationCreateKpi}
             >
               <div className="flex items-center">
                 <svg
@@ -107,13 +137,11 @@ function SideBar() {
             </li>
             <li
               className={`${
-                enabled
-                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
-                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+                activeVerifyKpi
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
               }`}
-              onClick={() => {
-                navigate('/kpi/manageKpi');
-              }}
+              onClick={navigationVerifyKpi}
             >
               <div className="flex items-center">
                 <svg
@@ -142,19 +170,17 @@ function SideBar() {
                       : 'text-lg  ml-2 text-Light-text_primary'
                   }`}
                 >
-                  Manage KPI
+                  Verify KPI
                 </span>
               </div>
             </li>
             <li
               className={`${
-                enabled
-                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
-                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+                activeManageUser
+                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 border-l-4 border-Dark-text_secondary'
+                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
               }`}
-              onClick={() => {
-                navigate('/kpi/manageUser');
-              }}
+              onClick={navigationManageUser}
             >
               <div className="flex items-center">
                 <svg

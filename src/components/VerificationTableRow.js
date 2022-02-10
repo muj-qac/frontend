@@ -35,8 +35,8 @@ function VerificationTableRow({ kpi }) {
   }, []);
   return (
     <Pane>
-      <Table.Row key={kpi.id} isSelectable>
-        <Table.TextCell>{kpi.title}</Table.TextCell>
+      <Table.Row key={kpi.kpi_data_id} isSelectable>
+        <Table.TextCell>{kpi.kpi_data_name}</Table.TextCell>
         <Table.TextCell>
           <Tooltip content="Verify Incoming Data">
             <Button
@@ -76,12 +76,12 @@ function VerificationTableRow({ kpi }) {
       <KpiReceiveModal
         setIsShown={setIsShown}
         isShown={isShown}
-        title={kpi.title}
+        title={kpi.kpi_data_name}
       />
       <KpiVerifiedModal
         setIsShown={setIsShown2}
         isShown={isShown2}
-        title={kpi.title}
+        title={kpi.kpi_data_name}
       />
     </Pane>
   );

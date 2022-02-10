@@ -2,11 +2,11 @@ import axios from '../../api';
 import { Dialog, FilePicker, Pane } from 'evergreen-ui';
 import { useState } from 'react';
 
-function FacultyUploadModal({ setIsShown, isShown, title }) {
+function FacultyUploadModal({ setIsShown, isShown, id, title }) {
   const [loading, setLoading] = useState(false);
-  // const [file, setFile] = useState();
+  const [file, setFile] = useState();
   let formData = new FormData();
-  formData.append('file', File);
+  formData.append('file', file);
   return (
     <Pane>
       <Dialog
@@ -17,7 +17,8 @@ function FacultyUploadModal({ setIsShown, isShown, title }) {
         confirmLabel="Save"
         hasCancel={false}
         onConfirm={async () => {
-          const res = await axios.post(`/user/upload/${title}`, formData);
+          const res = await axios.post(`/user/upload/${id}`, formData);
+          setIsShown(false);
           console.log(res.data);
         }}
         isConfirmLoading={loading}
@@ -30,7 +31,7 @@ function FacultyUploadModal({ setIsShown, isShown, title }) {
           width={250}
           onChange={(files) => {
             console.log(files);
-            // setFile(files);
+            setFile(files[0]);
           }}
           accept=".xlsx"
           placeholder="Select the file here!"
