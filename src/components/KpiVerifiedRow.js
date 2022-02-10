@@ -14,13 +14,19 @@ import {
 import { useState } from 'react';
 
 function KpiVerifiedRow({ verify }) {
-  const [title, setTitle] = useState('');
-
+  // const [title, setTitle] = useState('');
+  const handleDownload = () => {
+    const encode = verify.uploaded_sheets_aws_key.replace(/\//g, '%2F');
+    console.log(encode);
+    window.open(
+      `http://localhost:5000/api/v1/admin/sheet/get-verified-object/${encode}`
+    );
+  };
   return (
     <Pane>
-      <Table.Row key={verify.id} isSelectable>
+      <Table.Row key={verify.uploaded_sheets_id} isSelectable>
         <Table.TextCell>
-          {verify.firstName} {verify.lastName}
+          {verify.user_id_first_name} {verify.user_id_last_name}
         </Table.TextCell>
         <Table.TextCell>
           <Tooltip content="Download Filled Data">
@@ -28,6 +34,7 @@ function KpiVerifiedRow({ verify }) {
               marginY={8}
               marginRight={12}
               iconBefore={CircleArrowDownIcon}
+              onClick={handleDownload}
             >
               Download
             </Button>

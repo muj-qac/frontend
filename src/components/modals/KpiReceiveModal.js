@@ -22,7 +22,7 @@ function KpiReceiveModal({ setIsShown, isShown, title }) {
         minHeightContent={400}
         width={1000}
       >
-        <KpiReceiveTable />
+        <KpiReceiveTable title={title} />
         <br />
       </Dialog>
     </Pane>

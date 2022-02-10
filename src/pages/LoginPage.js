@@ -48,7 +48,7 @@ function LoginPage() {
     try {
       const res = await api.post('/auth/login', formValues);
       console.log(res.data);
-      const { id, firstName, isAdmin } = res.data;
+      const { id, firstName, lastName, isAdmin } = res.data;
       // if (firstName) {
       //   localStorage.setItem('token', id);
       //   localStorage.setItem('firstName', firstName);
@@ -59,11 +59,13 @@ function LoginPage() {
         // console.log('chal raha hun');
         localStorage.setItem('token', id);
         localStorage.setItem('isAdmin', isAdmin);
+        localStorage.setItem('currentUser', firstName);
         navigate('/kpi');
         // setLoading(true);
         // localStorage.setItem('firstName', firstName);
       } else if (isAdmin === false) {
         localStorage.setItem('token', id);
+        localStorage.setItem('currentUser', firstName + ' ' + lastName);
         navigate('/dashboard');
         // setLoading(true);
         // localStorage.setItem('firstName', firstName);

@@ -15,7 +15,9 @@ function TopBar() {
           </div>
           <div className="ml-4">
             <div className="text-sm text-gray-500">Signed in as</div>
-            <div className="text-lg font-medium text-gray-900">UserName</div>
+            <div className="text-lg font-medium text-gray-900">
+              {localStorage.getItem('currentUser')}
+            </div>
           </div>
         </div>
         <button

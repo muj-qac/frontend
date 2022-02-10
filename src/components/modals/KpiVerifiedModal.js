@@ -23,7 +23,7 @@ function KpiVerifiedModal({ setIsShown, isShown, title }) {
         width={1000}
       >
         {/* <KpiReceiveTable /> */}
-        <KpiVerifiedTable />
+        <KpiVerifiedTable title={title} />
         <br />
       </Dialog>
     </Pane>

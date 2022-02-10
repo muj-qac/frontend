@@ -117,11 +117,12 @@ function TableKpi() {
   //useState for disabling roles
   const [status, setStatus] = useState(false);
   const [kpis, setKpis] = useState([]);
+  const fetchKpi = async () => {
+    const res = await api.get(`/admin/kpi/get-kpis`);
+    setKpis(res.data);
+    console.log(res.data);
+  };
   useEffect(() => {
-    const fetchKpi = async () => {
-      const res = await api.get(`/admin/kpi/get-kpis`);
-      setKpis(res.data);
-    };
     fetchKpi();
   }, []);
 

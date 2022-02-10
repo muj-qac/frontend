@@ -37,6 +37,7 @@ export const CurrentUserProvider = ({ children }) => {
   const checkLogin = () => {
     const token = localStorage.getItem('token');
     let admin = localStorage.getItem('isAdmin');
+    let currentUser = localStorage.getItem('currentUser');
     // setAuthLoading(true);
 
     if (token && admin) {
@@ -44,7 +45,7 @@ export const CurrentUserProvider = ({ children }) => {
       return <Navigate to="/kpi" />;
     } else if (token && !admin) {
       setAuthLoading(false);
-      setCurrentUser(null);
+      setCurrentUser(currentUser);
       return <Navigate to="/dashboard" />;
     }
   };
