@@ -21,9 +21,9 @@ function KPIRow({ kpi }) {
   //UseState for displayArray
   const [array, setArray] = useState([]);
   //Disabling the toggler & chip component on clicking save button
-  const [use, setUsed] = useState(false);
-  const [chip, setChip] = useState(false);
-  const [val, setVal] = useState(false);
+  const [use, setUsed] = useState(true);
+  const [chip, setChip] = useState(true);
+  const [val, setVal] = useState(true);
 
   //!Roles do not render Get roles working do not erase this code
   const fetchRole = async () => {
@@ -80,7 +80,7 @@ function KPIRow({ kpi }) {
         );
       }
       e.target.innerHTML = 'Edit';
-    } else {
+    } else if (e.target.innerHTML === 'Edit') {
       setUsed(false);
       setChip(false);
       setVal(false);
@@ -137,7 +137,7 @@ function KPIRow({ kpi }) {
             className="rounded-md w-12 text-white  bg-blue p-1 ml-24"
             onClick={handleClick}
           >
-            Save
+            Edit
           </button>
         </td>
       </tr>
