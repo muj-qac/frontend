@@ -3,10 +3,14 @@ import {
   CircleArrowDownIcon,
   CogIcon,
   CrossIcon,
+  FilePicker,
   IconButton,
   majorScale,
   Pane,
+  Popover,
+  Position,
   Table,
+  Textarea,
   TickIcon,
   Tooltip,
   UploadIcon,
@@ -16,12 +20,21 @@ import api from '../api';
 
 function KpiReceiveRow({ user }) {
   // const [title, setTitle] = useState('');
+  const [isShown, setIsShown] = useState(false);
+  const [text, setText] = useState('');
+  const [file, setFile] = useState();
+  let formData = new FormData();
+  formData.append('file', file);
   const handleDownload = () => {
     const encode = user.uploaded_sheets_aws_key.replace(/\//g, '%2F');
     console.log(encode);
     window.open(
       `http://localhost:5000/api/v1/admin/sheet/get-unverified-object/${encode}`
     );
+  };
+  const handleUpload = async () => {
+    console.log('i am working');
+    console.log(text);
   };
   return (
     <Pane>
@@ -55,16 +68,64 @@ function KpiReceiveRow({ user }) {
             />
           </Tooltip>
           <Tooltip content="Reject">
-            <IconButton
-              icon={CrossIcon}
-              marginRight={majorScale(2)}
-              intent="danger"
-              onClick={() => {
-                api.put(`/admin/sheet/reject-kpi`, {
-                  fileKey: user.uploaded_sheets_aws_key,
-                });
-              }}
-            />
+            <Popover
+              bringFocusInside
+              // handleUpload={handleUpload}
+              content={({ close }) => (
+                <Pane
+                  width={320}
+                  height={320}
+                  paddingX={40}
+                  display="flex"
+                  alignItems="center"
+                  justifyContent="space-around"
+                  flexDirection="column"
+                >
+                  <FilePicker
+                    className=" py-5"
+                    multiple
+                    width={250}
+                    onChange={(files) => {
+                      console.log(files);
+                      setFile(files[0]);
+                    }}
+                    accept=".xlsx"
+                    placeholder="Select the file here!"
+                  />
+                  <Textarea
+                    name="textarea-1"
+                    placeholder="Textarea placeholder..."
+                    onChange={(e) => {
+                      setText(e.target.value);
+                    }}
+                  />
+                  <Pane
+                    display="flex"
+                    justifyContent="space-between"
+                    width={200}
+                  >
+                    <Button onClick={close}>Close</Button>
+                    <Button appearance="primary" onClick={handleUpload}>
+                      Save
+                    </Button>
+                  </Pane>
+                </Pane>
+              )}
+              position={Position.RIGHT}
+              shouldCloseOnExternalClick={false}
+            >
+              <IconButton
+                icon={CrossIcon}
+                marginRight={majorScale(2)}
+                intent="danger"
+                onClick={() => {
+                  // api.put(`/admin/sheet/reject-kpi`, {
+                  //   fileKey: user.uploaded_sheets_aws_key,
+                  // });
+                  setIsShown(true);
+                }}
+              />
+            </Popover>
           </Tooltip>
         </Table.TextCell>
       </Table.Row>

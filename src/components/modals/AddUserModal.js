@@ -70,11 +70,14 @@ function AddUserModal({ setModalOpen3, modalOpen, title, user }) {
   useEffect(() => {
     if (Object.keys(modalErrors).length === 0 && isSubmit) {
       console.log(modalValues3);
+      setLoading(true);
       try {
         api.post(`/admin/user/add-user`, modalValues3);
         setModalOpen3(false);
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     }
   }, [modalErrors]);
@@ -149,6 +152,7 @@ function AddUserModal({ setModalOpen3, modalOpen, title, user }) {
         confirmLabel="Save"
         width={800}
         onConfirm={handleSubmit}
+        isConfirmLoading={loading}
       >
         <h1 className="text-xl font-semibold pb-8">{title}</h1>
         <h3 className="mb-6 font-semibold">Unique ID:</h3>

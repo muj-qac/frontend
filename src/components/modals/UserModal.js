@@ -45,7 +45,9 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
   const [modalErrors, setModalErrors] = useState({});
   // //for roles to be displayed in modals
   const [selectedItemsState, setSelectedItems] = useState(user.role);
-  const [selectedItemNamesState, setSelectedItemNames] = useState(user.role);
+  const [selectedItemNamesState, setSelectedItemNames] = useState(
+    user.role.length + ' selected...'
+  );
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
 
