@@ -17,6 +17,7 @@ function FacultyUploadModal({ setIsShown, isShown, id, title }) {
         confirmLabel="Save"
         hasCancel={false}
         onConfirm={async () => {
+          setLoading(true);
           const res = await axios.post(`/user/upload/${id}`, formData);
           setIsShown(false);
           console.log(res.data);

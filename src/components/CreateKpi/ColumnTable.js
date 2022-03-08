@@ -74,7 +74,7 @@ const ColumnTable = () => {
         }
       );
       console.log(res);
-      if (!res.ok) throw 'Request Failed';
+      if (res.status !== 200) throw 'Request Failed';
       toaster.success('KPI created successfully!');
     } catch (error) {
       toaster.danger('Something went wrong!');

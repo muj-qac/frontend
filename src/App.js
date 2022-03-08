@@ -1,17 +1,17 @@
 // import SideBar from './components/SideBar';
-import { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useContext } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
   CurrentUserContext,
   CurrentUserProvider,
-} from "./components/context/CurrentUserContext";
-import CreateKpi from "./pages/CreateKpi";
-import Dashboard from "./pages/faculty/Dashboard";
-import Settings from "./pages/faculty/Settings";
-import Kpi from "./pages/Kpi";
-import LoginPage from "./pages/LoginPage";
-import ManageKpi from "./pages/ManageKpi";
-import User from "./pages/User";
+} from './components/context/CurrentUserContext';
+import CreateKpi from './pages/CreateKpi';
+import Dashboard from './pages/faculty/Dashboard';
+import Settings from './pages/faculty/Settings';
+import Kpi from './pages/Kpi';
+import LoginPage from './pages/LoginPage';
+import ManageKpi from './pages/ManageKpi';
+import User from './pages/User';
 
 function App() {
   //context
@@ -19,8 +19,17 @@ function App() {
     useContext(CurrentUserContext);
 
   const content = () => {
-    if (authLoading) {
-      return <div>Loading...</div>;
+    if (false) {
+      return (
+        <div className=" flex min-h-screen min-w-full place-content-center bg-black">
+          <div className="loader place-self-center ">
+            <span></span>
+            <span></span>
+            <span></span>
+            <h2 className=" text-white ">Loading....</h2>
+          </div>
+        </div>
+      );
     } else
       return (
         <BrowserRouter>
