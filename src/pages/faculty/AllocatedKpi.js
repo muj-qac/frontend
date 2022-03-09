@@ -1,9 +1,9 @@
 // import SideBar from '../../components/SideBar';
-import FacultyTableVerified from "../../components/common/FacultyTableVerified";
+import FacultyTable3 from "../../components/common/FacultyTable3";
 import FacultySideBar from "../../components/FacultySidebar";
 import TopBar from "../../components/TopBar";
 
-function VerifiedKpi() {
+function AllocatedKpi() {
   return (
     <div>
       <div className=" grid grid-cols-12">
@@ -14,11 +14,11 @@ function VerifiedKpi() {
           <TopBar />
         </div>
         <div className=" col-span-8 self-center ">
-          <FacultyTableVerified />
+          <FacultyTable3 />
         </div>
       </div>
     </div>
   );
 }
 
-export default VerifiedKpi;
+export default AllocatedKpi;
