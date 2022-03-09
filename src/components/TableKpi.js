@@ -1,12 +1,12 @@
 //import statements
 // import RoleAllocModal from "./modals/RoleAllocModal";
 // { CloseRoleAllocModal }
-import { TextInput } from 'evergreen-ui';
-import { useEffect, useState } from 'react';
-import { Switch } from 'evergreen-ui';
-import KPIRow from './KPIRow';
-import api from '../api';
-// const kpis = [
+import { TextInput } from "evergreen-ui";
+import { useEffect, useState } from "react";
+import { Switch } from "evergreen-ui";
+import KPIRow from "./KPIRow";
+import api from "../api";
+
 //   {
 //     // index: 0,
 //     title: "KPI 1",

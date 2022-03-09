@@ -1,19 +1,19 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 function FacultySideBar() {
   let activeStyle = {
     // textDecoration: "underline 2px solid #e2e8f0",
-    fontWeight: '500',
+    fontWeight: "500",
   };
   let activeClassName =
-    ' flex items-center border-l-4 h-6 border-Dark-text_secondary';
+    " flex items-center border-l-4 h-6 border-Dark-text_secondary";
   return (
-    <div className={'bg-Dark-primary flex flex-no-wrap h-screen w-64'}>
+    <div className={"bg-Dark-primary flex flex-no-wrap h-screen w-64"}>
       <div className=" w-64 absolute sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
         <div className="px-0">
           <div
             className={
-              'h-16 w-full flex font-monts text-2xl font-medium items-center justify-center text-Dark-text_primary'
+              "h-16 w-full flex font-monts text-2xl font-medium items-center justify-center text-Dark-text_primary"
             }
           >
             KPI PORTAL
@@ -27,7 +27,7 @@ function FacultySideBar() {
             >
               <li
                 className={
-                  'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6'
+                  "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6"
                 }
               >
                 <div className="flex items-center">
@@ -38,7 +38,7 @@ function FacultySideBar() {
                     height={18}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={'#e2e8f0'}
+                    stroke={"#e2e8f0"}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -50,7 +50,7 @@ function FacultySideBar() {
                   </svg>
                   <span
                     className={
-                      'text-lg  ml-2 hover:underline text-Dark-text_primary'
+                      "text-lg  ml-2 hover:underline text-Dark-text_primary"
                     }
                   >
                     Allocated KPIs
@@ -66,7 +66,7 @@ function FacultySideBar() {
             >
               <li
                 className={
-                  'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6'
+                  "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6"
                 }
               >
                 <div className="flex items-center">
@@ -77,7 +77,7 @@ function FacultySideBar() {
                     height={18}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={'#e2e8f0'}
+                    stroke={"#e2e8f0"}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -90,7 +90,7 @@ function FacultySideBar() {
                   </svg>
                   <span
                     className={
-                      'text-lg hover:underline ml-2 text-Dark-text_primary'
+                      "text-lg hover:underline ml-2 text-Dark-text_primary"
                     }
                   >
                     Verified KPIs
@@ -106,7 +106,7 @@ function FacultySideBar() {
             >
               <li
                 className={
-                  'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6'
+                  "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6"
                 }
               >
                 <div className="flex items-center">
@@ -117,7 +117,7 @@ function FacultySideBar() {
                     height={18}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={'#e2e8f0'}
+                    stroke={"#e2e8f0"}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -128,7 +128,7 @@ function FacultySideBar() {
                   </svg>
                   <span
                     className={
-                      'text-lg hover:underline ml-2 text-Dark-text_primary'
+                      "text-lg hover:underline ml-2 text-Dark-text_primary"
                     }
                   >
                     Settings
