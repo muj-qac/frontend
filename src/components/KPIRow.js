@@ -1,19 +1,19 @@
-import React, { useEffect } from 'react';
-import { Switch } from 'evergreen-ui';
-import { useState } from 'react';
-import { SelectMenu, Button } from 'evergreen-ui';
-import { Pane, Pill, Text } from 'evergreen-ui';
-import api from '../api';
+import React, { useEffect } from "react";
+import { Switch } from "evergreen-ui";
+import { useState } from "react";
+import { SelectMenu, Button } from "evergreen-ui";
+import { Pane, Pill, Text } from "evergreen-ui";
+import api from "../api";
 function KPIRow({ kpi }) {
   const [roles, setRoles] = useState([]);
 
   //useState for status toggler
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(kpi.kpi_allocation_status);
   //useState for dropdown
   const [selectedItemsState, setSelectedItems] = useState(
     !kpi?.kpi_allocation_allocated_to_roles
       ? []
-      : kpi?.kpi_allocation_allocated_to_roles?.split(',')
+      : kpi?.kpi_allocation_allocated_to_roles?.split(",")
   );
   const [selectedItemNamesState, setSelectedItemNames] = useState(null);
   //useState for roleSetter
@@ -36,13 +36,13 @@ function KPIRow({ kpi }) {
   }, []);
   useEffect(() => {
     const selectedItemsLength = selectedItemsState?.length;
-    let selectedNames = '';
+    let selectedNames = "";
     if (selectedItemsLength === 0) {
-      selectedNames = '';
+      selectedNames = "";
     } else if (selectedItemsLength === 1) {
       selectedNames = selectedItemsState.toString();
     } else if (selectedItemsLength > 1) {
-      selectedNames = selectedItemsLength.toString() + ' selected...';
+      selectedNames = selectedItemsLength.toString() + " selected...";
     }
     setSelectedItemNames(selectedNames);
   }, [selectedItemsState]);
@@ -60,7 +60,7 @@ function KPIRow({ kpi }) {
   });
   //function for displayArray
   const handleClick = (e) => {
-    if (e.target.innerHTML === 'Save') {
+    if (e.target.innerHTML === "Save") {
       setUsed(true);
       setChip(true);
       setVal(true);
@@ -70,21 +70,22 @@ function KPIRow({ kpi }) {
       if (!kpi.kpi_allocation_allocated_to_roles) {
         api.post(`/admin/kpi/allocate-roles`, {
           roles: selectedItemsState,
-          status,
+          status: status,
           kpiId: kpi.kpi_data_id,
         });
       } else {
-        api.put(
-          `/admin/kpi/allocate-roles/${kpi.kpi_data_id}`,
-          selectedItemsState
-        );
+        api.put(`/admin/kpi/allocate-roles/${kpi.kpi_data_id}`, {
+          roles: selectedItemsState,
+          status: status,
+        });
+        console.log(selectedItemsState, typeof selectedItemsState);
       }
-      e.target.innerHTML = 'Edit';
-    } else if (e.target.innerHTML === 'Edit') {
+      e.target.innerHTML = "Edit";
+    } else if (e.target.innerHTML === "Edit") {
       setUsed(false);
       setChip(false);
       setVal(false);
-      e.target.innerHTML = 'Save';
+      e.target.innerHTML = "Save";
     }
   };
   return (
@@ -130,7 +131,7 @@ function KPIRow({ kpi }) {
             }}
           >
             <Button disabled={val}>
-              {selectedItemNamesState || 'Select roles...'}
+              {selectedItemNamesState || "Select roles..."}
             </Button>
           </SelectMenu>
           <button

@@ -1,6 +1,6 @@
-import { Switch } from '@headlessui/react';
-import { useParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { Switch } from "@headlessui/react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function FacultySideBar() {
   const [enabled, setEnabled] = useState(true);
@@ -10,8 +10,8 @@ function FacultySideBar() {
     <div
       className={`${
         enabled
-          ? 'bg-Dark-primary flex flex-no-wrap h-screen w-64 sticky top-0'
-          : 'bg-Light-primary flex flex-no-wrap h-screen w-64 sticky top-0'
+          ? "bg-Dark-primary flex flex-no-wrap h-screen w-64 sticky top-0"
+          : "bg-Light-primary flex flex-no-wrap h-screen w-64 sticky top-0"
       }`}
     >
       <div className=" w-64 sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
@@ -19,8 +19,8 @@ function FacultySideBar() {
           <div
             className={`${
               enabled
-                ? 'h-16 w-full flex items-center justify-center text-Dark-text_primary'
-                : 'h-16 w-full flex items-center justify-center text-Light-text_primary'
+                ? "h-16 w-full flex items-center justify-center text-Dark-text_primary"
+                : "h-16 w-full flex items-center justify-center text-Light-text_primary"
             }`}
           >
             KPI PORTAL
@@ -29,11 +29,11 @@ function FacultySideBar() {
             <li
               className={`${
                 enabled
-                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
-                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
+                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
               }`}
               onClick={() => {
-                navigate('/dashboard');
+                navigate("/dashboard");
               }}
             >
               <div className="flex items-center">
@@ -44,7 +44,7 @@ function FacultySideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
+                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -58,8 +58,8 @@ function FacultySideBar() {
                 <span
                   className={`${
                     enabled
-                      ? 'text-lg  ml-2 text-Dark-text_primary'
-                      : 'text-lg  ml-2 text-Light-text_primary'
+                      ? "text-lg  ml-2 text-Dark-text_primary"
+                      : "text-lg  ml-2 text-Light-text_primary"
                   }`}
                 >
                   KPI
@@ -70,11 +70,11 @@ function FacultySideBar() {
             <li
               className={`${
                 enabled
-                  ? 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary'
-                  : 'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary'
+                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
+                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
               }`}
               onClick={() => {
-                navigate('/dashboard/setting');
+                navigate("/dashboard/setting");
               }}
             >
               <div className="flex items-center">
@@ -85,7 +85,7 @@ function FacultySideBar() {
                   height={18}
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
-                  stroke={`${enabled ? '#e2e8f0' : 'black'}`}
+                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
                   fill="none"
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -97,11 +97,51 @@ function FacultySideBar() {
                 <span
                   className={`${
                     enabled
-                      ? 'text-lg  ml-2 text-Dark-text_primary'
-                      : 'text-lg  ml-2 text-Light-text_primary'
+                      ? "text-lg  ml-2 text-Dark-text_primary"
+                      : "text-lg  ml-2 text-Light-text_primary"
                   }`}
                 >
                   Settings
+                </span>
+              </div>
+            </li>
+            <li
+              className={`${
+                enabled
+                  ? "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Dark-text_secondary"
+                  : "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center mb-6 hover:border-l-4 border-Light-text_secondary"
+              }`}
+              onClick={() => {
+                navigate("/dashboard/verified-kpi");
+              }}
+            >
+              <div className="flex items-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="icon icon-tabler icon-tabler-tick"
+                  width={18}
+                  height={18}
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke={`${enabled ? "#e2e8f0" : "black"}`}
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <rect x={4} y={4} width={6} height={6} rx={1} />
+                  <rect x={14} y={4} width={6} height={6} rx={1} />
+                  <rect x={4} y={14} width={6} height={6} rx={1} />
+                  <rect x={14} y={14} width={6} height={6} rx={1} />
+                </svg>
+                <span
+                  className={`${
+                    enabled
+                      ? "text-lg  ml-2 text-Dark-text_primary"
+                      : "text-lg  ml-2 text-Light-text_primary"
+                  }`}
+                >
+                  Verified Kpi
                 </span>
               </div>
             </li>

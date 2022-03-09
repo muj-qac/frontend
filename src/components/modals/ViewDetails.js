@@ -21,19 +21,19 @@ function ViewDetails({ setModalOpen1, modalOpen1, user }) {
         width={800}
       >
         <div className="grid grid-cols-1 justify-items-center mb-10">
-          <Avatar name={user.firstName} size={150} marginRight={16} />
+          <Avatar name={user.first_name} size={150} marginRight={16} />
           <h1 className="text-xl font-semibold pb-8">
-            {user.firstName} Information
+            {user.first_name} Information
           </h1>
         </div>
         <div className="grid grid-cols-2">
           <div className="mb-5">
             <h3 className="font-semibold">First Name</h3>
-            <span>{user.firstName}</span>
+            <span>{user.first_name}</span>
           </div>
           <div className="mb-5">
             <h3 className="font-semibold">Last Name</h3>
-            <span>{user.lastName}</span>
+            <span>{user.last_name}</span>
           </div>
           <div>
             <h3 className="font-semibold">Email</h3>
