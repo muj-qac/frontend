@@ -69,7 +69,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="dashboard"
+              path="allocated-kpi"
               element={
                 <Protect>
                   <Dashboard />
@@ -77,7 +77,15 @@ function App() {
               }
             />
             <Route
-              path="dashboard/setting"
+              path="rejected-kpi"
+              element={
+                <Protect>
+                  <Dashboard />
+                </Protect>
+              }
+            />
+            <Route
+              path="settings"
               element={
                 <Protect>
                   <Settings />
