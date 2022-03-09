@@ -1,20 +1,19 @@
-import { NavLink } from "react-router-dom";
-import { borders } from "ui-box";
+import { NavLink } from 'react-router-dom';
 
 function SideBar() {
   let activeStyle = {
     // textDecoration: "underline 2px solid #e2e8f0",
-    fontWeight: "500",
+    fontWeight: '500',
   };
   let activeClassName =
-    " flex items-center border-l-4 h-6 border-Dark-text_secondary";
+    ' flex items-center border-l-4 h-6 border-Dark-text_secondary';
   return (
-    <div className={"bg-Dark-primary flex flex-no-wrap h-screen w-64"}>
+    <div className={'bg-Dark-primary flex flex-no-wrap h-screen w-64'}>
       <div className=" w-64 absolute sm:relative shadow md:h-full flex-col justify-between hidden sm:flex">
         <div className="px-0">
           <div
             className={
-              "h-16 w-full flex font-monts text-2xl font-medium items-center justify-center text-Dark-text_primary"
+              'h-16 w-full flex font-monts text-2xl font-medium items-center justify-center text-Dark-text_primary'
             }
           >
             KPI PORTAL
@@ -27,7 +26,7 @@ function SideBar() {
               }
             >
               <li
-                className={"flex w-full pl-10 cursor-pointer items-center my-6"}
+                className={'flex w-full pl-10 cursor-pointer items-center my-6'}
               >
                 <div className="flex items-center">
                   <svg
@@ -37,7 +36,7 @@ function SideBar() {
                     height={18}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={"#e2e8f0"}
+                    stroke={'#e2e8f0'}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -51,7 +50,7 @@ function SideBar() {
                   </svg>
                   <span
                     className={
-                      "text-lg  ml-2 hover:underline text-Dark-text_primary"
+                      'text-lg  ml-2 hover:underline text-Dark-text_primary'
                     }
                   >
                     Verify KPI
@@ -67,7 +66,7 @@ function SideBar() {
             >
               <li
                 className={
-                  "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6"
+                  'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6'
                 }
               >
                 <div className="flex items-center">
@@ -78,7 +77,7 @@ function SideBar() {
                     height={18}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={"#e2e8f0"}
+                    stroke={'#e2e8f0'}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -90,7 +89,7 @@ function SideBar() {
                   </svg>
                   <span
                     className={
-                      "text-lg  ml-2 hover:underline text-Dark-text_primary"
+                      'text-lg  ml-2 hover:underline text-Dark-text_primary'
                     }
                   >
                     Create KPI
@@ -106,7 +105,7 @@ function SideBar() {
             >
               <li
                 className={
-                  "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6"
+                  'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6'
                 }
               >
                 <div className="flex items-center">
@@ -117,7 +116,7 @@ function SideBar() {
                     height={18}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={"#e2e8f0"}
+                    stroke={'#e2e8f0'}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -130,7 +129,7 @@ function SideBar() {
                   </svg>
                   <span
                     className={
-                      "text-lg hover:underline ml-2 text-Dark-text_primary"
+                      'text-lg hover:underline ml-2 text-Dark-text_primary'
                     }
                   >
                     Manage KPI
@@ -146,7 +145,7 @@ function SideBar() {
             >
               <li
                 className={
-                  "flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6"
+                  'flex w-full pl-10 text-primary-bg_dark cursor-pointer items-center my-6'
                 }
               >
                 <div className="flex items-center">
@@ -157,7 +156,7 @@ function SideBar() {
                     height={18}
                     viewBox="0 0 24 24"
                     strokeWidth="1.5"
-                    stroke={"#e2e8f0"}
+                    stroke={'#e2e8f0'}
                     fill="none"
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -168,7 +167,7 @@ function SideBar() {
                   </svg>
                   <span
                     className={
-                      "text-lg hover:underline ml-2 text-Dark-text_primary"
+                      'text-lg hover:underline ml-2 text-Dark-text_primary'
                     }
                   >
                     Manage Users
@@ -178,55 +177,6 @@ function SideBar() {
             </NavLink>
           </ul>
         </div>
-        {/* <div
-          className={`${
-            enabled
-              ? "flex items-center justify-evenly h-20 border-t-2 border-Dark-secondary"
-              : "flex items-center justify-evenly h-20 border-t-2 border-Light-secondary"
-          }`}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 m-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="#D1D100"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-            />
-          </svg>
-          <Switch
-            checked={enabled}
-            onChange={setEnabled}
-            className={`${enabled ? "bg-teal-900" : "bg-teal-700"}
-          relative inline-flex flex-shrink-0 h-[38px] w-[74px] border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
-          >
-            <span className="sr-only">Use setting</span>
-            <span
-              aria-hidden="true"
-              className={`${enabled ? "translate-x-9" : "translate-x-0"}
-            pointer-events-none inline-block h-[34px] w-[34px] rounded-full bg-white shadow-lg transform ring-0 transition ease-in-out duration-200`}
-            />
-          </Switch>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6 m-2"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="#979797"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-            />
-          </svg>
-        </div> */}
       </div>
     </div>
   );

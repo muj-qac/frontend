@@ -1,16 +1,16 @@
-// import { FilePicker, Table, Tooltip } from 'evergreen-ui';
-// import { kpis } from '../../data/data';
 import { useEffect, useState } from 'react';
-import { Table } from 'evergreen-ui';
+import { Spinner, Table } from 'evergreen-ui';
 import FacultyTableRow from './FacultyTableRow';
 import FacultyUploadModal from '../modals/FacultyUploadModal';
 import api from '../../api';
 
 function FacultyTable() {
   const [kpis, setKpis] = useState([]);
+  const [loading, setLoading] = useState(false);
   const fetchKpi = async () => {
     const res = await api.get(`/user/alloted-kpi`);
     setKpis(res.data);
+    setLoading(true);
     console.log(res.data);
   };
   useEffect(() => {
@@ -25,9 +25,11 @@ function FacultyTable() {
           <Table.TextHeaderCell>Completion</Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={400}>
-          {kpis.map((kpi) => (
-            <FacultyTableRow kpi={kpi} />
-          ))}
+          {loading ? (
+            kpis.map((kpi) => <FacultyTableRow kpi={kpi} />)
+          ) : (
+            <Spinner marginX="auto" marginY={120} />
+          )}
         </Table.Body>
       </Table>
     </>

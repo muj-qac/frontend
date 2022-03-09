@@ -1,4 +1,4 @@
-import { Table } from 'evergreen-ui';
+import { Spinner, Table } from 'evergreen-ui';
 import { useEffect, useState } from 'react';
 import api from '../api';
 import { users } from '../data/UserData';
@@ -6,10 +6,12 @@ import KpiReceiveRow from './KpiReceiveRow';
 
 function KpiReceiveTable({ title }) {
   const [kpis, setKpis] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const fetchKpi = async () => {
     const res = await api.get(`/admin/sheet/unverified-kpis`);
     setKpis(res.data.dbUnverified);
+    setLoading(true);
     console.log(res.data.dbUnverified);
   };
   useEffect(() => {
@@ -27,14 +29,18 @@ function KpiReceiveTable({ title }) {
           <Table.TextHeaderCell>Verification</Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={300}>
-          {kpis.map(
-            (kpi) =>
-              title === kpi.uploaded_sheets_aws_key.split('/', 1)[0] && (
-                <KpiReceiveRow user={kpi} title={title} />
-              )
-            // {
-            //   console.log(kpi.uploaded_sheets_aws_key.split('/', 1));
-            // }
+          {loading ? (
+            kpis.map(
+              (kpi) =>
+                title === kpi.uploaded_sheets_aws_key.split('/', 1)[0] && (
+                  <KpiReceiveRow user={kpi} title={title} />
+                )
+              // {
+              //   console.log(kpi.uploaded_sheets_aws_key.split('/', 1));
+              // }
+            )
+          ) : (
+            <Spinner marginX="auto" marginY={120} />
           )}
         </Table.Body>
       </Table>

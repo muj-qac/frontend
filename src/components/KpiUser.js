@@ -1,4 +1,11 @@
-import { Button, TextInput, IconButton, RefreshIcon } from 'evergreen-ui';
+import {
+  Button,
+  TextInput,
+  IconButton,
+  RefreshIcon,
+  Table,
+  Spinner,
+} from 'evergreen-ui';
 import { useEffect, useState } from 'react';
 import { Switch } from 'evergreen-ui';
 import KPIRow2 from './KPIRow2';
@@ -18,9 +25,11 @@ function KpiUser() {
   //UseState
   const [users, setUsers] = useState([]);
   const [value, setValue] = useState(0);
+  const [loading, setLoading] = useState(false);
   const fetchUser = async () => {
     const res = await api.get(`/admin/user/all-user`);
     setUsers(res.data);
+    setLoading(true);
   };
   useEffect(() => {
     fetchUser();
@@ -53,51 +62,24 @@ function KpiUser() {
             className=" float-right"
             onClick={() => fetchUser()}
           />
-          <div className=" h-96 shadow overflow-auto border-b border-gray-200 sm:rounded-lg ">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    id
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Name
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    email
-                  </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Role
-                  </th>
-                  <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Edit</span>
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="bg-white divide-y divide-gray-200">
-                {users.map((user, _i) => (
-                  <KPIRow2 user={user} i={_i} />
-                ))}
-              </tbody>
-            </table>
-            <AddUserModal
-              setModalOpen3={setModalOpen3}
-              modalOpen={modalOpen3}
-            />
-            <AddRoles setModalOpen2={setModalOpen2} modalOpen2={modalOpen2} />
-          </div>
+          <Table>
+            <Table.Head>
+              <Table.TextHeaderCell>Id</Table.TextHeaderCell>
+              <Table.TextHeaderCell>Name</Table.TextHeaderCell>
+              <Table.TextHeaderCell>Email</Table.TextHeaderCell>
+              <Table.TextHeaderCell>Role</Table.TextHeaderCell>
+              <Table.TextHeaderCell>Edit</Table.TextHeaderCell>
+            </Table.Head>
+            <Table.Body height={400}>
+              {loading ? (
+                users.map((user, _i) => <KPIRow2 user={user} i={_i} />)
+              ) : (
+                <Spinner marginX="auto" marginY={120} />
+              )}
+            </Table.Body>
+          </Table>
+          <AddUserModal setModalOpen3={setModalOpen3} modalOpen={modalOpen3} />
+          <AddRoles setModalOpen2={setModalOpen2} modalOpen2={modalOpen2} />
         </div>
       </div>
     </div>
