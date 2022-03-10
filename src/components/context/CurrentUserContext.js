@@ -46,7 +46,7 @@ export const CurrentUserProvider = ({ children }) => {
     } else if (token && !admin) {
       setAuthLoading(false);
       setCurrentUser(currentUser);
-      return <Navigate to="/dashboard" />;
+      return <Navigate to="/allocate-kpi" />;
     }
   };
 

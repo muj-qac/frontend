@@ -1,4 +1,11 @@
-import { Button, Dialog, FilePicker, Pane, TextInput } from 'evergreen-ui';
+import {
+  Button,
+  Dialog,
+  FilePicker,
+  Pane,
+  TextInput,
+  toaster,
+} from 'evergreen-ui';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import axios from 'axios';
@@ -10,16 +17,22 @@ function DeleteModal({ setModalOpen4, modalOpen, user }) {
   };
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   //Submitting the form
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // setModalValues4(email);
     setIsSubmit(true);
     console.log(initialValues);
+    setIsLoading(true);
     try {
-      api.delete(`/admin/user/profile/${user.email}`);
+      const res = await api.delete(`/admin/user/profile/${user.email}`);
       setModalOpen4(false);
+      if (res.status !== 201) throw 'Request Failed';
+      toaster.success('User Deleted successfully!');
     } catch (error) {
-      console.log(error);
+      toaster.danger('Something went wrong!');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -34,6 +47,7 @@ function DeleteModal({ setModalOpen4, modalOpen, user }) {
         title="Are You Sure You Want to Delete this User?"
         width={800}
         onConfirm={handleSubmit}
+        isConfirmLoading={isLoading}
       ></Dialog>
     </Pane>
   );

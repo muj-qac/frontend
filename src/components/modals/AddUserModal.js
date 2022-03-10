@@ -1,4 +1,11 @@
-import { Button, Dialog, FilePicker, Pane, TextInput } from 'evergreen-ui';
+import {
+  Button,
+  Dialog,
+  FilePicker,
+  Pane,
+  TextInput,
+  toaster,
+} from 'evergreen-ui';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import { SelectMenu } from 'evergreen-ui';
@@ -8,7 +15,7 @@ import axios from 'axios';
 import { Pill, Text } from 'evergreen-ui';
 import api from '../../api';
 
-function AddUserModal({ setModalOpen3, modalOpen, title, user }) {
+function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
   // const profile = ['SCIT', 'Apricot', 'Banana', 'Cherry', 'Cucumber'];
   const [roles, setRoles] = useState([]);
 
@@ -68,18 +75,21 @@ function AddUserModal({ setModalOpen3, modalOpen, title, user }) {
   }, [selectedItemsState]);
 
   useEffect(() => {
-    if (Object.keys(modalErrors).length === 0 && isSubmit) {
-      console.log(modalValues3);
-      setLoading(true);
-      try {
-        api.post(`/admin/user/add-user`, modalValues3);
-        setModalOpen3(false);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    // if (Object.keys(modalErrors).length === 0 && isSubmit) {
+    //   console.log(modalValues3);
+    //   setLoading(true);
+    //   try {
+    //     const res = api.post(`/admin/user/add-user`, modalValues3);
+    //     setModalOpen3(false);
+    //     if (res.status !== 201) throw 'Request Failed';
+    //     toaster.success('User created successfully!');
+    //   } catch (error) {
+    //     toaster.danger('Something went wrong!');
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // }
+    handleSubmit();
   }, [modalErrors]);
   //handleChange for looking for the changes when someone types something in the input fields
   // Validation for the modal
@@ -126,10 +136,24 @@ function AddUserModal({ setModalOpen3, modalOpen, title, user }) {
   };
   //Submitting the form
 
-  const handleSubmit = (e) => {
-    setModalErrors(validate(modalValues3));
-    console.log(modalErrors);
-    setIsSubmit(true);
+  const handleSubmit = async () => {
+    // setModalErrors(validate(modalValues3));
+    // console.log(modalErrors);
+    // setIsSubmit(true);
+    if (Object.keys(modalErrors).length === 0 && isSubmit) {
+      console.log(modalValues3);
+      setLoading(true);
+      try {
+        const res = await api.post(`/admin/user/add-user`, modalValues3);
+        setModalOpen3(false);
+        if (res.status !== 201) throw 'Request Failed';
+        toaster.success('User created successfully!');
+      } catch (error) {
+        toaster.danger('Something went wrong!');
+      } finally {
+        setLoading(false);
+      }
+    }
     // try {
     //   if (!modalErrors) {
     //     api.post(`/admin/user/add-user`, modalValues3);
@@ -143,7 +167,7 @@ function AddUserModal({ setModalOpen3, modalOpen, title, user }) {
   return (
     <Pane>
       <Dialog
-        isShown={modalOpen}
+        isShown={modalOpen3}
         title="New User Info"
         onCloseComplete={() => setModalOpen3(false)}
         hasClose={false}
@@ -151,7 +175,11 @@ function AddUserModal({ setModalOpen3, modalOpen, title, user }) {
         hasCancel={true}
         confirmLabel="Save"
         width={800}
-        onConfirm={handleSubmit}
+        onConfirm={() => {
+          setModalErrors(validate(modalValues3));
+          // console.log(modalErrors);
+          setIsSubmit(true);
+        }}
         isConfirmLoading={loading}
       >
         <h1 className="text-xl font-semibold pb-8">{title}</h1>

@@ -89,25 +89,23 @@ function KPIRow({ kpi }) {
     }
   };
   return (
-    <>
-      <tr key={kpi.kpi_data_id}>
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-900">{kpi.kpi_data_name}</div>
+    <Pane>
+      <Table.Row key={kpi.kpi_data_id} isSelectable>
+        <Table.TextCell>
+          {kpi.kpi_data_name}
           {/* <input type="hidden" name="kpiId" placeholder={kpi.id}/> */}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap">
-          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ">
-            <Switch
-              checked={status}
-              onChange={(e) => setStatus(e.target.checked)}
-              disabled={use}
-            />
-          </span>
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        </Table.TextCell>
+        <Table.TextCell>
+          <Switch
+            checked={status}
+            onChange={(e) => setStatus(e.target.checked)}
+            disabled={use}
+          />
+        </Table.TextCell>
+        <Table.TextCell>
           <Pane className="grid grid-cols-3">{displayArray}</Pane>
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        </Table.TextCell>
+        <Table.TextCell>
           <SelectMenu
             isMultiSelect
             title="Select multiple names"
@@ -134,15 +132,14 @@ function KPIRow({ kpi }) {
               {selectedItemNamesState || "Select roles..."}
             </Button>
           </SelectMenu>
-          <button
-            className="rounded-md w-12 text-white  bg-blue p-1 ml-24"
-            onClick={handleClick}
-          >
+        </Table.TextCell>
+        <Table.TextCell>
+          <Button appearance="primary" onClick={handleClick}>
             Edit
-          </button>
-        </td>
-      </tr>
-    </>
+          </Button>
+        </Table.TextCell>
+      </Table.Row>
+    </Pane>
   );
 }
 
