@@ -20,7 +20,7 @@ function FacultySideBar() {
           </div>
           <ul className="mt-12">
             <NavLink
-              to="/dashboard"
+              to="/allocated-kpi"
               className={({ isActive }) =>
                 isActive ? activeClassName : undefined
               }

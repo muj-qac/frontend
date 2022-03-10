@@ -78,7 +78,7 @@ function KpiUser() {
               )}
             </Table.Body>
           </Table>
-          <AddUserModal setModalOpen3={setModalOpen3} modalOpen={modalOpen3} />
+          <AddUserModal setModalOpen3={setModalOpen3} modalOpen3={modalOpen3} />
           <AddRoles setModalOpen2={setModalOpen2} modalOpen2={modalOpen2} />
         </div>
       </div>

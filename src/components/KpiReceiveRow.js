@@ -12,6 +12,7 @@ import {
   Table,
   Textarea,
   TickIcon,
+  toaster,
   Tooltip,
   UploadIcon,
 } from 'evergreen-ui';
@@ -23,18 +24,33 @@ function KpiReceiveRow({ user }) {
   const [isShown, setIsShown] = useState(false);
   const [text, setText] = useState('');
   const [file, setFile] = useState();
+  const [loading, setLoading] = useState(false);
   let formData = new FormData();
   formData.append('file', file);
+  formData.append('comment', text);
+  formData.append('fileKey', user.uploaded_sheets_aws_key);
   const handleDownload = () => {
     const encode = user.uploaded_sheets_aws_key.replace(/\//g, '%2F');
-    console.log(encode);
+    // console.log(encode);
     window.open(
       `http://localhost:5000/api/v1/admin/sheet/get-unverified-object/${encode}`
     );
   };
+  console.log(formData);
   const handleUpload = async () => {
-    console.log('i am working');
-    console.log(text);
+    setLoading(true);
+    try {
+      const res = await api.post(
+        `/admin/sheet/reject-kpi/${user.user_id_id}`,
+        formData
+      );
+      if (res.status !== 200) throw 'Request Failed';
+      toaster.success('KPI rejected successfully!');
+    } catch (error) {
+      toaster.danger('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <Pane>
@@ -105,7 +121,11 @@ function KpiReceiveRow({ user }) {
                     width={200}
                   >
                     <Button onClick={close}>Close</Button>
-                    <Button appearance="primary" onClick={handleUpload}>
+                    <Button
+                      appearance="primary"
+                      onClick={handleUpload}
+                      isLoading={loading}
+                    >
                       Save
                     </Button>
                   </Pane>
@@ -119,9 +139,6 @@ function KpiReceiveRow({ user }) {
                 marginRight={majorScale(2)}
                 intent="danger"
                 onClick={() => {
-                  // api.put(`/admin/sheet/reject-kpi`, {
-                  //   fileKey: user.uploaded_sheets_aws_key,
-                  // });
                   setIsShown(true);
                 }}
               />
