@@ -1,23 +1,25 @@
 // import SideBar from './components/SideBar';
-import { useContext } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useContext } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
   CurrentUserContext,
   CurrentUserProvider,
-} from './components/context/CurrentUserContext';
-import CreateKpi from './pages/CreateKpi';
-import Dashboard from './pages/faculty/Dashboard';
-import Settings from './pages/faculty/Settings';
-import Kpi from './pages/Kpi';
-import LoginPage from './pages/LoginPage';
-import ManageKpi from './pages/ManageKpi';
-import User from './pages/User';
+} from "./components/context/CurrentUserContext";
+import CreateKpi from "./pages/CreateKpi";
+import Dashboard from "./pages/faculty/Dashboard";
+import Settings from "./pages/faculty/Settings";
+import VerifiedKpi from "./pages/faculty/VerifiedKpi";
+import AllocatedKpi from "./pages/faculty/AllocatedKpi";
+import RejectedKpi from "./pages/faculty/RejectedKpi";
+import Kpi from "./pages/Kpi";
+import LoginPage from "./pages/LoginPage";
+import ManageKpi from "./pages/ManageKpi";
+import User from "./pages/User";
 
 function App() {
   //context
   const { authLoading, currentUser, handleLogout, testData, Protect } =
     useContext(CurrentUserContext);
-
   const content = () => {
     if (false) {
       return (
@@ -35,7 +37,6 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route index element={<LoginPage />} />
-            <Route></Route>
             <Route
               path="/manage-kpi"
               element={
@@ -69,23 +70,39 @@ function App() {
               }
             ></Route>
             <Route
-              path="allocated-kpi"
+              path="/dashboard"
               element={
                 <Protect>
                   <Dashboard />
                 </Protect>
               }
-            />
+            ></Route>
             <Route
-              path="rejected-kpi"
+              path="/allocated-kpi"
               element={
                 <Protect>
-                  <Dashboard />
+                  <AllocatedKpi />
                 </Protect>
               }
             />
             <Route
-              path="settings"
+              path="/rejected-kpi"
+              element={
+                <Protect>
+                  <RejectedKpi />
+                </Protect>
+              }
+            />
+            <Route
+              path="/verified-kpi"
+              element={
+                <Protect>
+                  <VerifiedKpi />
+                </Protect>
+              }
+            />
+            <Route
+              path="/settings"
               element={
                 <Protect>
                   <Settings />
