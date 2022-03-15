@@ -132,7 +132,7 @@ function UserModal({
       // console.log(modalValues);
       setLoading(true);
       try {
-        api.put(`/admin/user/profile/${user.email}`, modalValues);
+        await api.put(`/admin/user/profile/${user.email}`, modalValues);
         setModalOpen(false);
         toaster.success("User Data Updated Successfully!");
       } catch (error) {
@@ -140,6 +140,7 @@ function UserModal({
         toaster.danger("Something went wrong!");
       } finally {
         setLoading(false);
+        setRender(!render);
       }
     }
 
@@ -152,7 +153,6 @@ function UserModal({
         isShown={modalOpen}
         onCloseComplete={() => {
           setModalOpen(false);
-          setRender(!render);
         }}
         preventBodyScrolling
         hasCancel={false}
@@ -161,6 +161,7 @@ function UserModal({
         onConfirm={() => {
           setModalErrors(validate(modalValues));
           setIsSubmit(true);
+          // setRender(!render);
         }}
         isConfirmLoading={loading}
       >
