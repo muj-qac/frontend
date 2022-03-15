@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Button,
   Dialog,
@@ -7,8 +7,8 @@ import {
   TextInput,
   Avatar,
   Pill,
-} from "evergreen-ui";
-import { useState, useEffect } from "react";
+} from 'evergreen-ui';
+import { useState, useEffect } from 'react';
 function ViewDetails({ setModalOpen1, modalOpen1, user }) {
   return (
     <Pane>
@@ -21,33 +21,33 @@ function ViewDetails({ setModalOpen1, modalOpen1, user }) {
         width={800}
       >
         <div className="grid grid-cols-1 justify-items-center mb-10">
-          <Avatar name={user.first_name} size={150} marginRight={16} />
+          <Avatar name={user?.first_name} size={150} marginRight={16} />
           <h1 className="text-xl font-semibold pb-8">
-            {user.first_name} Information
+            {user?.first_name} Information
           </h1>
         </div>
         <div className="grid grid-cols-2">
           <div className="mb-5">
             <h3 className="font-semibold">First Name</h3>
-            <span>{user.first_name}</span>
+            <span>{user?.first_name}</span>
           </div>
           <div className="mb-5">
             <h3 className="font-semibold">Last Name</h3>
-            <span>{user.last_name}</span>
+            <span>{user?.last_name}</span>
           </div>
           <div>
             <h3 className="font-semibold">Email</h3>
-            <span>{user.email}</span>
+            <span>{user?.email}</span>
           </div>
           <div>
             <h3 className="font-semibold">Phone</h3>
-            <span>{user.phoneNumber}</span>
+            <span>{user?.phoneNumber}</span>
           </div>
           <div className="mt-4">
             <h3 className="font-semibold">Roles</h3>
 
             <span className="ml-0">
-              {user.role.map((val) => (
+              {user?.role.map((val) => (
                 <Pill color="green" marginLeft={6} marginBottom={10} width={50}>
                   {val}
                 </Pill>
@@ -63,19 +63,19 @@ function ViewDetails({ setModalOpen1, modalOpen1, user }) {
           <div className="mr-10 mb-8">
             <h3 className="font-semibold">Department</h3>
 
-            <span>{user.details.department}</span>
+            <span>{user.details?.department}</span>
           </div>
           <div>
             <h3 className="font-semibold">Faculty</h3>
-            <span>{user.details.faculty}</span>
+            <span>{user.details?.faculty}</span>
           </div>
           <div className="mr-10">
             <h3 className="font-semibold">School</h3>
-            <span>{user.details.school}</span>
+            <span>{user.details?.school}</span>
           </div>
           <div>
             <h3 className="font-semibold">Program</h3>
-            <span>{user.details.program}</span>
+            <span>{user.details?.program}</span>
           </div>
         </div>
         {/* <Button onSubmit={handleSubmit}>Save</Button> */}

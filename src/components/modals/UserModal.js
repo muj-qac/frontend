@@ -27,19 +27,19 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
   }, []);
 
   const initialValues = {
-    index: user.index,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    phone_number: user.phone_number,
-    email: user.email,
+    index: user?.index,
+    first_name: user?.first_name,
+    last_name: user?.last_name,
+    phone_number: user?.phone_number,
+    email: user?.email,
     // role: user.role,
   };
   const initialDetailsValues = {
     details: {
-      department: user.details.department,
-      faculty: user.details.faculty,
-      program: user.details.program,
-      school: user.details.school,
+      department: user.details?.department,
+      faculty: user.details?.faculty,
+      program: user.details?.program,
+      school: user.details?.school,
     },
   };
   const RoleIntialValue = { role: user.role };
@@ -137,6 +137,7 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
 
     // console.log(JSON.stringify(modalValues));
   };
+
   return (
     <Pane>
       <Dialog
@@ -212,7 +213,7 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
               isMultiSelect
               name="role"
               title="Select multiple names"
-              options={roles.map((role) => ({
+              options={roles?.map((role) => ({
                 value: role.role_name,
                 label: role.role_name,
               }))}
@@ -279,46 +280,46 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
             <h3>Department</h3>
             <TextInput
               name="department"
-              value={modalValues.details.department}
+              value={modalValues.details?.department}
               placeholder="i.e. Department of Computer Science and Engineering"
               marginBottom={11}
               onChange={handleDetailChange}
             />
-            <span className="text-red-500">{modalErrors.department}</span>
+            <span className="text-red-500">{modalErrors?.department}</span>
           </div>
           <div className="grid grid-cols-1">
             <h3>Faculty</h3>
             <TextInput
               name="faculty"
-              value={modalValues.details.faculty}
+              value={modalValues.details?.faculty}
               placeholder="i.e. Professor"
               marginBottom={11}
               onChange={handleDetailChange}
             />
-            <span className="text-red-500">{modalErrors.faculty}</span>
+            <span className="text-red-500">{modalErrors?.faculty}</span>
           </div>
           <div className="grid grid-cols-1">
             <h3>School</h3>
             <TextInput
               name="school"
-              value={modalValues.details.school}
+              value={modalValues.details?.school}
               placeholder="i.e. School of Computing and Information Technology
               "
               marginBottom={11}
               onChange={handleDetailChange}
             />
-            <span className="text-red-500">{modalErrors.school}</span>
+            <span className="text-red-500">{modalErrors?.school}</span>
           </div>
           <div className="grid grid-cols-1">
             <h3>Program</h3>
             <TextInput
               name="program"
-              value={modalValues.details.program}
+              value={modalValues.details?.program}
               placeholder="i.e. MTech - Information Security "
               marginBottom={11}
               onChange={handleDetailChange}
             />
-            <span className="text-red-500">{modalErrors.program}</span>
+            <span className="text-red-500">{modalErrors?.program}</span>
           </div>
         </div>
         {/* <Button onSubmit={handleSubmit}>Save</Button> */}

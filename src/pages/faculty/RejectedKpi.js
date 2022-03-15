@@ -1,7 +1,8 @@
 // import SideBar from '../../components/SideBar';
-import FacultyTable4 from "../../components/common/FacultyTable4";
-import FacultySideBar from "../../components/FacultySidebar";
-import TopBar from "../../components/TopBar";
+import FacultyTableRejected from '../../components/common/FacultyTableRejected';
+// import FacultyTable4 from '../../components/common/FacultyTableRejected';
+import FacultySideBar from '../../components/FacultySidebar';
+import TopBar from '../../components/TopBar';
 
 function RejectedKpi() {
   return (
@@ -14,7 +15,7 @@ function RejectedKpi() {
           <TopBar />
         </div>
         <div className=" col-span-8 self-center ">
-          <FacultyTable4 />
+          <FacultyTableRejected />
         </div>
       </div>
     </div>

@@ -24,25 +24,25 @@ function KPIRow2({ user, i }) {
   // const [put, setPut] = useState(false);
   return (
     <>
-      <Table.Row key={user.id} isSelectable>
+      <Table.Row key={user?.id} isSelectable>
         <Table.TextCell>
           <div className="text-sm text-gray-500">{i + 1}</div>
         </Table.TextCell>
         <Table.TextCell>
           <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full text-gray-900">
-            {user.last_name === null
-              ? `${user.first_name}`
-              : `${user.first_name} ${user.last_name}`}
+            {user?.last_name === null
+              ? `${user?.first_name}`
+              : `${user?.first_name} ${user?.last_name}`}
           </span>
         </Table.TextCell>
         <Table.TextCell>
           <span className="px-2 inline-flex  leading-5 font-semibold rounded-full text-sm text-gray-500">
-            {user.email}
+            {user?.email}
           </span>
         </Table.TextCell>
         <Table.Cell>
           <div className="grid grid-cols-3">
-            {user.role.map((val) => (
+            {user?.role.map((val) => (
               <Pill marginLeft={8} color="green" marginBottom={10}>
                 {val}
               </Pill>

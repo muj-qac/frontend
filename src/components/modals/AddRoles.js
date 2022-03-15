@@ -35,18 +35,23 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
     console.log(list);
   }, []);
 
-  const handleAddChange = () => {
+  const handleAddChange = async () => {
     let roles = { role_name: elementRef.current.value };
     console.log(list);
     if (
       roles.role_name &&
       list.some((e) => e.role_name === roles.role_name) === false
     ) {
+      setLoading(true);
       try {
-        api.post('/admin/role/add-roles', roles);
+        await api.post('/admin/role/add-roles', roles);
         fetchRole();
+        toaster.success('Role Added');
       } catch (error) {
+        toaster.danger('Something went wrong');
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     } else if (list.some((e) => e.role_name === roles.role_name) === true) {
       return toaster.danger('Role Already Exist', {
@@ -61,9 +66,17 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
     }
   };
 
-  const handleDeleteChange = (index) => {
-    api.delete(`/admin/role/delete-role/${list[index].role_name}`);
-    fetchRole();
+  const handleDeleteChange = async (index) => {
+    setLoading(true);
+    try {
+      await api.delete(`/admin/role/delete-role/${list[index].role_name}`);
+      fetchRole();
+      toaster.warning('Role Deleted');
+    } catch (error) {
+      toaster.danger('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <Pane>
@@ -97,7 +110,9 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
             intent="success"
             marginRight={majorScale(2)}
             marginLeft={20}
-            onClick={handleAddChange}
+            onClick={() => {
+              handleAddChange();
+            }}
           />
         </div>
         <Table>
