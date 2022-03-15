@@ -70,7 +70,7 @@ function App() {
               }
             ></Route>
             <Route
-              path="/dashboard"
+              path="/allocated-kpi"
               element={
                 <Protect>
                   <Dashboard />
