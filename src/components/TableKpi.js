@@ -23,11 +23,23 @@ function TableKpi() {
     <>
       <Table>
         <Table.Head>
-          <Table.TextHeaderCell>Title</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Status</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Role</Table.TextHeaderCell>
-          <Table.TextHeaderCell></Table.TextHeaderCell>
-          <Table.TextHeaderCell></Table.TextHeaderCell>
+          <Table.TextHeaderCell flexBasis={200} flexShrink={0} flexGrow={0}>
+            Title
+          </Table.TextHeaderCell>
+          <Table.TextHeaderCell flexBasis={100} flexShrink={0} flexGrow={0}>
+            Status
+          </Table.TextHeaderCell>
+          <Table.TextCell>Role</Table.TextCell>
+          <Table.TextHeaderCell
+            flexBasis={150}
+            flexShrink={0}
+            flexGrow={0}
+          ></Table.TextHeaderCell>
+          <Table.TextHeaderCell
+            flexBasis={100}
+            flexShrink={0}
+            flexGrow={0}
+          ></Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={400}>
           {loading ? (

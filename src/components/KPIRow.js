@@ -91,11 +91,11 @@ function KPIRow({ kpi }) {
   return (
     <Pane>
       <Table.Row key={kpi.kpi_data_id} isSelectable>
-        <Table.TextCell>
+        <Table.TextCell flexBasis={200} flexShrink={0} flexGrow={0}>
           {kpi.kpi_data_name}
           {/* <input type="hidden" name="kpiId" placeholder={kpi.id}/> */}
         </Table.TextCell>
-        <Table.TextCell>
+        <Table.TextCell flexBasis={100} flexShrink={0} flexGrow={0}>
           <Switch
             checked={status}
             onChange={(e) => setStatus(e.target.checked)}
@@ -103,9 +103,9 @@ function KPIRow({ kpi }) {
           />
         </Table.TextCell>
         <Table.TextCell>
-          <Pane className="grid grid-cols-3">{displayArray}</Pane>
+          <Pane className="grid grid-cols-4">{displayArray}</Pane>
         </Table.TextCell>
-        <Table.TextCell>
+        <Table.TextCell flexBasis={150} flexShrink={0} flexGrow={0}>
           <SelectMenu
             isMultiSelect
             title="Select multiple names"
@@ -133,7 +133,7 @@ function KPIRow({ kpi }) {
             </Button>
           </SelectMenu>
         </Table.TextCell>
-        <Table.TextCell>
+        <Table.TextCell flexBasis={100} flexShrink={0} flexGrow={0}>
           <Button appearance="primary" onClick={handleClick}>
             Edit
           </Button>
