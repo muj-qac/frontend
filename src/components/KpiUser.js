@@ -68,15 +68,23 @@ function KpiUser() {
             marginBottom={10}
             marginLeft={4}
             className=" float-right"
-            onClick={() => fetchUser()}
+            onClick={() => setRender(!render)}
           />
           <Table>
             <Table.Head>
-              <Table.TextHeaderCell>Id</Table.TextHeaderCell>
-              <Table.TextHeaderCell>Name</Table.TextHeaderCell>
-              <Table.TextHeaderCell>Email</Table.TextHeaderCell>
+              <Table.TextHeaderCell flexBasis={50} flexShrink={0} flexGrow={0}>
+                Id
+              </Table.TextHeaderCell>
+              <Table.TextHeaderCell flexBasis={150} flexShrink={0} flexGrow={0}>
+                Name
+              </Table.TextHeaderCell>
+              <Table.TextHeaderCell flexBasis={150} flexShrink={0} flexGrow={0}>
+                Email
+              </Table.TextHeaderCell>
               <Table.TextHeaderCell>Role</Table.TextHeaderCell>
-              <Table.TextHeaderCell>Edit</Table.TextHeaderCell>
+              <Table.TextHeaderCell flexBasis={200} flexShrink={0} flexGrow={0}>
+                Edit
+              </Table.TextHeaderCell>
             </Table.Head>
             <Table.Body height={400}>
               {loading ? (
@@ -104,7 +112,12 @@ function KpiUser() {
             render={render}
             setRender={setRender}
           />
-          <AddRoles setModalOpen2={setModalOpen2} modalOpen2={modalOpen2} />
+          <AddRoles
+            setModalOpen2={setModalOpen2}
+            modalOpen2={modalOpen2}
+            setRender={setRender}
+            render={render}
+          />
         </div>
       </div>
     </div>

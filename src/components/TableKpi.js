@@ -1,7 +1,7 @@
-import { Spinner, Table } from 'evergreen-ui';
-import { useEffect, useState } from 'react';
-import KPIRow from './KPIRow';
-import api from '../api';
+import { Spinner, Table } from "evergreen-ui";
+import { useEffect, useState } from "react";
+import KPIRow from "./KPIRow";
+import api from "../api";
 
 function TableKpi() {
   //useState for disabling roles
@@ -29,7 +29,7 @@ function TableKpi() {
           <Table.TextHeaderCell flexBasis={100} flexShrink={0} flexGrow={0}>
             Status
           </Table.TextHeaderCell>
-          <Table.TextCell>Role</Table.TextCell>
+          <Table.TextHeaderCell>Role</Table.TextHeaderCell>
           <Table.TextHeaderCell
             flexBasis={150}
             flexShrink={0}

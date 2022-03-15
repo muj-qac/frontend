@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 import {
   Pane,
   Dialog,
@@ -14,11 +14,11 @@ import {
   Popover,
   Position,
   Spinner,
-} from 'evergreen-ui';
-import { role } from '../../data/role';
-import { useState } from 'react';
-import api from '../../api';
-function AddRoles({ setModalOpen2, modalOpen2 }) {
+} from "evergreen-ui";
+import { role } from "../../data/role";
+import { useState } from "react";
+import api from "../../api";
+function AddRoles({ setModalOpen2, modalOpen2, setRender, render }) {
   const elementRef = useRef();
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -32,35 +32,35 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
   };
   useEffect(() => {
     fetchRole();
-    console.log(list);
+    // console.log(list);
   }, []);
 
   const handleAddChange = async () => {
     let roles = { role_name: elementRef.current.value };
-    console.log(list);
+    // console.log(list);
     if (
       roles.role_name &&
       list.some((e) => e.role_name === roles.role_name) === false
     ) {
-      setLoading(true);
+      setLoading(false);
       try {
-        await api.post('/admin/role/add-roles', roles);
+        await api.post("/admin/role/add-roles", roles);
         fetchRole();
-        toaster.success('Role Added');
+        toaster.success("Role Added");
       } catch (error) {
-        toaster.danger('Something went wrong');
+        toaster.danger("Something went wrong");
         console.log(error);
       } finally {
-        setLoading(false);
+        setLoading(true);
       }
     } else if (list.some((e) => e.role_name === roles.role_name) === true) {
-      return toaster.danger('Role Already Exist', {
-        id: 'forbidden-action',
+      return toaster.danger("Role Already Exist", {
+        id: "forbidden-action",
         duration: 3,
       });
     } else {
-      return toaster.danger('Invalid Input', {
-        id: 'forbidden-action',
+      return toaster.danger("Invalid Input", {
+        id: "forbidden-action",
         duration: 3,
       });
     }
@@ -71,9 +71,9 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
     try {
       await api.delete(`/admin/role/delete-role/${list[index].role_name}`);
       fetchRole();
-      toaster.warning('Role Deleted');
+      toaster.warning("Role Deleted");
     } catch (error) {
-      toaster.danger('Something went wrong');
+      toaster.danger("Something went wrong");
     } finally {
       setLoading(false);
     }
@@ -82,7 +82,10 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
     <Pane>
       <Dialog
         isShown={modalOpen2}
-        onCloseComplete={() => setModalOpen2(false)}
+        onCloseComplete={() => {
+          setModalOpen2(false);
+          setRender(!render);
+        }}
         preventBodyScrolling
         hasFooter={false}
         hasCancel={false}
@@ -110,6 +113,7 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
             intent="success"
             marginRight={majorScale(2)}
             marginLeft={20}
+            isLoading={!loading}
             onClick={() => {
               handleAddChange();
             }}
@@ -174,7 +178,7 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
                 );
               })
             ) : (
-              <Spinner marginX={'auto'} />
+              <Spinner marginX={"auto"} />
             )}
           </TableBody>
         </Table>
