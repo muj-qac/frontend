@@ -6,20 +6,20 @@ import {
   Table,
   Tooltip,
   UploadIcon,
-} from "evergreen-ui";
-import { useState } from "react";
-import api from "../../api";
-import FacultyUploadModal from "../modals/FacultyUploadModal";
+} from 'evergreen-ui';
+import { useState } from 'react';
+import api from '../../api';
+import FacultyUploadModal from '../modals/FacultyUploadModal';
 
 function FacultyTableRowVerified({ kpi }) {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState('');
   const [isShown, setIsShown] = useState(false);
 
   const handleDownload = () => {
-    const encode = kpi.aws_key.replace(/\//g, "%2F");
+    const encode = kpi.aws_key.replace(/\//g, '%2F');
     console.log(encode);
     window.open(
-      `http://localhost:5000/api/v1/admin/sheet/download-verified-kpi/${encode}`
+      `http://localhost:5000/api/v1/user/download-verified-kpi/${encode}`
     );
   };
 
