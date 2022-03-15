@@ -10,9 +10,9 @@ function KpiVerifiedTable({ title }) {
 
   const fetchKpi = async () => {
     const res = await api.get(`/admin/sheet/verified-kpis`);
-    setKpis(res.data.dbVerified);
+    setKpis(res.data);
     setLoading(true);
-    console.log(res.data.dbVerified);
+    console.log(res.data);
   };
   useEffect(() => {
     fetchKpi();
