@@ -1,8 +1,8 @@
-import React from 'react';
-import { InfoSignIcon, Switch, Table } from 'evergreen-ui';
-import { useState } from 'react';
-import { SelectMenu, Button } from 'evergreen-ui';
-import { Pane, Pill } from 'evergreen-ui';
+import React from "react";
+import { InfoSignIcon, Switch, Table } from "evergreen-ui";
+import { useState } from "react";
+import { SelectMenu, Button } from "evergreen-ui";
+import { Pane, Pill } from "evergreen-ui";
 
 import {
   Tooltip,
@@ -11,13 +11,22 @@ import {
   EditIcon,
   TrashIcon,
   majorScale,
-} from 'evergreen-ui';
-import UserModal from './modals/UserModal';
-import ViewDetails from './modals/ViewDetails';
-import DeleteModal from './modals/DeleteModal';
-import api from '../api';
+} from "evergreen-ui";
+import UserModal from "./modals/UserModal";
+import ViewDetails from "./modals/ViewDetails";
+import DeleteModal from "./modals/DeleteModal";
+import api from "../api";
 
-function KPIRow2({ user, i }) {
+function KPIRow2({
+  user,
+  i,
+  setRender,
+  render,
+  // modalOpen,
+  // setModalOpen,
+  // modalOpen4,
+  // setModalOpen4,
+}) {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen1, setModalOpen1] = useState(false);
   const [modalOpen4, setModalOpen4] = useState(false);
@@ -86,6 +95,8 @@ function KPIRow2({ user, i }) {
         modalOpen={modalOpen}
         title="Update User Information"
         user={user}
+        render={render}
+        setRender={setRender}
       />
       <ViewDetails
         setModalOpen1={setModalOpen1}
@@ -94,8 +105,10 @@ function KPIRow2({ user, i }) {
       />
       <DeleteModal
         setModalOpen4={setModalOpen4}
-        modalOpen={modalOpen4}
+        modalOpen4={modalOpen4}
         user={user}
+        setRender={setRender}
+        render={render}
       />
     </>
   );

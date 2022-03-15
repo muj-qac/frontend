@@ -5,13 +5,21 @@ import {
   Pane,
   TextInput,
   toaster,
-} from 'evergreen-ui';
-import { useState, useEffect } from 'react';
-import React from 'react';
-import { SelectMenu } from 'evergreen-ui';
-import api from '../../api';
+} from "evergreen-ui";
+import { useState, useEffect } from "react";
+import React from "react";
+import { SelectMenu } from "evergreen-ui";
+import api from "../../api";
 
-function UserModal({ setModalOpen, modalOpen, title, user, put }) {
+function UserModal({
+  setModalOpen,
+  modalOpen,
+  title,
+  user,
+  put,
+  render,
+  setRender,
+}) {
   // const profile = ['Apple', 'Apricot', 'Banana', 'Cherry', 'Cucumber'];
 
   const [roles, setRoles] = useState([]);
@@ -53,7 +61,7 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
   // //for roles to be displayed in modals
   const [selectedItemsState, setSelectedItems] = useState(user.role);
   const [selectedItemNamesState, setSelectedItemNames] = useState(
-    user.role.length + ' selected...'
+    user.role.length + " selected..."
   );
   //A flag to submit the form
   const [isSubmit, setIsSubmit] = useState(false);
@@ -87,10 +95,10 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
   const validate = (values) => {
     const errors = {};
     if (!values.first_name) {
-      errors.first_name = '*First Name is required';
+      errors.first_name = "*First Name is required";
     }
     if (!values.email) {
-      errors.email = '*Required';
+      errors.email = "*Required";
     }
     // if (!values.details.department) {
     //   errors.department = "*Required";
@@ -126,10 +134,10 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
       try {
         api.put(`/admin/user/profile/${user.email}`, modalValues);
         setModalOpen(false);
-        toaster.success('User Data Updated Successfully!');
+        toaster.success("User Data Updated Successfully!");
       } catch (error) {
         console.log(error);
-        toaster.danger('Something went wrong!');
+        toaster.danger("Something went wrong!");
       } finally {
         setLoading(false);
       }
@@ -142,7 +150,10 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
     <Pane>
       <Dialog
         isShown={modalOpen}
-        onCloseComplete={() => setModalOpen(false)}
+        onCloseComplete={() => {
+          setModalOpen(false);
+          setRender(!render);
+        }}
         preventBodyScrolling
         hasCancel={false}
         confirmLabel="Save"
@@ -223,14 +234,14 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
                 const selected = [...selectedItemsState, item.value];
                 const selectedItems = selected;
                 const selectedItemsLength = selectedItems.length;
-                let selectedNames = '';
+                let selectedNames = "";
                 if (selectedItemsLength === 0) {
-                  selectedNames = '';
+                  selectedNames = "";
                 } else if (selectedItemsLength === 1) {
                   selectedNames = selectedItems.toString();
                 } else if (selectedItemsLength > 1) {
                   selectedNames =
-                    selectedItemsLength.toString() + ' selected...';
+                    selectedItemsLength.toString() + " selected...";
                 }
                 setSelectedItems(selectedItems);
                 console.log(selectedItems);
@@ -244,14 +255,14 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
                   (_item, i) => i !== deselectedItemIndex
                 );
                 const selectedItemsLength = selectedItems.length;
-                let selectedNames = '';
+                let selectedNames = "";
                 if (selectedItemsLength === 0) {
-                  selectedNames = '';
+                  selectedNames = "";
                 } else if (selectedItemsLength === 1) {
                   selectedNames = selectedItems.toString();
                 } else if (selectedItemsLength > 1) {
                   selectedNames =
-                    selectedItemsLength.toString() + ' selected...';
+                    selectedItemsLength.toString() + " selected...";
                 }
 
                 setSelectedItems(selectedItems);
@@ -267,7 +278,7 @@ function UserModal({ setModalOpen, modalOpen, title, user, put }) {
                   });
                 }}
               >
-                {selectedItemNamesState || 'Select roles...'}
+                {selectedItemNamesState || "Select roles..."}
               </Button>
             </SelectMenu>
           </div>
