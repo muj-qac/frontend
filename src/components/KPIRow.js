@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { Switch } from "evergreen-ui";
-import { useState } from "react";
-import { SelectMenu, Button } from "evergreen-ui";
-import { Pane, Pill, Text } from "evergreen-ui";
-import api from "../api";
+import React, { useEffect } from 'react';
+import { Switch, Table } from 'evergreen-ui';
+import { useState } from 'react';
+import { SelectMenu, Button } from 'evergreen-ui';
+import { Pane, Pill, Text } from 'evergreen-ui';
+import api from '../api';
 function KPIRow({ kpi }) {
   const [roles, setRoles] = useState([]);
 
@@ -13,7 +13,7 @@ function KPIRow({ kpi }) {
   const [selectedItemsState, setSelectedItems] = useState(
     !kpi?.kpi_allocation_allocated_to_roles
       ? []
-      : kpi?.kpi_allocation_allocated_to_roles?.split(",")
+      : kpi?.kpi_allocation_allocated_to_roles?.split(',')
   );
   const [selectedItemNamesState, setSelectedItemNames] = useState(null);
   //useState for roleSetter
@@ -36,13 +36,13 @@ function KPIRow({ kpi }) {
   }, []);
   useEffect(() => {
     const selectedItemsLength = selectedItemsState?.length;
-    let selectedNames = "";
+    let selectedNames = '';
     if (selectedItemsLength === 0) {
-      selectedNames = "";
+      selectedNames = '';
     } else if (selectedItemsLength === 1) {
       selectedNames = selectedItemsState.toString();
     } else if (selectedItemsLength > 1) {
-      selectedNames = selectedItemsLength.toString() + " selected...";
+      selectedNames = selectedItemsLength.toString() + ' selected...';
     }
     setSelectedItemNames(selectedNames);
   }, [selectedItemsState]);
@@ -60,7 +60,7 @@ function KPIRow({ kpi }) {
   });
   //function for displayArray
   const handleClick = (e) => {
-    if (e.target.innerHTML === "Save") {
+    if (e.target.innerHTML === 'Save') {
       setUsed(true);
       setChip(true);
       setVal(true);
@@ -80,34 +80,32 @@ function KPIRow({ kpi }) {
         });
         console.log(selectedItemsState, typeof selectedItemsState);
       }
-      e.target.innerHTML = "Edit";
-    } else if (e.target.innerHTML === "Edit") {
+      e.target.innerHTML = 'Edit';
+    } else if (e.target.innerHTML === 'Edit') {
       setUsed(false);
       setChip(false);
       setVal(false);
-      e.target.innerHTML = "Save";
+      e.target.innerHTML = 'Save';
     }
   };
   return (
-    <>
-      <tr key={kpi.kpi_data_id}>
-        <td className="px-6 py-4 whitespace-nowrap">
-          <div className="text-sm text-gray-900">{kpi.kpi_data_name}</div>
+    <Pane>
+      <Table.Row key={kpi.kpi_data_id} isSelectable>
+        <Table.TextCell>
+          {kpi.kpi_data_name}
           {/* <input type="hidden" name="kpiId" placeholder={kpi.id}/> */}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap">
-          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ">
-            <Switch
-              checked={status}
-              onChange={(e) => setStatus(e.target.checked)}
-              disabled={use}
-            />
-          </span>
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+        </Table.TextCell>
+        <Table.TextCell>
+          <Switch
+            checked={status}
+            onChange={(e) => setStatus(e.target.checked)}
+            disabled={use}
+          />
+        </Table.TextCell>
+        <Table.TextCell>
           <Pane className="grid grid-cols-3">{displayArray}</Pane>
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+        </Table.TextCell>
+        <Table.TextCell>
           <SelectMenu
             isMultiSelect
             title="Select multiple names"
@@ -131,18 +129,17 @@ function KPIRow({ kpi }) {
             }}
           >
             <Button disabled={val}>
-              {selectedItemNamesState || "Select roles..."}
+              {selectedItemNamesState || 'Select roles...'}
             </Button>
           </SelectMenu>
-          <button
-            className="rounded-md w-12 text-white  bg-blue p-1 ml-24"
-            onClick={handleClick}
-          >
+        </Table.TextCell>
+        <Table.TextCell>
+          <Button appearance="primary" onClick={handleClick}>
             Edit
-          </button>
-        </td>
-      </tr>
-    </>
+          </Button>
+        </Table.TextCell>
+      </Table.Row>
+    </Pane>
   );
 }
 

@@ -5,8 +5,6 @@ import {
   TextInput,
   Table,
   TableBody,
-  TableRow,
-  Badge,
   IconButton,
   TrashIcon,
   majorScale,
@@ -15,6 +13,7 @@ import {
   Button,
   Popover,
   Position,
+  Spinner,
 } from 'evergreen-ui';
 import { role } from '../../data/role';
 import { useState } from 'react';
@@ -22,11 +21,13 @@ import api from '../../api';
 function AddRoles({ setModalOpen2, modalOpen2 }) {
   const elementRef = useRef();
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   //!Roles do not render Get roles working do not erase this code
   const fetchRole = async () => {
     const res = await api.get(`/admin/role/get-roles`);
     setList(res.data);
+    setLoading(true);
     console.log(res.data);
   };
   useEffect(() => {
@@ -34,18 +35,23 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
     console.log(list);
   }, []);
 
-  const handleAddChange = () => {
+  const handleAddChange = async () => {
     let roles = { role_name: elementRef.current.value };
     console.log(list);
     if (
       roles.role_name &&
       list.some((e) => e.role_name === roles.role_name) === false
     ) {
+      setLoading(true);
       try {
-        api.post('/admin/role/add-roles', roles);
+        await api.post('/admin/role/add-roles', roles);
         fetchRole();
+        toaster.success('Role Added');
       } catch (error) {
+        toaster.danger('Something went wrong');
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     } else if (list.some((e) => e.role_name === roles.role_name) === true) {
       return toaster.danger('Role Already Exist', {
@@ -60,9 +66,17 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
     }
   };
 
-  const handleDeleteChange = (index) => {
-    api.delete(`/admin/role/delete-role/${list[index].role_name}`);
-    fetchRole();
+  const handleDeleteChange = async (index) => {
+    setLoading(true);
+    try {
+      await api.delete(`/admin/role/delete-role/${list[index].role_name}`);
+      fetchRole();
+      toaster.warning('Role Deleted');
+    } catch (error) {
+      toaster.danger('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <Pane>
@@ -96,7 +110,9 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
             intent="success"
             marginRight={majorScale(2)}
             marginLeft={20}
-            onClick={handleAddChange}
+            onClick={() => {
+              handleAddChange();
+            }}
           />
         </div>
         <Table>
@@ -105,57 +121,61 @@ function AddRoles({ setModalOpen2, modalOpen2 }) {
             <Table.TextHeaderCell>Delete</Table.TextHeaderCell>
           </Table.Head>
           <TableBody>
-            {list.map((r, i) => {
-              // console.log(r.role_name);
-              return (
-                <Table.Row key={r.id} isSelectable>
-                  <Table.TextCell>{r.role_name}</Table.TextCell>
-                  <Table.TextCell>
-                    <Popover
-                      content={({ close }) => (
-                        <Pane
-                          width={250}
-                          height={200}
-                          paddingX={40}
-                          display="flex"
-                          alignItems="center"
-                          justifyContent="center"
-                          flexDirection="column"
-                        >
-                          <span className=" text-red-600 font-semibold text-sm">
-                            PLEASE CARE THAT ROLE IS NOT APPLIED TO SOME KPI
-                          </span>
-                          <Button onClick={close} marginTop={20}>
-                            Close
-                          </Button>
-                          <Button
-                            onClick={() => {
-                              handleDeleteChange(i);
-                              close();
-                            }}
-                            intent="danger"
-                            marginTop={20}
+            {loading ? (
+              list.map((r, i) => {
+                // console.log(r.role_name);
+                return (
+                  <Table.Row key={r.id} isSelectable>
+                    <Table.TextCell>{r.role_name}</Table.TextCell>
+                    <Table.TextCell>
+                      <Popover
+                        content={({ close }) => (
+                          <Pane
+                            width={250}
+                            height={200}
+                            paddingX={40}
+                            display="flex"
+                            alignItems="center"
+                            justifyContent="center"
+                            flexDirection="column"
                           >
-                            Confirm
-                          </Button>
-                        </Pane>
-                      )}
-                      shouldCloseOnExternalClick={false}
-                      position={Position.RIGHT}
-                    >
-                      <IconButton
-                        icon={TrashIcon}
-                        intent="danger"
-                        marginRight={majorScale(2)}
-                        onClick={() => {
-                          // handleDeleteChange(i);
-                        }}
-                      />
-                    </Popover>
-                  </Table.TextCell>
-                </Table.Row>
-              );
-            })}
+                            <span className=" text-red-600 font-semibold text-sm">
+                              PLEASE CARE THAT ROLE IS NOT APPLIED TO SOME KPI
+                            </span>
+                            <Button onClick={close} marginTop={20}>
+                              Close
+                            </Button>
+                            <Button
+                              onClick={() => {
+                                handleDeleteChange(i);
+                                close();
+                              }}
+                              intent="danger"
+                              marginTop={20}
+                            >
+                              Confirm
+                            </Button>
+                          </Pane>
+                        )}
+                        shouldCloseOnExternalClick={false}
+                        position={Position.RIGHT}
+                      >
+                        <IconButton
+                          icon={TrashIcon}
+                          intent="danger"
+                          marginRight={majorScale(2)}
+                          onClick={() => {
+                            // handleDeleteChange(i);
+                          }}
+                        />
+                      </Popover>
+                    </Table.TextCell>
+                  </Table.Row>
+                );
+              })
+            ) : (
+              <Spinner marginX={'auto'} />
+            )}
           </TableBody>
         </Table>
       </Dialog>
