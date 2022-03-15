@@ -5,13 +5,13 @@ import {
   Pane,
   TextInput,
   toaster,
-} from 'evergreen-ui';
-import { useState, useEffect } from 'react';
-import React from 'react';
-import axios from 'axios';
-import api from '../../api';
+} from "evergreen-ui";
+import { useState, useEffect } from "react";
+import React from "react";
+import axios from "axios";
+import api from "../../api";
 
-function DeleteModal({ setModalOpen4, modalOpen, user }) {
+function DeleteModal({ setModalOpen4, modalOpen4, user, setRender, render }) {
   const initialValues = {
     email: user.email,
   };
@@ -27,10 +27,10 @@ function DeleteModal({ setModalOpen4, modalOpen, user }) {
     try {
       const res = await api.delete(`/admin/user/profile/${user.email}`);
       setModalOpen4(false);
-      if (res.status !== 201) throw 'Request Failed';
-      toaster.success('User Deleted successfully!');
+      if (res.status !== 201) throw "Request Failed";
+      toaster.success("User Deleted successfully!");
     } catch (error) {
-      toaster.danger('Something went wrong!');
+      toaster.danger("Something went wrong!");
     } finally {
       setIsLoading(false);
     }
@@ -39,8 +39,11 @@ function DeleteModal({ setModalOpen4, modalOpen, user }) {
   return (
     <Pane>
       <Dialog
-        isShown={modalOpen}
-        onCloseComplete={() => setModalOpen4(false)}
+        isShown={modalOpen4}
+        onCloseComplete={() => {
+          setModalOpen4(false);
+          setRender(!render);
+        }}
         preventBodyScrolling
         hasCancel={false}
         confirmLabel="Confirm"

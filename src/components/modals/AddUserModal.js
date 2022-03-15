@@ -5,17 +5,25 @@ import {
   Pane,
   TextInput,
   toaster,
-} from 'evergreen-ui';
-import { useState, useEffect } from 'react';
-import React from 'react';
-import { SelectMenu } from 'evergreen-ui';
-import { EditIcon } from 'evergreen-ui';
-import KPIRow2 from '../KPIRow2';
-import axios from 'axios';
-import { Pill, Text } from 'evergreen-ui';
-import api from '../../api';
+} from "evergreen-ui";
+import { useState, useEffect } from "react";
+import React from "react";
+import { SelectMenu } from "evergreen-ui";
+import { EditIcon } from "evergreen-ui";
+import KPIRow2 from "../KPIRow2";
+import axios from "axios";
+import { Pill, Text } from "evergreen-ui";
+import api from "../../api";
 
-function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
+function AddUserModal({
+  setModalOpen3,
+  modalOpen3,
+  title,
+  user,
+  fetchUser,
+  setRender,
+  render,
+}) {
   // const profile = ['SCIT', 'Apricot', 'Banana', 'Cherry', 'Cucumber'];
   const [roles, setRoles] = useState([]);
 
@@ -35,24 +43,24 @@ function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
   //     value: label,
   //   }))
   // );
-  const url = '';
+  const url = "";
   const [loading, setLoading] = useState(false);
   //Taking initial values for the input fields
   const initialValues = {
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
-    role: '',
-    password: '',
-    confirmPassword: '',
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    role: "",
+    password: "",
+    confirmPassword: "",
   };
   const initialDetailsValues = {
     details: {
-      department: '',
-      faculty: '',
-      program: '',
-      school: '',
+      department: "",
+      faculty: "",
+      program: "",
+      school: "",
     },
   };
   //UseState for the form values
@@ -96,7 +104,7 @@ function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
   const validate = (values) => {
     const errors = {};
     if (!values.firstName) {
-      errors.firstName = '*First Name is required';
+      errors.firstName = "*First Name is required";
     }
     if (values.confirmPassword !== values.password) {
       errors.confirmPassword = "*Password doesn't match..";
@@ -105,19 +113,7 @@ function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
       errors.password = "*Password can't be empty";
     }
     if (!values.email) {
-      errors.email = '*Required';
-    }
-    if (!values.details.department) {
-      errors.department = '*Required';
-    }
-    if (!values.details.faculty) {
-      errors.faculty = '*Required';
-    }
-    if (!values.details.school) {
-      errors.school = '*Required';
-    }
-    if (!values.details.program) {
-      errors.program = '*Required';
+      errors.email = "*Required";
     }
     return errors;
   };
@@ -146,10 +142,10 @@ function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
       try {
         const res = await api.post(`/admin/user/add-user`, modalValues3);
         setModalOpen3(false);
-        if (res.status !== 201) throw 'Request Failed';
-        toaster.success('User created successfully!');
+        if (res.status !== 201) throw "Request Failed";
+        toaster.success("User created successfully!");
       } catch (error) {
-        toaster.danger('Something went wrong!');
+        toaster.danger("Something went wrong!");
       } finally {
         setLoading(false);
       }
@@ -169,7 +165,10 @@ function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
       <Dialog
         isShown={modalOpen3}
         title="New User Info"
-        onCloseComplete={() => setModalOpen3(false)}
+        onCloseComplete={() => {
+          setModalOpen3(false);
+          setRender(!render);
+        }}
         hasClose={false}
         preventBodyScrolling
         hasCancel={true}
@@ -251,14 +250,14 @@ function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
                 const selected = [...selectedItemsState, item.value];
                 const selectedItems = selected;
                 const selectedItemsLength = selectedItems.length;
-                let selectedNames = '';
+                let selectedNames = "";
                 if (selectedItemsLength === 0) {
-                  selectedNames = '';
+                  selectedNames = "";
                 } else if (selectedItemsLength === 1) {
                   selectedNames = selectedItems.toString();
                 } else if (selectedItemsLength > 1) {
                   selectedNames =
-                    selectedItemsLength.toString() + ' selected...';
+                    selectedItemsLength.toString() + " selected...";
                 }
                 setSelectedItems(selectedItems);
                 setSelectedItemNames(selectedNames);
@@ -271,21 +270,21 @@ function AddUserModal({ setModalOpen3, modalOpen3, title, user }) {
                   (_item, i) => i !== deselectedItemIndex
                 );
                 const selectedItemsLength = selectedItems.length;
-                let selectedNames = '';
+                let selectedNames = "";
                 if (selectedItemsLength === 0) {
-                  selectedNames = '';
+                  selectedNames = "";
                 } else if (selectedItemsLength === 1) {
                   selectedNames = selectedItems.toString();
                 } else if (selectedItemsLength > 1) {
                   selectedNames =
-                    selectedItemsLength.toString() + ' selected...';
+                    selectedItemsLength.toString() + " selected...";
                 }
 
                 setSelectedItems(selectedItems);
                 setSelectedItemNames(selectedNames);
               }}
             >
-              <Button>{selectedItemNamesState || 'Select roles...'}</Button>
+              <Button>{selectedItemNamesState || "Select roles..."}</Button>
             </SelectMenu>
           </div>
           <div></div>
