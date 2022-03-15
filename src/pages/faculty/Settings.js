@@ -1,7 +1,7 @@
 import {
   CaretRightIcon,
   Dialog,
-  IconButton,
+  Button,
   Avatar,
   Pill,
   majorScale,
@@ -88,13 +88,13 @@ function Settings() {
                 </div>
               </div>
               <div className="">
-                <IconButton
-                  icon={CaretRightIcon}
+                <Button
                   marginRight={majorScale(2)}
                   onClick={() => setIsShown(true)}
-                />
+                >
+                  Change Password
+                </Button>
                 {/* <CaretRightIcon /> */}
-                <span>Change Password</span>
                 <Dialog
                   isShown={isShown}
                   title="No footer"
