@@ -8,15 +8,22 @@ import FacultyTableRowRejected from './FacultyTableRowRejected';
 function FacultyTableRejected() {
   const [kpis, setKpis] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [render, setRender] = useState(false);
   const fetchKpi = async () => {
-    const res = await api.get(`/user/get-rejected-kpis`);
-    setKpis(res.data);
-    setLoading(true);
-    console.log(res.data);
+    setLoading(false);
+    try {
+      const res = await api.get(`/user/get-rejected-kpis`);
+      setKpis(res.data);
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(true);
+    }
   };
   useEffect(() => {
     fetchKpi();
-  }, []);
+  }, [render]);
   return (
     <>
       <Table>
@@ -27,7 +34,13 @@ function FacultyTableRejected() {
         </Table.Head>
         <Table.Body height={400}>
           {loading ? (
-            kpis.map((kpi) => <FacultyTableRowRejected kpi={kpi} />)
+            kpis.map((kpi) => (
+              <FacultyTableRowRejected
+                kpi={kpi}
+                render={render}
+                setRender={setRender}
+              />
+            ))
           ) : (
             <Spinner marginX="auto" marginY={120} />
           )}
