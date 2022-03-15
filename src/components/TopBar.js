@@ -1,3 +1,4 @@
+import { Avatar } from "evergreen-ui";
 import { useNavigate } from "react-router-dom";
 import avatar from "../img/user.png";
 
@@ -8,7 +9,8 @@ function TopBar() {
       <div className="flex items-center justify-between min-w-[60rem] ml-32 mt-5">
         <div className=" w-64 flex items-center">
           <div className="flex-shrink-0 h-10 w-10">
-            <img className="h-10 w-10 rounded-full" src={avatar} alt="" />
+            {/* <img className="h-10 w-10 rounded-full" src={avatar} alt="" /> */}
+            <Avatar name={localStorage.getItem("currentUser")} size={45} />
           </div>
           <div className="ml-4">
             <div className="text-sm text-gray-500">Signed in as</div>

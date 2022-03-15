@@ -19,7 +19,7 @@ function FacultyTableRowVerified({ kpi }) {
     const encode = kpi.aws_key.replace(/\//g, "%2F");
     console.log(encode);
     window.open(
-      `http://localhost:5000/api/v1/user/download-verified-kpi/${encode}`
+      `http://localhost:5000/api/v1/admin/sheet/download-verified-kpi/${encode}`
     );
   };
 
