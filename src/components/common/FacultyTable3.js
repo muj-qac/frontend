@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { Spinner, Table } from "evergreen-ui";
-import FacultyTableRow from "./FacultyTableRow";
-import FacultyUploadModal from "../modals/FacultyUploadModal";
-import api from "../../api";
+import { useEffect, useState } from 'react';
+import { Spinner, Table } from 'evergreen-ui';
+import FacultyTableRow from './FacultyTableRow';
+import FacultyUploadModal from '../modals/FacultyUploadModal';
+import api from '../../api';
 
 function FacultyTable3() {
   const [kpis, setKpis] = useState([]);
@@ -22,7 +22,7 @@ function FacultyTable3() {
         <Table.Head>
           <Table.TextHeaderCell>Kpis</Table.TextHeaderCell>
           <Table.TextHeaderCell>Status</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Completion</Table.TextHeaderCell>
+          <Table.TextHeaderCell></Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={400}>
           {loading ? (

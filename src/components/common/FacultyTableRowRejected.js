@@ -11,7 +11,7 @@ import { useState } from 'react';
 import api from '../../api';
 import FacultyUploadModal from '../modals/FacultyUploadModal';
 
-function FacultyTableRowRejected({ kpi }) {
+function FacultyTableRowRejected({ kpi, render, setRender }) {
   const [title, setTitle] = useState('');
   const [isShown, setIsShown] = useState(false);
 
@@ -30,24 +30,7 @@ function FacultyTableRowRejected({ kpi }) {
         //   onSelect={() => alert(kpi.title)}
       >
         <Table.TextCell>{kpi.name}</Table.TextCell>
-        <Table.TextCell>
-          {/* {kpi.status === 'pending' && (
-            <Badge color="red" marginRight={8}>
-              {kpi.status}
-            </Badge>
-          )}
-          {kpi.status === 'processing' && (
-            <Badge color="yellow" marginRight={8}>
-              {kpi.status}
-            </Badge>
-          )}
-          {kpi.status === 'verified' && (
-            <Badge color="green" marginRight={8}>
-              {kpi.status}
-            </Badge>
-          )} */}
-          {kpi.comment}
-        </Table.TextCell>
+        <Table.TextCell>{kpi.comment}</Table.TextCell>
         <Table.TextCell>
           <Tooltip content="Download KPI Schema">
             <Button
@@ -81,6 +64,8 @@ function FacultyTableRowRejected({ kpi }) {
         isShown={isShown}
         title={kpi.title}
         id={kpi.kpiId}
+        render={render}
+        setRender={setRender}
       />
     </Pane>
   );

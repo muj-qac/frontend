@@ -24,8 +24,8 @@ function VerificationTable() {
       <Table>
         <Table.Head>
           <Table.TextHeaderCell>Kpis</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Data</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Status</Table.TextHeaderCell>
+          <Table.TextHeaderCell></Table.TextHeaderCell>
+          <Table.TextHeaderCell></Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={400}>
           {loading ? (

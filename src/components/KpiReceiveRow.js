@@ -19,7 +19,7 @@ import {
 import { useState } from 'react';
 import api from '../api';
 
-function KpiReceiveRow({ user }) {
+function KpiReceiveRow({ user, render, setRender }) {
   // const [title, setTitle] = useState('');
   const [isShown, setIsShown] = useState(false);
   const [text, setText] = useState('');
@@ -36,8 +36,23 @@ function KpiReceiveRow({ user }) {
       `http://localhost:5000/api/v1/admin/sheet/get-unverified-object/${encode}`
     );
   };
-  console.log(formData);
-  const handleUpload = async () => {
+  // console.log(formData);
+  const handleVerify = async () => {
+    setLoading(true);
+    try {
+      const res = await api.put(`/admin/sheet/verify-kpi`, {
+        fileKey: user.uploaded_sheets_aws_key,
+      });
+      if (res.status !== 200) throw 'Request Failed';
+      toaster.success('KPI verified successfully!');
+    } catch (error) {
+      toaster.danger('Something went wrong');
+    } finally {
+      setRender(!render);
+      setLoading(false);
+    }
+  };
+  const handleReject = async () => {
     setLoading(true);
     try {
       const res = await api.post(
@@ -49,6 +64,7 @@ function KpiReceiveRow({ user }) {
     } catch (error) {
       toaster.danger('Something went wrong');
     } finally {
+      setRender(!render);
       setLoading(false);
     }
   };
@@ -76,17 +92,14 @@ function KpiReceiveRow({ user }) {
               icon={TickIcon}
               marginRight={majorScale(2)}
               intent="success"
-              onClick={() => {
-                api.put(`/admin/sheet/verify-kpi`, {
-                  fileKey: user.uploaded_sheets_aws_key,
-                });
-              }}
+              isLoading={loading}
+              onClick={handleVerify}
             />
           </Tooltip>
           <Tooltip content="Reject">
             <Popover
               bringFocusInside
-              // handleUpload={handleUpload}
+              // handleReject={handleReject}
               content={({ close }) => (
                 <Pane
                   width={320}
@@ -123,7 +136,7 @@ function KpiReceiveRow({ user }) {
                     <Button onClick={close}>Close</Button>
                     <Button
                       appearance="primary"
-                      onClick={handleUpload}
+                      onClick={handleReject}
                       isLoading={loading}
                     >
                       Save

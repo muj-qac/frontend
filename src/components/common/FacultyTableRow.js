@@ -11,7 +11,7 @@ import { useState } from 'react';
 import api from '../../api';
 import FacultyUploadModal from '../modals/FacultyUploadModal';
 
-function FacultyTableRow({ kpi }) {
+function FacultyTableRow({ kpi, render, setRender }) {
   const [title, setTitle] = useState('');
   const [isShown, setIsShown] = useState(false);
 
@@ -77,6 +77,8 @@ function FacultyTableRow({ kpi }) {
         isShown={isShown}
         title={kpi.title}
         id={kpi.id}
+        render={render}
+        setRender={setRender}
       />
     </Pane>
   );

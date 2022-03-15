@@ -1,8 +1,15 @@
 import axios from '../../api';
-import { Dialog, FilePicker, Pane } from 'evergreen-ui';
+import { Dialog, FilePicker, Pane, toaster } from 'evergreen-ui';
 import { useState } from 'react';
 
-function FacultyUploadModal({ setIsShown, isShown, id, title }) {
+function FacultyUploadModal({
+  setIsShown,
+  isShown,
+  id,
+  title,
+  render,
+  setRender,
+}) {
   const [loading, setLoading] = useState(false);
   const [file, setFile] = useState();
   let formData = new FormData();
@@ -12,15 +19,25 @@ function FacultyUploadModal({ setIsShown, isShown, id, title }) {
       <Dialog
         isShown={isShown}
         title={title}
-        onCloseComplete={() => setIsShown(false)}
+        onCloseComplete={() => {
+          setIsShown(false);
+          setRender(!render);
+        }}
         preventBodyScrolling
         confirmLabel="Save"
         hasCancel={false}
         onConfirm={async () => {
           setLoading(true);
-          const res = await axios.post(`/user/upload/${id}`, formData);
-          setIsShown(false);
-          console.log(res.data);
+          try {
+            const res = await axios.post(`/user/upload/${id}`, formData);
+            setIsShown(false);
+            toaster.success('kpi uploaded successfully');
+          } catch (error) {
+            console.log(error);
+            toaster.danger('kpi upload failed');
+          } finally {
+            setLoading(false);
+          }
         }}
         isConfirmLoading={loading}
       >

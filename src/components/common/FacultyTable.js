@@ -7,26 +7,38 @@ import api from '../../api';
 function FacultyTable() {
   const [kpis, setKpis] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [render, setRender] = useState(false);
   const fetchKpi = async () => {
-    const res = await api.get(`/user/alloted-kpi`);
-    setKpis(res.data);
-    setLoading(true);
-    console.log(res.data);
+    setLoading(false);
+    try {
+      const res = await api.get(`/user/alloted-kpi`);
+      setKpis(res.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(true);
+    }
   };
   useEffect(() => {
     fetchKpi();
-  }, []);
+  }, [render]);
   return (
     <>
       <Table>
         <Table.Head>
           <Table.TextHeaderCell>Kpis</Table.TextHeaderCell>
           <Table.TextHeaderCell>Status</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Completion</Table.TextHeaderCell>
+          <Table.TextHeaderCell></Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={400}>
           {loading ? (
-            kpis.map((kpi) => <FacultyTableRow kpi={kpi} />)
+            kpis.map((kpi) => (
+              <FacultyTableRow
+                kpi={kpi}
+                render={render}
+                setRender={setRender}
+              />
+            ))
           ) : (
             <Spinner marginX="auto" marginY={120} />
           )}
