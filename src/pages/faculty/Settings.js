@@ -7,19 +7,19 @@ import {
   majorScale,
   TextInputField,
   toaster,
-} from "evergreen-ui";
-import { useState, useEffect } from "react";
-import FacultySideBar from "../../components/FacultySidebar";
-import TopBar from "../../components/TopBar";
-import api from "../../api";
+} from 'evergreen-ui';
+import { useState, useEffect } from 'react';
+import FacultySideBar from '../../components/Bars/FacultySidebar';
+import TopBar from '../../components/Bars/TopBar';
+import api from '../../api';
 
 function Settings() {
   const [isShown, setIsShown] = useState(false);
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [oldPass, setOldPass] = useState("");
-  const [newPass, setNewPass] = useState("");
-  const [confirmPass, setConfirmPass] = useState("");
+  const [oldPass, setOldPass] = useState('');
+  const [newPass, setNewPass] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
 
   const fetchKpi = async () => {
     const res = await api.get(`/user/my-profile`);
@@ -30,9 +30,9 @@ function Settings() {
     setLoading(true);
     try {
       if (!oldPass || !newPass || !confirmPass) {
-        toaster.warning("please fill all the entries");
+        toaster.warning('please fill all the entries');
       } else if (newPass !== confirmPass) {
-        toaster.warning("password do not match");
+        toaster.warning('password do not match');
       } else {
         const res = await api.put(`/user/change-password`, {
           oldPassword: oldPass,
@@ -40,11 +40,11 @@ function Settings() {
           confirmPassword: confirmPass,
         });
         console.log(res);
-        if (res.status !== 200) throw "Request Failed";
-        toaster.success("Password changed successfully!");
+        if (res.status !== 200) throw 'Request Failed';
+        toaster.success('Password changed successfully!');
       }
     } catch (error) {
-      toaster.danger("Something went wrong!");
+      toaster.danger('Something went wrong!');
       console.log(error);
     } finally {
       setLoading(false);

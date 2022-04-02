@@ -1,8 +1,6 @@
-// import SideBar from '../../components/SideBar';
-import FacultyTableRejected from '../../components/common/FacultyTableRejected';
-// import FacultyTable4 from '../../components/common/FacultyTableRejected';
-import FacultySideBar from '../../components/FacultySidebar';
-import TopBar from '../../components/TopBar';
+import FacultySideBar from '../../components/Bars/FacultySidebar';
+import TopBar from '../../components/Bars/TopBar';
+import FacultyTableRejected from '../../components/Faculty/RejectedKpi/FacultyTableRejected';
 
 function RejectedKpi() {
   return (
