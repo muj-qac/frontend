@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import DataEntryModal from '../components/ManageKpi/DataEntryModal';
+import DataEntryModal from '../components/Admin/ManageKpi/DataEntryModal';
 import SideBar from '../components/Bars/SideBar';
-import TableKpi from '../components/ManageKpi/TableKpi';
+import TableKpi from '../components/Admin/ManageKpi/TableKpi';
 import TopBar from '../components/Bars/TopBar';
 
 function Kpi() {

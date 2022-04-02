@@ -1,7 +1,7 @@
 import SideBar from '../components/Bars/SideBar';
 import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import ColumnTable from '../components/CreateKpi/ColumnTable';
+import ColumnTable from '../components/Admin/CreateKpi/ColumnTable';
 import { Pane, Heading } from 'evergreen-ui';
 import TopBar from '../components/Bars/TopBar';
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 import {
   Table,
@@ -13,23 +13,23 @@ import {
   ChevronRightIcon,
   PlusIcon,
   toaster,
-} from "evergreen-ui";
-import ColumnTableRow from "./ColumnTableRow";
-import api from "../../api";
+} from 'evergreen-ui';
+import ColumnTableRow from './ColumnTableRow';
+import api from '../../../api';
 
 const getNewColumn = () => ({
   id: `${(Math.random() + 1).toString(36).substring(7)}`,
-  name: "Sample Column Heading",
+  name: 'Sample Column Heading',
   rule: null,
-  type: "text",
-  invalidAction: "reject",
+  type: 'text',
+  invalidAction: 'reject',
 });
 
 const ColumnTable = () => {
   const [isSubmitLoading, setIsSubmitLoading] = useState(false);
   const [isEditingHeading, setIsEditingHeading] = useState(false);
   const [isDeleteDisabled, setIsDeleteDisabled] = useState(true);
-  const [sheetHeading, setSheetHeading] = useState("Untitled Sheet");
+  const [sheetHeading, setSheetHeading] = useState('Untitled Sheet');
   const [columns, setColumns] = useState([getNewColumn()]);
 
   const handleNewColumn = () => {
@@ -64,20 +64,20 @@ const ColumnTable = () => {
       //   }
       // );
       const res = await api.post(
-        "/admin/sheet/new/",
+        '/admin/sheet/new/',
         { columns, title: sheetHeading },
         {
           headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-Type": "application/json",
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json',
           },
         }
       );
       console.log(res);
-      if (res.status !== 200) throw "Request Failed";
-      toaster.success("KPI created successfully!");
+      if (res.status !== 200) throw 'Request Failed';
+      toaster.success('KPI created successfully!');
     } catch (error) {
-      toaster.danger("Something went wrong!");
+      toaster.danger('Something went wrong!');
       console.log(error);
     } finally {
       setIsSubmitLoading(false);

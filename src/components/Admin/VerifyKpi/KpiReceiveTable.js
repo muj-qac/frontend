@@ -1,7 +1,6 @@
 import { Spinner, Table } from 'evergreen-ui';
 import { useEffect, useState } from 'react';
 import api from '../../../api';
-import { users } from '../../../data/UserData';
 import KpiReceiveRow from './KpiReceiveRow';
 
 function KpiReceiveTable({ title }) {

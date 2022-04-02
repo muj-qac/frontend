@@ -3,7 +3,7 @@ import { Switch, Table } from 'evergreen-ui';
 import { useState } from 'react';
 import { SelectMenu, Button } from 'evergreen-ui';
 import { Pane, Pill, Text } from 'evergreen-ui';
-import api from '../../api';
+import api from '../../../api';
 function KPIRow({ kpi }) {
   const [roles, setRoles] = useState([]);
 

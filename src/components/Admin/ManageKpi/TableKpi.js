@@ -1,7 +1,7 @@
 import { Spinner, Table } from 'evergreen-ui';
 import { useEffect, useState } from 'react';
 import KPIRow from './KPIRow';
-import api from '../../api';
+import api from '../../../api';
 
 function TableKpi() {
   //useState for disabling roles

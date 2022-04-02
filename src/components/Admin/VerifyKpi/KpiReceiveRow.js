@@ -1,7 +1,6 @@
 import {
   Button,
   CircleArrowDownIcon,
-  CogIcon,
   CrossIcon,
   FilePicker,
   IconButton,
@@ -14,7 +13,6 @@ import {
   TickIcon,
   toaster,
   Tooltip,
-  UploadIcon,
 } from 'evergreen-ui';
 import { useState } from 'react';
 import api from '../../../api';
