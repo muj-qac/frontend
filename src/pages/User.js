@@ -1,7 +1,7 @@
-import React from "react";
-import KpiUser from "../components/KpiUser";
-import SideBar from "../components/SideBar";
-import TopBar from "../components/TopBar";
+import React from 'react';
+import KpiUser from '../components/Admin/ManageUsers/KpiUser';
+import SideBar from '../components/Bars/SideBar';
+import TopBar from '../components/Bars/TopBar';
 function User() {
   return (
     <>

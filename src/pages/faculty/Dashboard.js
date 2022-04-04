@@ -1,7 +1,7 @@
 // import SideBar from '../../components/SideBar';
-import FacultyTable from '../../components/common/FacultyTable';
-import FacultySideBar from '../../components/FacultySidebar';
-import TopBar from '../../components/TopBar';
+import FacultyTable from '../../components/Faculty/AllocatedKpi/FacultyTable';
+import FacultySideBar from '../../components/Bars/FacultySidebar';
+import TopBar from '../../components/Bars/TopBar';
 
 function Dashboard() {
   return (

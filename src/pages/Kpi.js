@@ -1,8 +1,8 @@
-import { useState } from "react";
-import DataEntryModal from "../components/modals/DataEntryModal";
-import SideBar from "../components/SideBar";
-import TableKpi from "../components/TableKpi";
-import TopBar from "../components/TopBar";
+import { useState } from 'react';
+import DataEntryModal from '../components/Admin/ManageKpi/DataEntryModal';
+import SideBar from '../components/Bars/SideBar';
+import TableKpi from '../components/Admin/ManageKpi/TableKpi';
+import TopBar from '../components/Bars/TopBar';
 
 function Kpi() {
   const [showModal, setShowModal] = useState(false);
