@@ -1,4 +1,5 @@
 import {
+  ApplicationsIcon,
   Button,
   CircleArrowDownIcon,
   CogIcon,
@@ -10,13 +11,13 @@ import {
   TickIcon,
   Tooltip,
   UploadIcon,
-} from 'evergreen-ui';
-import { useState } from 'react';
+} from "evergreen-ui";
+import { useState } from "react";
 
 function KpiVerifiedRow({ verify }) {
   // const [title, setTitle] = useState('');
   const handleDownload = () => {
-    const encode = verify.uploaded_sheets_aws_key.replace(/\//g, '%2F');
+    const encode = verify.uploaded_sheets_aws_key.replace(/\//g, "%2F");
     console.log(encode);
     window.open(
       `http://localhost:5000/api/v1/admin/sheet/get-verified-object/${encode}`
@@ -29,7 +30,7 @@ function KpiVerifiedRow({ verify }) {
           {verify.user_id_first_name} {verify.user_id_last_name}
         </Table.TextCell>
         <Table.TextCell>
-          <Tooltip content="Download Filled Data">
+          <Tooltip content="Download Verified Data">
             <Button
               marginY={8}
               marginRight={12}
@@ -48,7 +49,20 @@ function KpiVerifiedRow({ verify }) {
               intent="success"
             />
           </Tooltip> */}
-          <div className=" h-4 w-4 rounded-full bg-emerald-400"></div>
+          {/* <div className=" h-4 w-4 rounded-full bg-emerald-400"></div> */}
+          <Tooltip content="Merge Data">
+            <Button
+              marginY={8}
+              marginRight={12}
+              iconBefore={ApplicationsIcon}
+              color="green"
+              onClick={() => {
+                // setIsShown2(true);
+              }}
+            >
+              Merge Data
+            </Button>
+          </Tooltip>
         </Table.TextCell>
       </Table.Row>
     </Pane>

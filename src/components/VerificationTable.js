@@ -1,7 +1,7 @@
-import { Spinner, Table } from 'evergreen-ui';
-import { useEffect, useState } from 'react';
-import api from '../api';
-import VerificationTableRow from './VerificationTableRow';
+import { Spinner, Table } from "evergreen-ui";
+import { useEffect, useState } from "react";
+import api from "../api";
+import VerificationTableRow from "./VerificationTableRow";
 
 function VerificationTable() {
   const [kpis, setKpis] = useState([]);
@@ -24,6 +24,7 @@ function VerificationTable() {
       <Table>
         <Table.Head>
           <Table.TextHeaderCell>Kpis</Table.TextHeaderCell>
+          <Table.TextHeaderCell></Table.TextHeaderCell>
           <Table.TextHeaderCell></Table.TextHeaderCell>
           <Table.TextHeaderCell></Table.TextHeaderCell>
         </Table.Head>

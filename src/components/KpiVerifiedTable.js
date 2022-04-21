@@ -1,8 +1,8 @@
-import { Spinner, Table } from 'evergreen-ui';
-import { useEffect, useState } from 'react';
-import api from '../api';
+import { Spinner, Table } from "evergreen-ui";
+import { useEffect, useState } from "react";
+import api from "../api";
 // import { verified } from '../data/VerifiedData';
-import KpiVerifiedRow from './KpiVerifiedRow';
+import KpiVerifiedRow from "./KpiVerifiedRow";
 
 function KpiVerifiedTable({ title }) {
   const [kpis, setKpis] = useState([]);
@@ -23,13 +23,13 @@ function KpiVerifiedTable({ title }) {
         <Table.Head>
           <Table.TextHeaderCell>Users</Table.TextHeaderCell>
           <Table.TextHeaderCell>Download</Table.TextHeaderCell>
-          <Table.TextHeaderCell>Status</Table.TextHeaderCell>
+          <Table.TextHeaderCell></Table.TextHeaderCell>
         </Table.Head>
         <Table.Body height={300}>
           {loading ? (
             kpis.map(
               (kpi) =>
-                title === kpi.uploaded_sheets_aws_key.split('/', 1)[0] && (
+                title === kpi.uploaded_sheets_aws_key.split("/", 1)[0] && (
                   <KpiVerifiedRow verify={kpi} />
                 )
             )

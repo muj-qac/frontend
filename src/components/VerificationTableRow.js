@@ -71,6 +71,18 @@ function VerificationTableRow({ kpi }) {
             </Button>
           </Tooltip>
         </Table.TextCell>
+        <Table.TextCell>
+          <Tooltip content="Download Merged Data">
+            <Button
+              marginY={8}
+              marginRight={12}
+              iconBefore={CircleArrowDownIcon}
+              // onClick={handleDownload}
+            >
+              Merged Files
+            </Button>
+          </Tooltip>
+        </Table.TextCell>
       </Table.Row>
       <KpiReceiveModal
         setIsShown={setIsShown}
