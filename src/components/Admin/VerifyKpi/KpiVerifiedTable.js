@@ -1,12 +1,6 @@
-<<<<<<< HEAD:src/components/KpiVerifiedTable.js
 import { Spinner, Table } from "evergreen-ui";
 import { useEffect, useState } from "react";
-import api from "../api";
-=======
-import { Spinner, Table } from 'evergreen-ui';
-import { useEffect, useState } from 'react';
-import api from '../../../api';
->>>>>>> a2aa143b615a92021c56505b90bcf3baa15ed3f7:src/components/Admin/VerifyKpi/KpiVerifiedTable.js
+import api from "../../../api";
 // import { verified } from '../data/VerifiedData';
 import KpiVerifiedRow from "./KpiVerifiedRow";
 

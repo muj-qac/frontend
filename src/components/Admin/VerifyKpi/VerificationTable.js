@@ -1,14 +1,7 @@
-<<<<<<< HEAD:src/components/VerificationTable.js
 import { Spinner, Table } from "evergreen-ui";
 import { useEffect, useState } from "react";
-import api from "../api";
+import api from "../../../api";
 import VerificationTableRow from "./VerificationTableRow";
-=======
-import { Spinner, Table } from 'evergreen-ui';
-import { useEffect, useState } from 'react';
-import api from '../../../api';
-import VerificationTableRow from './VerificationTableRow';
->>>>>>> a2aa143b615a92021c56505b90bcf3baa15ed3f7:src/components/Admin/VerifyKpi/VerificationTable.js
 
 function VerificationTable() {
   const [kpis, setKpis] = useState([]);
