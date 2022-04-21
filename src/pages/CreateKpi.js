@@ -1,22 +1,22 @@
-import SideBar from "../components/SideBar";
-import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import ColumnTable from "../components/CreateKpi/ColumnTable";
-import { Pane, Heading } from "evergreen-ui";
-import TopBar from "../components/TopBar";
+import SideBar from '../components/Bars/SideBar';
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import ColumnTable from '../components/Admin/CreateKpi/ColumnTable';
+import { Pane, Heading } from 'evergreen-ui';
+import TopBar from '../components/Bars/TopBar';
 
 function CreateKpi() {
   const validationSchema = Yup.object({
-    kpi: Yup.string().required("Please select a Column Name"),
-    name: Yup.string().required("Please select a Column Name"),
+    kpi: Yup.string().required('Please select a Column Name'),
+    name: Yup.string().required('Please select a Column Name'),
   });
 
   const initialValues = {
-    name: "",
-    dataType: "",
-    invalidAction: "",
-    rule: "",
-    invalidHelpText: "",
+    name: '',
+    dataType: '',
+    invalidAction: '',
+    rule: '',
+    invalidHelpText: '',
   };
 
   const onSubmit = (values) => {};

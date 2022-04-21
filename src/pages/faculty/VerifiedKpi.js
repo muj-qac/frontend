@@ -1,7 +1,6 @@
-// import SideBar from '../../components/SideBar';
-import FacultyTableVerified from "../../components/common/FacultyTableVerified";
-import FacultySideBar from "../../components/FacultySidebar";
-import TopBar from "../../components/TopBar";
+import FacultySideBar from '../../components/Bars/FacultySidebar';
+import TopBar from '../../components/Bars/TopBar';
+import FacultyTableVerified from '../../components/Faculty/VerifiedKpi/FacultyTableVerified';
 
 function VerifiedKpi() {
   return (

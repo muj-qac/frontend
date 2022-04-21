@@ -1,5 +1,5 @@
 import React from "react";
-import bgimage from "../img/domefinal.png";
+import bgimage from "../img/dome.jpg";
 import icon from "../img/logoMuj.png";
 import { useState, useEffect } from "react";
 import { Avatar, Pane, toaster } from "evergreen-ui";
