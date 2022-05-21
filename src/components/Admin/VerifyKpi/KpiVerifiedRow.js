@@ -11,18 +11,19 @@ import {
   TickIcon,
   Tooltip,
   UploadIcon,
-} from "evergreen-ui";
-import { useState } from "react";
+} from 'evergreen-ui';
+import { useState } from 'react';
 
 function KpiVerifiedRow({ verify }) {
   // const [title, setTitle] = useState('');
   const handleDownload = () => {
-    const encode = verify.uploaded_sheets_aws_key.replace(/\//g, "%2F");
+    const encode = verify.uploaded_sheets_aws_key.replace(/\//g, '%2F');
     console.log(encode);
     window.open(
-      `http://localhost:5000/api/v1/admin/sheet/get-verified-object/${encode}`
+      `https://api.mujep.in:5000/api/v1/admin/sheet/get-verified-object/${encode}`
     );
   };
+  const handleMergeData = () => {};
   return (
     <Pane>
       <Table.Row key={verify.uploaded_sheets_id} isSelectable>
