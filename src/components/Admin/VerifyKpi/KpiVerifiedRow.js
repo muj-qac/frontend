@@ -20,7 +20,7 @@ function KpiVerifiedRow({ verify }) {
     const encode = verify.uploaded_sheets_aws_key.replace(/\//g, '%2F');
     console.log(encode);
     window.open(
-      `https://api.mujep.in:5000/api/v1/admin/sheet/get-verified-object/${encode}`
+      `http://localhost:5000/api/v1/admin/sheet/get-verified-object/${encode}`
     );
   };
   const handleMergeData = () => {};
