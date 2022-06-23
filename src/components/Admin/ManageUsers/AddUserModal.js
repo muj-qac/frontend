@@ -24,14 +24,14 @@ function AddUserModal({
   const [roles, setRoles] = useState([]);
 
   //!Roles do not render Get roles working do not erase this code
+  const fetchRole = async () => {
+    const res = await api.get(`/admin/role/get-roles`);
+    setRoles(res.data);
+    console.log(res.data);
+  };
   useEffect(() => {
-    const fetchRole = async () => {
-      const res = await api.get(`/admin/role/get-roles`);
-      setRoles(res.data);
-      console.log(res.data);
-    };
     fetchRole();
-  }, []);
+  }, [modalOpen3]);
 
   // const [options] = useState(
   //   finalRoles.map((label) => ({

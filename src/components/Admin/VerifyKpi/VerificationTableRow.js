@@ -33,6 +33,12 @@ function VerificationTableRow({ kpi }) {
     counterPill1();
     counterPill2();
   }, []);
+  const handleMergeDownload = () => {
+    window.open(
+      `https://api.mujep.in/api/v1/admin/sheet/get-merged-object/${kpi.kpi_data_id}`
+    );
+  };
+
   return (
     <Pane>
       <Table.Row key={kpi.kpi_data_id} isSelectable>
@@ -77,7 +83,7 @@ function VerificationTableRow({ kpi }) {
               marginY={8}
               marginRight={12}
               iconBefore={CircleArrowDownIcon}
-              // onClick={handleDownload}
+              onClick={handleMergeDownload}
             >
               Merged Files
             </Button>
@@ -93,6 +99,7 @@ function VerificationTableRow({ kpi }) {
         setIsShown={setIsShown2}
         isShown={isShown2}
         title={kpi.kpi_data_name}
+        kpiId={kpi.kpi_data_id}
       />
     </Pane>
   );

@@ -2,7 +2,7 @@ import { Dialog, Pane } from 'evergreen-ui';
 import { useState } from 'react';
 import KpiVerifiedTable from './KpiVerifiedTable';
 
-function KpiVerifiedModal({ setIsShown, isShown, title }) {
+function KpiVerifiedModal({ setIsShown, isShown, title, kpiId }) {
   const [loading, setLoading] = useState(false);
   // const [file, setFile] = useState('');
   return (
@@ -23,7 +23,7 @@ function KpiVerifiedModal({ setIsShown, isShown, title }) {
         width={1000}
       >
         {/* <KpiReceiveTable /> */}
-        <KpiVerifiedTable title={title} />
+        <KpiVerifiedTable title={title} kpiId={kpiId} />
         <br />
       </Dialog>
     </Pane>
