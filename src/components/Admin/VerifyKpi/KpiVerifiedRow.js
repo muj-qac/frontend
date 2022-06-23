@@ -13,17 +13,23 @@ import {
   UploadIcon,
 } from 'evergreen-ui';
 import { useState } from 'react';
+import api from '../../../api';
 
-function KpiVerifiedRow({ verify }) {
+function KpiVerifiedRow({ verify, kpiId }) {
   // const [title, setTitle] = useState('');
   const handleDownload = () => {
     const encode = verify.uploaded_sheets_aws_key.replace(/\//g, '%2F');
-    console.log(encode);
     window.open(
-      `http://localhost:5000/api/v1/admin/sheet/get-verified-object/${encode}`
+      `https://api.mujep.in/api/v1/admin/sheet/get-verified-object/${encode}`
     );
   };
-  const handleMergeData = () => {};
+  let values = {
+    masterFileKey: `merged/${kpiId}.xlsx`,
+    fileKey: verify.uploaded_sheets_aws_key,
+  };
+  const handleMergeData = () => {
+    const res = api.get(`/admin/sheet/update-mainkpi/${kpiId}`, values);
+  };
   return (
     <Pane>
       <Table.Row key={verify.uploaded_sheets_id} isSelectable>
@@ -58,7 +64,7 @@ function KpiVerifiedRow({ verify }) {
               iconBefore={ApplicationsIcon}
               color="green"
               onClick={() => {
-                // setIsShown2(true);
+                handleMergeData();
               }}
             >
               Merge Data

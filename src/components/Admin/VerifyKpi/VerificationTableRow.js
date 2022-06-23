@@ -35,7 +35,7 @@ function VerificationTableRow({ kpi }) {
   }, []);
   const handleMergeDownload = () => {
     window.open(
-      `http://localhost:5000/api/v1/admin/sheet/get-merged-object/${kpi.kpi_data_id}`
+      `https://api.mujep.in/api/v1/admin/sheet/get-merged-object/${kpi.kpi_data_id}`
     );
   };
 
@@ -99,6 +99,7 @@ function VerificationTableRow({ kpi }) {
         setIsShown={setIsShown2}
         isShown={isShown2}
         title={kpi.kpi_data_name}
+        kpiId={kpi.kpi_data_id}
       />
     </Pane>
   );
