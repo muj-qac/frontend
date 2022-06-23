@@ -19,7 +19,7 @@ function FacultyTableRowVerified({ kpi }) {
     const encode = kpi.key.replace(/\//g, '%2F');
     console.log(encode);
     window.open(
-      `http://localhost:5000/api/v1/user/download-verified-kpi/${encode}`
+      `https://api.mujep.in/api/v1/user/download-verified-kpi/${encode}`
     );
   };
 
@@ -28,7 +28,7 @@ function FacultyTableRowVerified({ kpi }) {
       <Table.Row
         key={kpi.id}
         isSelectable
-        //   onSelect={() => alert(kpi.title)}
+      //   onSelect={() => alert(kpi.title)}
       >
         <Table.TextCell>{kpi.kpiName}</Table.TextCell>
         <Table.TextCell>

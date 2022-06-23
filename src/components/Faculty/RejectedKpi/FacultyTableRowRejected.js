@@ -18,7 +18,7 @@ function FacultyTableRowRejected({ kpi, render, setRender }) {
   const handleDownload = () => {
     const encode = kpi.aws_key.replace(/\//g, '%2F');
     window.open(
-      `http://localhost:5000/api/v1/user/download-rejected-kpi/${encode}`
+      `https://api.mujep.in/api/v1/user/download-rejected-kpi/${encode}`
     );
   };
 
@@ -27,7 +27,7 @@ function FacultyTableRowRejected({ kpi, render, setRender }) {
       <Table.Row
         key={kpi.id}
         isSelectable
-        //   onSelect={() => alert(kpi.title)}
+      //   onSelect={() => alert(kpi.title)}
       >
         <Table.TextCell>{kpi.name}</Table.TextCell>
         <Table.TextCell>{kpi.comment}</Table.TextCell>

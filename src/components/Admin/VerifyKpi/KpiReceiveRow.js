@@ -31,7 +31,7 @@ function KpiReceiveRow({ user, render, setRender }) {
     const encode = user.uploaded_sheets_aws_key.replace(/\//g, '%2F');
     // console.log(encode);
     window.open(
-      `http://localhost:5000/api/v1/admin/sheet/get-unverified-object/${encode}`
+      `https://api.mujep.in/api/v1/admin/sheet/get-unverified-object/${encode}`
     );
   };
   // console.log(formData);

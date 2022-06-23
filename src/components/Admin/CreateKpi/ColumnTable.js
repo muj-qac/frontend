@@ -53,7 +53,7 @@ const ColumnTable = () => {
     try {
       console.log(columns);
       // const res = await api.post(
-      //   'http://localhost:5000/api/v1/admin/sheet/new/',
+      //   'https://api.mujep.in/api/v1/admin/sheet/new/',
       //   {
       //     // method: 'post',
       //     headers: {

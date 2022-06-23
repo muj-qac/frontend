@@ -16,7 +16,7 @@ function FacultyTableRow({ kpi, render, setRender }) {
   const [isShown, setIsShown] = useState(false);
 
   const handleDownload = () => {
-    window.open(`http://localhost:5000/api/v1/user/download/${kpi.sheet_id}`);
+    window.open(`https://api.mujep.in/api/v1/user/download/${kpi.sheet_id}`);
   };
 
   return (
@@ -24,7 +24,7 @@ function FacultyTableRow({ kpi, render, setRender }) {
       <Table.Row
         key={kpi.id}
         isSelectable
-        //   onSelect={() => alert(kpi.title)}
+      //   onSelect={() => alert(kpi.title)}
       >
         <Table.TextCell>{kpi.name}</Table.TextCell>
         <Table.TextCell>

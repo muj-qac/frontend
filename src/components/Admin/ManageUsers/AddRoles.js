@@ -52,6 +52,7 @@ function AddRoles({ setModalOpen2, modalOpen2, setRender, render }) {
         console.log(error);
       } finally {
         setLoading(true);
+        elementRef.current.value = '';
       }
     } else if (list.some((e) => e.role_name === roles.role_name) === true) {
       return toaster.danger('Role Already Exist', {
