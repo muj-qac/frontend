@@ -24,12 +24,17 @@ function FacultyTableRow({ kpi, render, setRender }) {
       <Table.Row
         key={kpi.id}
         isSelectable
-      //   onSelect={() => alert(kpi.title)}
+        //   onSelect={() => alert(kpi.title)}
       >
         <Table.TextCell>{kpi.name}</Table.TextCell>
         <Table.TextCell>
-          {kpi.status === 'pending' && (
+          {kpi.status === 'rejected' && (
             <Badge color="red" marginRight={8}>
+              {kpi.status}
+            </Badge>
+          )}
+          {kpi.status === 'pending' && (
+            <Badge color="blue" marginRight={8}>
               {kpi.status}
             </Badge>
           )}
