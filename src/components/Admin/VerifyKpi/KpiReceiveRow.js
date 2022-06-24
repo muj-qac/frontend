@@ -23,13 +23,13 @@ function KpiReceiveRow({ user, render, setRender }) {
   const [text, setText] = useState('');
   const [file, setFile] = useState();
   const [loading, setLoading] = useState(false);
-  const [rejectLoading, setRejectLoading] = useState(false);
   let formData = new FormData();
   formData.append('file', file);
   formData.append('comment', text);
   formData.append('fileKey', user.uploaded_sheets_aws_key);
   const handleDownload = () => {
-    const encode = user.uploaded_sheets_aws_key.replace(/\//g, '%2F');
+    // const encode = user.uploaded_sheets_aws_key.replace(/\//g, '%2F');
+    const encode = btoa(user.uploaded_sheets_aws_key);
     // console.log(encode);
     window.open(
       `https://api.mujep.in/api/v1/admin/sheet/get-unverified-object/${encode}`
@@ -52,7 +52,7 @@ function KpiReceiveRow({ user, render, setRender }) {
     }
   };
   const handleReject = async () => {
-    setRejectLoading(true);
+    setLoading(true);
     try {
       const res = await api.post(
         `/admin/sheet/reject-kpi/${user.user_id_id}`,
@@ -61,10 +61,10 @@ function KpiReceiveRow({ user, render, setRender }) {
       if (res.status !== 200) throw 'Request Failed';
       toaster.success('KPI rejected successfully!');
     } catch (error) {
-      toaster.danger(`${error}`);
+      toaster.danger('Something went wrong');
     } finally {
       setRender(!render);
-      setRejectLoading(false);
+      setLoading(false);
     }
   };
   return (
@@ -136,7 +136,7 @@ function KpiReceiveRow({ user, render, setRender }) {
                     <Button
                       appearance="primary"
                       onClick={handleReject}
-                      isLoading={rejectLoading}
+                      isLoading={loading}
                     >
                       Save
                     </Button>
@@ -150,7 +150,6 @@ function KpiReceiveRow({ user, render, setRender }) {
                 icon={CrossIcon}
                 marginRight={majorScale(2)}
                 intent="danger"
-                isLoading={rejectLoading}
                 onClick={() => {
                   setIsShown(true);
                 }}
