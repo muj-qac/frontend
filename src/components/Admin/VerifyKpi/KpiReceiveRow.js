@@ -45,7 +45,7 @@ function KpiReceiveRow({ user, render, setRender }) {
       if (res.status !== 200) throw 'Request Failed';
       toaster.success('KPI verified successfully!');
     } catch (error) {
-      toaster.success('KPI verified successfully!');
+      toaster.danger('Something went wrong!');
     } finally {
       setRender(!render);
       setLoading(false);
