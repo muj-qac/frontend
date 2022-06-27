@@ -43,11 +43,6 @@ function FacultyTableRow({ kpi, render, setRender }) {
               {kpi.status}
             </Badge>
           )}
-          {kpi.status === 'verified' && (
-            <Badge color="green" marginRight={8}>
-              {kpi.status}
-            </Badge>
-          )}
         </Table.TextCell>
         <Table.TextCell>
           <Tooltip content="Download KPI Schema">
