@@ -30,11 +30,14 @@ function KpiVerifiedRow({ verify, kpiId }) {
     masterFileKey: `merged/${kpiId}.xlsx`,
     fileKey: verify.uploaded_sheets_aws_key,
   };
-  const handleMergeData = () => {
+  const handleMergeData = async () => {
     setLoading(true);
     try {
-      const res = api.post(`/admin/sheet/update-mainkpi/${kpiId}`, values);
-      if (res.status !== 200) throw 'Request Failed';
+      const res = await api.post(
+        `/admin/sheet/update-mainkpi/${kpiId}`,
+        values
+      );
+      if (res.message !== 'success') throw 'Request Failed';
       toaster.success('KPI merged successfully!');
     } catch (error) {
       toaster.danger('Something went wrong');
@@ -69,13 +72,17 @@ function KpiVerifiedRow({ verify, kpiId }) {
             />
           </Tooltip> */}
           {/* <div className=" h-4 w-4 rounded-full bg-emerald-400"></div> */}
-          {verify.status === 'merged' ? (
+          {verify.uploaded_sheets_status === 'verified' ? (
             <Tooltip content="Verified">
               <Button
                 marginY={8}
                 marginRight={12}
                 iconBefore={ApplicationsIcon}
                 color="green"
+                onClick={() => {
+                  handleMergeData();
+                }}
+                // disabled
               >
                 Merge Data
               </Button>
@@ -87,12 +94,9 @@ function KpiVerifiedRow({ verify, kpiId }) {
                 marginY={8}
                 marginRight={12}
                 iconBefore={ApplicationsIcon}
-                color="orange"
-                onClick={() => {
-                  handleMergeData();
-                }}
+                disabled
               >
-                Merge Data
+                Merged
               </Button>
             </Tooltip>
           )}
