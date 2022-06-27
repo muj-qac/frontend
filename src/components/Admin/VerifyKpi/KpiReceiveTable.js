@@ -22,7 +22,6 @@ function KpiReceiveTable({ title }) {
   };
   useEffect(() => {
     fetchKpi();
-    console.log(title);
   }, [render]);
 
   // console.log(kpis);
