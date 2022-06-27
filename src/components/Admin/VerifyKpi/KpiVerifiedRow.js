@@ -73,6 +73,7 @@ function KpiVerifiedRow({ verify, kpiId, render, setRender }) {
           {verify.uploaded_sheets_status === 'verified' ? (
             <Tooltip content="Verified">
               <Button
+                isLoading={loading}
                 marginY={8}
                 marginRight={12}
                 iconBefore={ApplicationsIcon}
@@ -88,7 +89,6 @@ function KpiVerifiedRow({ verify, kpiId, render, setRender }) {
           ) : (
             <Tooltip content="Merge Data">
               <Button
-                isLoading={loading}
                 marginY={8}
                 marginRight={12}
                 iconBefore={ApplicationsIcon}
