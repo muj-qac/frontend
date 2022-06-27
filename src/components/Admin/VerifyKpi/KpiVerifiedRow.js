@@ -72,13 +72,17 @@ function KpiVerifiedRow({ verify, kpiId }) {
             />
           </Tooltip> */}
           {/* <div className=" h-4 w-4 rounded-full bg-emerald-400"></div> */}
-          {verify.status === 'merged' ? (
+          {verify.uploaded_sheets_status === 'verified' ? (
             <Tooltip content="Verified">
               <Button
                 marginY={8}
                 marginRight={12}
                 iconBefore={ApplicationsIcon}
                 color="green"
+                onClick={() => {
+                  handleMergeData();
+                }}
+                // disabled
               >
                 Merge Data
               </Button>
@@ -90,12 +94,9 @@ function KpiVerifiedRow({ verify, kpiId }) {
                 marginY={8}
                 marginRight={12}
                 iconBefore={ApplicationsIcon}
-                color="orange"
-                onClick={() => {
-                  handleMergeData();
-                }}
+                disabled
               >
-                Merge Data
+                Merged
               </Button>
             </Tooltip>
           )}
