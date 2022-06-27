@@ -31,13 +31,17 @@ function FacultyTable() {
         </Table.Head>
         <Table.Body height={400}>
           {loading ? (
-            kpis.map((kpi) => (
-              <FacultyTableRow
-                kpi={kpi}
-                render={render}
-                setRender={setRender}
-              />
-            ))
+            kpis.map(
+              (kpi) =>
+                kpi.status !== 'merged' &&
+                kpi.status !== 'verified' && (
+                  <FacultyTableRow
+                    kpi={kpi}
+                    render={render}
+                    setRender={setRender}
+                  />
+                )
+            )
           ) : (
             <Spinner marginX="auto" marginY={120} />
           )}
