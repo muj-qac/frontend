@@ -9,14 +9,16 @@ import {
   Pane,
   Table,
   TickIcon,
+  toaster,
   Tooltip,
   UploadIcon,
-} from "evergreen-ui";
-import { useState } from "react";
-import api from "../../../api";
+} from 'evergreen-ui';
+import { useState } from 'react';
+import api from '../../../api';
 
 function KpiVerifiedRow({ verify, kpiId }) {
   // const [title, setTitle] = useState('');
+  const [loading, setLoading] = useState(false);
   const handleDownload = () => {
     // const encode = verify.uploaded_sheets_aws_key.replace(/\//g, '%2F');
     const encode = btoa(verify.uploaded_sheets_aws_key);
@@ -29,7 +31,16 @@ function KpiVerifiedRow({ verify, kpiId }) {
     fileKey: verify.uploaded_sheets_aws_key,
   };
   const handleMergeData = () => {
-    api.post(`/admin/sheet/update-mainkpi/${kpiId}`, values);
+    setLoading(true);
+    try {
+      const res = api.post(`/admin/sheet/update-mainkpi/${kpiId}`, values);
+      if (res.status !== 200) throw 'Request Failed';
+      toaster.success('KPI merged successfully!');
+    } catch (error) {
+      toaster.danger('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <Pane>
@@ -58,19 +69,33 @@ function KpiVerifiedRow({ verify, kpiId }) {
             />
           </Tooltip> */}
           {/* <div className=" h-4 w-4 rounded-full bg-emerald-400"></div> */}
-          <Tooltip content="Merge Data">
-            <Button
-              marginY={8}
-              marginRight={12}
-              iconBefore={ApplicationsIcon}
-              color="green"
-              onClick={() => {
-                handleMergeData();
-              }}
-            >
-              Merge Data
-            </Button>
-          </Tooltip>
+          {verify.status === 'merged' ? (
+            <Tooltip content="Verified">
+              <Button
+                marginY={8}
+                marginRight={12}
+                iconBefore={ApplicationsIcon}
+                color="green"
+              >
+                Merge Data
+              </Button>
+            </Tooltip>
+          ) : (
+            <Tooltip content="Merge Data">
+              <Button
+                isLoading={loading}
+                marginY={8}
+                marginRight={12}
+                iconBefore={ApplicationsIcon}
+                color="orange"
+                onClick={() => {
+                  handleMergeData();
+                }}
+              >
+                Merge Data
+              </Button>
+            </Tooltip>
+          )}
         </Table.TextCell>
       </Table.Row>
     </Pane>

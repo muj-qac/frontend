@@ -6,7 +6,8 @@ function TopBar() {
   let navigate = useNavigate();
   return (
     <>
-      <div className="flex items-center justify-between min-w-[60rem] ml-32 mt-5">
+      {/* <div className="flex items-center justify-between ml-32 mt-5 md:min-w-[60rem]"> */}
+      <div className="flex justify-between min-w-[60vw] ml-32 mt-5">
         <div className=" w-64 flex items-center">
           <div className="flex-shrink-0 h-10 w-10">
             {/* <img className="h-10 w-10 rounded-full" src={avatar} alt="" /> */}
@@ -19,18 +20,21 @@ function TopBar() {
             </div>
           </div>
         </div>
-        <button
-          className=" bg-red-200 hover:bg-red-100 hover:border hover:border-red-800 text-red-800 font-semibold py-2 px-4 rounded shadow "
-          type="button p-4"
-          onClick={() => {
-            localStorage.removeItem('token');
-            localStorage.removeItem('isAdmin');
-            navigate('/');
-          }}
-        >
-          SignOut
-        </button>
+        <div>
+          <button
+            className=" bg-red-200 hover:bg-red-100 hover:border hover:border-red-800 text-red-800 font-semibold py-2 px-4 rounded shadow inline-block"
+            type="button p-4"
+            onClick={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('isAdmin');
+              navigate('/');
+            }}
+          >
+            SignOut
+          </button>
+        </div>
       </div>
+      {/* </div> */}
     </>
   );
 }
