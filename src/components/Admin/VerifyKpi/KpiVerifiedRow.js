@@ -30,10 +30,13 @@ function KpiVerifiedRow({ verify, kpiId, render, setRender }) {
     masterFileKey: `merged/${kpiId}.xlsx`,
     fileKey: verify.uploaded_sheets_aws_key,
   };
-  const handleMergeData = () => {
+  const handleMergeData = async () => {
     setLoading(true);
     try {
-      const res = api.post(`/admin/sheet/update-mainkpi/${kpiId}`,values);
+      const res = await api.post(
+        `/admin/sheet/update-mainkpi/${kpiId}`,
+        values
+      );
       if (res.status !== 200) throw 'Request Failed';
       toaster.success('KPI merged successfully!');
     } catch (error) {
