@@ -7,6 +7,7 @@ import KpiVerifiedRow from './KpiVerifiedRow';
 function KpiVerifiedTable({ title, kpiId }) {
   const [kpis, setKpis] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [render, setRender] = useState(false);
 
   const fetchKpi = async () => {
     const res = await api.get(`/admin/sheet/verified-kpis`);
@@ -16,7 +17,7 @@ function KpiVerifiedTable({ title, kpiId }) {
   };
   useEffect(() => {
     fetchKpi();
-  }, []);
+  }, [render]);
   return (
     <>
       <Table>
@@ -30,7 +31,12 @@ function KpiVerifiedTable({ title, kpiId }) {
             kpis.map(
               (kpi) =>
                 title === kpi.uploaded_sheets_aws_key.split('/', 1)[0] && (
-                  <KpiVerifiedRow verify={kpi} kpiId={kpiId} />
+                  <KpiVerifiedRow
+                    verify={kpi}
+                    kpiId={kpiId}
+                    render={render}
+                    setRender={setRender}
+                  />
                 )
             )
           ) : (

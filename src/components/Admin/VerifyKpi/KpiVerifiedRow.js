@@ -16,7 +16,7 @@ import {
 import { useState } from 'react';
 import api from '../../../api';
 
-function KpiVerifiedRow({ verify, kpiId }) {
+function KpiVerifiedRow({ verify, kpiId, render, setRender }) {
   // const [title, setTitle] = useState('');
   const [loading, setLoading] = useState(false);
   const handleDownload = () => {
@@ -37,11 +37,12 @@ function KpiVerifiedRow({ verify, kpiId }) {
         `/admin/sheet/update-mainkpi/${kpiId}`,
         values
       );
-      if (res.message !== 'success') throw 'Request Failed';
+      if (res.status !== 200) throw 'Request Failed';
       toaster.success('KPI merged successfully!');
     } catch (error) {
       toaster.danger('Something went wrong');
     } finally {
+      setRender(!render);
       setLoading(false);
     }
   };
